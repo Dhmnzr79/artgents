@@ -1,11 +1,532 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artgents</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artgents — ИИ-консультант для клиник</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Привет, мир</h1>
+  <nav class="nav">
+    <a href="#top" class="logo" aria-label="Artgents">
+      <span class="logo-mark">AI</span>
+      art<span>gents</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#what">Что это</a>
+      <a href="#problems">Проблемы</a>
+      <a href="#compare">Сравнение</a>
+      <a href="#analytics">Аналитика</a>
+      <a href="#pricing">Тариф</a>
+    </div>
+
+    <button class="nav-cta">Обсудить подключение →</button>
+  </nav>
+
+  <main id="top" class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="hero-badge">
+          <span class="live-dot"></span>
+          Подключение для клиник — 2025
+        </div>
+
+        <h1>ИИ-консультант на сайте клиники, который знает ваши услуги, цены и врачей</h1>
+
+        <p class="lead">
+          Понимает свободный вопрос, отвечает по делу и передаёт администратору тёплую заявку — с историей разговора. <strong>Круглосуточно.</strong>
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn">Посмотреть демо →</button>
+          <button class="btn secondary">Как это работает</button>
+        </div>
+
+        <div class="hero-facts">
+          <div class="hero-fact">
+            <strong>39к ₽</strong>
+            <span>в месяц</span>
+          </div>
+          <div class="hero-fact">
+            <strong>3 мес</strong>
+            <span>первый этап</span>
+          </div>
+          <div class="hero-fact">
+            <strong>39к ₽</strong>
+            <span>клиник одновременно</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Анимация диалога ИИ-консультанта">
+        <div class="hero-glow"></div>
+
+        <div class="floating-card one" id="heroCard1">
+          <div class="float-icon">✓</div>
+          <strong>По материалам клиники</strong>
+          <span>ИИ отвечает на основе базы знаний: услуги, цены, врачи, условия и FAQ клиники.</span>
+        </div>
+
+        <div class="floating-card two" id="heroCard2">
+          <div class="float-icon">♥</div>
+          <strong>Снимает сомнения</strong>
+          <span>Объясняет цену, боль, гарантии и этапы лечения без давления и сложных терминов.</span>
+        </div>
+
+        <div class="floating-card three" id="heroCard3">
+          <div class="float-icon">→</div>
+          <strong>Передаёт контекст</strong>
+          <span>В заявке видно, что спрашивал пациент и что ему уже объяснил консультант.</span>
+        </div>
+
+        <div class="chat-frame">
+          <div class="chat-top">
+            <div class="agent-profile">
+              <div class="agent-avatar">🦷</div>
+              <div>
+                <strong>Консультант клиники</strong>
+                <span><span class="live-dot"></span> онлайн · отвечает сейчас</span>
+              </div>
+            </div>
+            <div class="chat-badge">по базе клиники</div>
+          </div>
+
+          <div class="chat-body" id="heroChat"></div>
+
+          <div class="chat-input">
+            <div class="input-fake">Сообщение пациенту...</div>
+            <div class="send">→</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="what">
+      <div class="section-head fade-up">
+        <div>
+          <div class="label">Что это такое</div>
+          <h2>Не справочник и не форма звонка. <em>Живой диалог</em></h2>
+        </div>
+
+        <p class="section-note">
+          Виджет на сайте клиники. Внутри — ИИ, обученный на материалах вашей клиники. Пациент пишет что угодно своими словами и получает ответ — без скриптов, без кнопок, без «оставьте телефон».
+        </p>
+      </div>
+
+      <div class="bento fade-up">
+        <article class="card large">
+          <div class="card-num">01</div>
+          <h3>Не выдумывает факты</h3>
+          <p>
+            Отвечает только по материалам вашей клиники — услуги, цены, врачи, условия. Никаких данных из интернета и обещаний, которых вы не давали.
+          </p>
+
+          <div class="mini-interface">
+            <div class="mini-row"><b>Источник</b><span>услуги · цены · врачи</span></div>
+            <div class="mini-row"><b>Ответ</b><span>без выдуманных фактов</span></div>
+            <div class="mini-row"><b>Ограничение</b><span>передаёт врачу сложные вопросы</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-num">02</div>
+          <h3>Помнит контекст</h3>
+          <p>
+            Не переспрашивает одно и то же. Если пациент сказал что боится боли — консультант учитывает это в каждом следующем ответе.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-num">03</div>
+          <h3>Ведёт разговор, не просто отвечает</h3>
+          <p>
+            На сложных темах — боль, цена, риски — объясняет, снимает сомнения и мягко предлагает следующий шаг. Не дерево кнопок, а логика живого диалога.
+          </p>
+        </article>
+
+        <article class="card wide">
+          <div class="card-num">04</div>
+          <h3>Передаёт заявку с историей</h3>
+          <p>
+            Администратор получает не холодный номер, а контекст: что спрашивал, чего боялся, что уже объяснил консультант.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="problem-section" id="problems">
+    <div class="page-shell problem-layout">
+      <div class="sticky-copy fade-up">
+        <div class="label">Почему пациенты теряются</div>
+        <h2>Вопрос есть. <em>Ответа нет</em></h2>
+        <p class="lead">
+          Часть посетителей не оставляет заявку не потому, что им не нужна услуга. Они просто не получили ответ в нужный момент.
+        </p>
+      </div>
+
+      <div class="problem-stack">
+        <article class="problem-card fade-up">
+          <div class="problem-index">01</div>
+          <div>
+            <h3>Читают вечером и ночью</h3>
+            <p>
+              Когда администраторы недоступны, пациент уходит сравнивать другие клиники
+            </p>
+          </div>
+        </article>
+
+        <article class="problem-card fade-up">
+          <div class="problem-index">02</div>
+          <div>
+            <h3>Сомневаются в цене</h3>
+            <p>
+              Не понимают, почему столько стоит и что входит. Сайт не объясняет
+            </p>
+          </div>
+        </article>
+
+        <article class="problem-card fade-up">
+          <div class="problem-index">03</div>
+          <div>
+            <h3>Хотят больше деталей</h3>
+            <p>
+              Про врача, этапы, гарантии — информации на сайте не хватает для решения
+            </p>
+          </div>
+        </article>
+
+        <article class="problem-card fade-up">
+          <div class="problem-index">04</div>
+          <div>
+            <h3>Вопрос остался без ответа</h3>
+            <p>
+              Нашли сайт ночью или в выходные — и просто закрыли вкладку. Администратор узнает об этом никогда.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <main class="page-shell">
+    <section class="section" id="compare">
+      <div class="section-head fade-up">
+        <div>
+          <div class="label">Отличие от обычного чата</div>
+          <h2>Один вопрос. <em>Два разных ответа</em></h2>
+        </div>
+
+        <p class="section-note">
+          Обычный виджет просит контакты. ИИ-консультант слышит страх пациента, отвечает по делу и мягко ведёт к следующему шагу.
+        </p>
+      </div>
+
+      <div class="compare-wrap fade-up" id="compareBlock">
+        <article class="dialog-panel bad-panel">
+          <div class="dialog-head">
+            <strong>Обычный виджет</strong>
+            <span>онлайн-чат</span>
+          </div>
+
+          <div class="dialog-content">
+            <div class="dmsg user">Больно ли ставить имплант? Я очень боюсь</div>
+            <div class="dmsg bot">Здравствуйте! Для ответа на ваш вопрос оставьте контактные данные — наш специалист свяжется с вами.</div>
+            <div class="dmsg user">Ну хоть что-то можете сказать?</div>
+            <div class="dmsg bot">Выберите удобный способ связи:<br>📞 Заказать звонок<br>✉️ Написать на email</div>
+          </div>
+
+          <div class="pin bad one">
+            <strong>✕ Игнорирует эмоцию</strong>
+            <span>Страх пациента не замечен. Вместо ответа — форма для сбора контакта.</span>
+          </div>
+
+          <div class="pin bad two">
+            <strong>✕ Не отвечает на вопрос</strong>
+            <span>Пациент просит объяснение, а получает сценарий переключения на звонок.</span>
+          </div>
+        </article>
+
+        <article class="dialog-panel good">
+          <div class="dialog-head">
+            <strong>Artgents</strong>
+            <span>ИИ-консультант клиники</span>
+          </div>
+
+          <div class="dialog-content">
+            <div class="dmsg user">Больно ли ставить имплант? Я очень боюсь</div>
+            <div class="dmsg bot">
+              Страх боли — это нормально, многие пациенты начинают разговор именно с этого.<br><br>Процедура проходит под местной анестезией. Большинство описывают ощущения как давление, но не боль. После — дискомфорт 1–2 дня.<br><br>Хотите, расскажу подробнее про этапы?
+            </div>
+            <div class="msg-source">📋 По материалам клиники</div>
+          </div>
+
+          <div class="pin good one">
+            <strong>✓ Слышит страх — отвечает на него</strong>
+            <span>Признаёт тревогу, даёт факты и мягко ведёт к следующему шагу.</span>
+          </div>
+
+          <div class="pin good two">
+            <strong>✓ Ответ по материалам клиники</strong>
+            <span>Не обещает лишнего и не уходит в медицинские фантазии.</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact" id="results">
+      <div class="section-head fade-up">
+        <div>
+          <div class="label">Что получает клиника</div>
+          <h2>Три результата,<br>а не просто <em>виджет на сайте</em></h2>
+        </div>
+
+        <p class="section-note">
+          ИИ-консультант помогает не только отвечать пациентам, но и лучше понимать, что мешает им записаться.
+        </p>
+      </div>
+
+      <div class="features-grid fade-up">
+        <article class="feature-card big">
+          <div class="feature-icon">📋</div>
+          <h3>Тёплые заявки с контекстом</h3>
+          <p>Администратор видит не просто «имя + телефон», а что интересовало пациента, чего боялся и что уже объяснил консультант.</p>
+
+          <div class="feature-visual">
+            <div class="crm-line"><b>Пациент</b><span>Ирина, WhatsApp</span></div>
+            <div class="crm-line"><b>Интерес</b><span>имплантация</span></div>
+            <div class="crm-line"><b>Страх</b><span>боль и анестезия</span></div>
+            <div class="crm-line"><b>Статус</b><span class="success-text">готова к консультации</span></div>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🌙</div>
+          <h3>Ответ в любое время суток</h3>
+          <p>Вечером, ночью, в выходные — когда посетитель на сайте, консультант доступен. Пациент получает ответ и не уходит.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Аналитика вопросов пациентов</h3>
+          <p>Топ страхов, частые возражения, темы без ответа на сайте — ежемесячный отчёт для маркетинга и контента.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🧘</div>
+          <h3>Снятие нагрузки с администратора</h3>
+          <p>Повторяющиеся объяснения про цену, этапы и гарантии берёт на себя консультант. Администратор работает с готовыми обращениями.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Только ваши материалы</h3>
+          <p>Никаких выдуманных цен и фантазий. Только то, что есть в базе знаний клиники — услуги, врачи, условия, FAQ.</p>
+        </article>
+
+        <article class="feature-card wide">
+          <div class="feature-icon">💡</div>
+          <h3>Идеи для сайта и рекламы</h3>
+          <p>Реальные вопросы пациентов — источник для новых посадочных страниц, объявлений, FAQ и скриптов администраторов.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="dashboard-section section" id="analytics">
+    <div class="page-shell dashboard-grid">
+      <div class="fade-up">
+        <div class="label">Голос пациента</div>
+        <h2>Даже диалог<br>без заявки — <em>ценность</em></h2>
+        <p class="lead">
+          Обычная аналитика показывает, что человек зашёл и ушёл. Диалог показывает — <strong>почему он ушёл</strong>.
+        </p>
+
+        <div class="insights">
+          <div class="insight">
+            <i>1</i>
+            <div>
+              <strong>Топ страхов</strong>
+              <span>Боль, осложнения, гарантия, цена, опыт врача.</span>
+            </div>
+          </div>
+
+          <div class="insight">
+            <i>2</i>
+            <div>
+              <strong>Дыры на сайте</strong>
+              <span>Темы, которые пациенты ищут, но не находят на посадочных страницах.</span>
+            </div>
+          </div>
+
+          <div class="insight">
+            <i>3</i>
+            <div>
+              <strong>Идеи для рекламы</strong>
+              <span>Реальные формулировки возражений для объявлений, FAQ и квизов.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard fade-up">
+        <div class="dash-top">
+          <strong>Отчёт за октябрь</strong>
+          <div class="dash-chip">47 диалогов</div>
+        </div>
+
+        <div class="dash-body">
+          <p class="dash-label">Топ вопросов пациентов</p>
+
+          <div class="dash-row">
+            <span>Сколько стоит имплант?</span>
+            <div class="bar"><span style="width:92%"></span></div>
+            <b>18</b>
+          </div>
+
+          <div class="dash-row">
+            <span>Больно ли ставить?</span>
+            <div class="bar"><span style="width:74%"></span></div>
+            <b>14</b>
+          </div>
+
+          <div class="dash-row">
+            <span>Есть ли рассрочка?</span>
+            <div class="bar"><span style="width:58%"></span></div>
+            <b>11</b>
+          </div>
+
+          <div class="dash-row">
+            <span>Что если не приживётся?</span>
+            <div class="bar"><span style="width:43%"></span></div>
+            <b>8</b>
+          </div>
+
+          <div class="dash-suggestions">
+            <div class="suggestion">Опыт врача с костной пластикой · добавить</div>
+            <div class="suggestion">Гарантия на имплант · добавить</div>
+            <div class="suggestion">Сделать FAQ про боль · добавить</div>
+            <div class="suggestion">Объяснить рассрочку · добавить</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="page-shell">
+    <section class="section" id="pricing">
+      <div class="section-head fade-up">
+        <div>
+          <div class="label">Тариф</div>
+          <h2>ИИ-консультант для клиники — <em>по подписке</em></h2>
+        </div>
+
+        <p class="section-note">
+          Первый этап нужен не только для запуска, но и для адаптации базы знаний
+          по реальным вопросам пациентов.
+        </p>
+      </div>
+
+      <div class="pricing-layout">
+        <article class="price-card fade-up">
+          <div class="price-kicker">Для стоматологических клиник</div>
+
+          <div class="price">
+            <strong>39 000</strong>
+            <span>₽ / месяц</span>
+          </div>
+
+          <ul class="check-list">
+            <li>Подключение и адаптация базы знаний включены</li>
+            <li>Первый этап — 3 месяца, оплата помесячно</li>
+            <li>Ручной разбор первых 100 диалогов</li>
+            <li>Ежемесячный отчёт “Голос пациента”</li>
+            <li>Мини-аудит сайта перед запуском</li>
+          </ul>
+
+          <p class="price-note">
+            Принципиально не берём больше пяти клиник одновременно.
+            Качество ответов важнее количества подключений.
+          </p>
+
+          <button class="btn">Обсудить подключение →</button>
+          <p class="after-price">После первых кейсов: 59 000 ₽/мес + подключение отдельно</p>
+        </article>
+
+        <div class="pricing-copy fade-up">
+          <article class="pricing-copy-card">
+            <h3>Почему подписка, а не разработка?</h3>
+            <p>
+              Разработка бота с нуля — от 300 до 800 тысяч рублей и несколько месяцев. Результат неизвестен заранее. Вы платите до того, как увидите как это работает с вашими пациентами.<br><br>Здесь — работающий продукт с первого месяца. Платите только пока он приносит пользу.
+            </p>
+
+            <div class="compare-mini">
+              <div class="mini-price">
+                <b>300–800к ₽</b>
+                <span>стоимость разработки с нуля</span>
+              </div>
+              <div class="mini-price">
+                <b>39к ₽</b>
+                <span>подписка с первого месяца</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pricing-copy-card">
+            <h3>Мини-аудит сайта — бесплатно</h3>
+            <p>
+              Покажем, какие вопросы пациентов сейчас не закрывает ваш сайт: имплантация, цены, страхи, гарантии, путь к заявке. Без обязательств.
+            </p>
+          </article>
+
+          <article class="pricing-copy-card">
+            <h3>После первых кейсов</h3>
+            <p>
+              Стоимость для новых клиник может измениться: подключение отдельно, подписка выше.
+              Первый набор — для клиник, готовых запускаться вместе с ручной доработкой продукта.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="cta-card fade-up">
+        <div>
+          <div class="label">Мини-аудит сайта</div>
+          <h2>Покажем, какие вопросы пациентов сейчас не закрывает ваш сайт</h2>
+          <p class="lead">
+            Разберём имплантацию, цены, страхи, гарантии и путь к заявке. Без обязательств — как первый шаг перед запуском консультанта.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn">Получить мини-аудит сайта →</button>
+            <button class="btn secondary">Обсудить подключение</button>
+          </div>
+        </div>
+
+        <div class="cta-chat">
+          <div class="cta-chat-top">Что получит клиника</div>
+          <div class="cta-chat-body">
+            <div class="cta-msg agent">
+              Покажу, где пациенту не хватает ответа: про цену, боль, гарантию, врача и запись.
+            </div>
+            <div class="cta-msg user">Что нужно для аудита?</div>
+            <div class="cta-msg agent">
+              Достаточно ссылки на сайт и понимания, какие услуги сейчас важнее всего продвигать.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
