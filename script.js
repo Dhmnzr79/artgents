@@ -1,11 +1,5 @@
 const heroChat = document.getElementById('heroChat');
 
-const heroCards = [
-  document.getElementById('heroCard1'),
-  document.getElementById('heroCard2'),
-  document.getElementById('heroCard3')
-];
-
 const heroScenario = [
   {
     role: 'bot',
@@ -23,15 +17,13 @@ const heroScenario = [
     role: 'bot',
     label: 'ИИ-консультант',
     text: 'Имплантация — от 45 000 ₽ за имплант. Итоговая стоимость зависит от выбранной системы — врач уточнит на бесплатной консультации.',
-    after: 520,
-    card: 0
+    after: 520
   },
   {
     role: 'bot',
     label: 'ИИ-консультант',
     text: 'По ощущениям: процедура под местной анестезией. Большинство пациентов описывают её как менее неприятную, чем удаление зуба.',
-    after: 650,
-    card: 1
+    after: 650
   },
   {
     role: 'client',
@@ -42,9 +34,8 @@ const heroScenario = [
   {
     role: 'bot',
     label: 'ИИ-консультант',
-    text: 'Такой вопрос лучше обсудить на консультации: врач оценит риски и объяснит гарантийные условия клиники. Я могу передать администратору ваш вопрос с историей диалога.',
-    after: 760,
-    card: 2
+    text: 'Такой вопрос лучше обсудить на консультации: врач оценит риски и объяснит гарантийные условия клиники. Я могу передать ваш вопрос администратору вместе с историей диалога.',
+    after: 760
   }
 ];
 
@@ -70,15 +61,9 @@ function createHeroMessage({ role, label }) {
 }
 
 async function showTyping() {
-  const bubble = createHeroMessage({
-    role: 'bot',
-    label: 'ИИ-консультант'
-  });
-
+  const bubble = createHeroMessage({ role: 'bot', label: 'ИИ-консультант' });
   bubble.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
-
   await wait(560);
-
   bubble.parentElement.remove();
 }
 
@@ -86,8 +71,7 @@ async function streamText(bubble, text, role) {
   bubble.innerHTML = '';
 
   const textNode = document.createElement('span');
-  const cursor = document.createElement('span');
-
+  const cursor   = document.createElement('span');
   cursor.className = 'cursor';
 
   bubble.appendChild(textNode);
@@ -101,15 +85,10 @@ async function streamText(bubble, text, role) {
     heroChat.scrollTop = heroChat.scrollHeight;
 
     const char = text[i];
-
     const delay =
-      char === '.' || char === '?' || char === '!'
-        ? 115
-        : char === ',' || char === '—'
-          ? 58
-          : role === 'bot'
-            ? 18
-            : 13;
+      char === '.' || char === '?' || char === '!' ? 115 :
+      char === ',' || char === '—'                 ? 58  :
+      role === 'bot'                               ? 18  : 13;
 
     await wait(delay);
   }
@@ -121,31 +100,19 @@ let heroToken = 0;
 
 async function playHero() {
   heroToken++;
-
   const token = heroToken;
 
   heroChat.innerHTML = '';
-  heroCards.forEach(card => card.classList.remove('show'));
-
   await wait(350);
 
   for (const item of heroScenario) {
     if (token !== heroToken) return;
 
-    if (item.role === 'bot') {
-      await showTyping();
-    }
-
+    if (item.role === 'bot') await showTyping();
     if (token !== heroToken) return;
 
     const bubble = createHeroMessage(item);
-
     await streamText(bubble, item.text, item.role);
-
-    if (typeof item.card === 'number') {
-      heroCards[item.card].classList.add('show');
-    }
-
     await wait(item.after);
   }
 
@@ -162,36 +129,8 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, {
-  threshold: 0.14
-});
+}, { threshold: 0.14 });
 
-document.querySelectorAll('.fade-up').forEach(el => {
-  revealObserver.observe(el);
-});
+document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 
-const compareBlock = document.getElementById('compareBlock');
-
-const compareObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        document.querySelectorAll('.pin').forEach((pin, index) => {
-          setTimeout(() => {
-            pin.classList.add('show');
-          }, index * 260);
-        });
-      }, 300);
-
-      compareObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.35
-});
-
-if (compareBlock) {
-  compareObserver.observe(compareBlock);
-}
-
-playHero();
+if (heroChat) playHero();
