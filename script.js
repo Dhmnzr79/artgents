@@ -122,6 +122,40 @@ async function playHero() {
   }
 }
 
+/* ── RESULTS HORIZONTAL SCROLL ──────────────────────────── */
+(function () {
+  const track = document.querySelector('.results__track');
+  if (!track) return;
+
+  track.addEventListener('wheel', (e) => {
+    if (e.deltaY === 0) return;
+    const atStart = track.scrollLeft === 0 && e.deltaY < 0;
+    const atEnd   = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1 && e.deltaY > 0;
+    if (atStart || atEnd) return;
+    e.preventDefault();
+    track.scrollLeft += e.deltaY;
+  }, { passive: false });
+
+  let drag = false, startX = 0, startLeft = 0;
+
+  track.addEventListener('mousedown', (e) => {
+    drag = true;
+    startX    = e.pageX;
+    startLeft = track.scrollLeft;
+    track.classList.add('results__track--dragging');
+  });
+
+  window.addEventListener('mouseup', () => {
+    drag = false;
+    track.classList.remove('results__track--dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!drag) return;
+    track.scrollLeft = startLeft - (e.pageX - startX);
+  });
+}());
+
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
