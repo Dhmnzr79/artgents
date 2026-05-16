@@ -6,8 +6,10 @@
   <title>Artgents — ИИ-консультант для клиник</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="animations/phone-hero.css" />
+  <link rel="stylesheet" href="animations/report-analytics.css" />
 </head>
 <body>
 
@@ -31,69 +33,97 @@
       <div class="shell">
         <div class="hero__grid">
 
-          <!-- Row 1 / cols 1–12: display heading -->
-          <h1 class="hero__display">ИИ&#x2011;консультант</h1>
-
-          <!-- Row 2–4 / cols 1–6: subheading + lead -->
-          <div class="hero__copy">
+          <!-- Left: copy -->
+          <div class="hero__left">
             <div class="label">Подключение для клиник — 2025</div>
+            <h1 class="hero__title">Чат&#x2011;бот, который говорит как администратор.</h1>
             <p class="hero__sub">на сайте клиники, который знает ваши услуги, цены и врачей</p>
-            <p class="hero__lead">Понимает свободный вопрос, отвечает по делу и передаёт администратору тёплую заявку — с историей разговора. <strong>Круглосуточно.</strong></p>
-          </div>
-
-          <!-- Row 5 / cols 1–6: actions -->
-          <div class="hero__actions">
-            <button class="btn btn--primary">Посмотреть демо →</button>
-            <button class="btn btn--ghost">Как это работает</button>
-          </div>
-
-          <!-- Row 2–5 / cols 7–9: phone -->
-          <div class="hero__phone-col">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="chat-widget">
-                  <div class="chat-widget__top">
-                    <div class="chat-widget__agent">
-                      <div class="chat-widget__avatar">🦷</div>
-                      <div>
-                        <strong>Консультант клиники</strong>
-                        <span><span class="live-dot"></span> онлайн · отвечает сейчас</span>
-                      </div>
-                    </div>
-                    <div class="chat-widget__badge">по базе клиники</div>
-                  </div>
-                  <div class="chat-widget__body" id="heroChat"></div>
-                  <div class="chat-widget__input">
-                    <div class="chat-widget__field">Сообщение пациенту...</div>
-                    <div class="chat-widget__send">→</div>
-                  </div>
-                </div>
-              </div>
+            <div class="hero__actions">
+              <button type="button" class="btn btn--primary">Посмотреть демо</button>
+              <button type="button" class="btn btn--ghost">Как это работает</button>
             </div>
           </div>
 
-          <!-- Row 2–4 / cols 10–12: feature cards -->
-          <div class="hero__cards">
-            <article class="hero-card">
-              <div class="hero-card__icon">✓</div>
-              <strong>По материалам клиники</strong>
-              <span>Отвечает только по вашей базе знаний — без фантазий и чужих цен</span>
-            </article>
-            <article class="hero-card">
-              <div class="hero-card__icon">♥</div>
-              <strong>Снимает сомнения</strong>
-              <span>Объясняет цену, боль и гарантии без давления</span>
-            </article>
-            <article class="hero-card">
-              <div class="hero-card__icon">→</div>
-              <strong>Передаёт контекст</strong>
-              <span>Администратор видит всю историю диалога с пациентом</span>
-            </article>
-          </div>
+          <!-- Right: phone animation -->
+          <div class="hero__right">
+            <div class="phone-stage" id="phoneStage">
 
-          <!-- Row 5 / cols 10–12: note -->
-          <p class="hero__note">До 5 клиник в первом наборе — запуск под ручным контролем</p>
+              <div class="floating-card card-1" data-card>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2.1"/>
+                    <path d="M12 7.5v5l3.2 2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="card-text">Отвечает пациентам 24/7 без ожидания администратора.</div>
+              </div>
+
+              <div class="floating-card card-2" data-card>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 11.5 10.2 15 17.5 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 12a9 9 0 1 1-5.2-8.15" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="card-text">Даёт понятные ответы по услугам, ценам и этапам лечения.</div>
+              </div>
+
+              <div class="floating-card card-3" data-card>
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M8 7h8M8 12h5M6 20l3-3h8a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="card-text">Мягко подводит к записи на консультацию.</div>
+              </div>
+
+              <div class="phone" id="phone">
+                <span class="side-button left-1"></span>
+                <span class="side-button left-2"></span>
+                <span class="side-button right-1"></span>
+
+                <div class="phone-glass">
+                  <div class="dynamic-island"></div>
+
+                  <div class="phone-screen">
+                    <div class="chat-app">
+
+                      <header class="chat-header">
+                        <div class="chat-avatar">AI</div>
+                        <div class="chat-header-text">
+                          <div class="chat-header-title">Ассистент клиники</div>
+                          <div class="chat-header-status">
+                            <span class="chat-status-dot"></span>
+                            online · отвечает сразу
+                          </div>
+                        </div>
+                        <div class="chat-header-action" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                            <path d="M7 10.5v3a5 5 0 0 0 10 0v-3M12 4v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                      </header>
+
+                      <main class="chat-messages">
+                        <div class="chat-day-label">Сегодня</div>
+                      </main>
+
+                      <footer class="chat-input-bar">
+                        <input class="chat-input-field" type="text" placeholder="Напишите вопрос…" aria-label="Вопрос" />
+                        <button class="chat-send-btn" type="button" aria-label="Отправить">
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M21 3 10.6 13.4M21 3l-6.6 18-3.8-7.6L3 9.6 21 3Z" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                      </footer>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
 
         </div>
       </div>
@@ -118,22 +148,28 @@
           <!-- row 1 / cols 1–2 -->
           <article class="what-card what-card--a">
             <div class="what-card__num">01</div>
-            <h3>Не выдумывает факты</h3>
-            <p>Отвечает только по материалам вашей клиники — услуги, цены, врачи, условия. Никаких данных из интернета.</p>
+            <div class="what-card__body">
+              <h3>Не выдумывает факты</h3>
+              <p>Отвечает только по материалам вашей клиники — услуги, цены, врачи, условия. Никаких данных из интернета.</p>
+            </div>
           </article>
 
           <!-- row 1 / cols 3–4 -->
           <article class="what-card what-card--b">
             <div class="what-card__num">02</div>
-            <h3>Помнит контекст</h3>
-            <p>Не переспрашивает одно и то же. Если пациент сказал что боится боли — консультант учитывает это в каждом следующем ответе.</p>
+            <div class="what-card__body">
+              <h3>Помнит контекст</h3>
+              <p>Не переспрашивает одно и то же. Если пациент сказал что боится боли — консультант учитывает это в каждом следующем ответе.</p>
+            </div>
           </article>
 
           <!-- row 1 / cols 5–6 -->
           <article class="what-card what-card--c">
             <div class="what-card__num">03</div>
-            <h3>Ведёт разговор, не просто отвечает</h3>
-            <p>На сложных темах объясняет, снимает сомнения и мягко предлагает следующий шаг.</p>
+            <div class="what-card__body">
+              <h3>Ведёт разговор, не просто отвечает</h3>
+              <p>На сложных темах объясняет, снимает сомнения и мягко предлагает следующий шаг.</p>
+            </div>
           </article>
 
           <!-- row 2 / cols 1–2: photo placeholder -->
@@ -143,16 +179,10 @@
 
           <!-- row 2 / cols 3–6 -->
           <article class="what-card what-card--d">
-            <div class="what-card__content">
-              <div class="what-card__num">04</div>
+            <div class="what-card__num">04</div>
+            <div class="what-card__body">
               <h3>Передаёт заявку с историей</h3>
               <p>Администратор получает не холодный номер, а контекст — что спрашивал, чего боялся, что уже объяснил консультант.</p>
-            </div>
-            <div class="what-crm">
-              <div class="what-crm__row"><b>Пациент</b><span>Ирина, WhatsApp</span></div>
-              <div class="what-crm__row"><b>Интерес</b><span>Имплантация</span></div>
-              <div class="what-crm__row"><b>Страх</b><span>Боль и анестезия</span></div>
-              <div class="what-crm__row"><b>Статус</b><span class="what-crm__ok">Готова к консультации</span></div>
             </div>
           </article>
 
@@ -227,136 +257,197 @@
 
     <!-- ── RESULTS ────────────────────────────────────────── -->
     <section class="section section--light" id="results">
+      <div class="shell">
 
-      <div class="shell results__head">
+        <div class="results__head">
           <div class="results__copy">
             <div class="label">Что получает клиника</div>
-            <h2>Три результата,<br><em>а не просто виджет на сайте</em></h2>
+            <h2>Результаты,<br><em>а не просто виджет на сайте</em></h2>
           </div>
         </div>
 
-        <div class="results__track">
+        <div class="results__grid">
 
+          <!-- col 1–4 / row 1 -->
           <article class="result-card">
-            <div class="result-card__icon">📋</div>
-            <h3>Тёплые заявки с контекстом</h3>
-            <p>Администратор видит не просто «имя + телефон», а что интересовало пациента, чего боялся и что уже объяснил консультант.</p>
+            <div class="result-card__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="result-card__body">
+              <h3>Меньше тревоги перед обращением</h3>
+              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
+            </div>
           </article>
 
+          <!-- col 1–4 / row 2 -->
           <article class="result-card">
-            <div class="result-card__icon">🌙</div>
-            <h3>Ответ в любое время суток</h3>
-            <p>Вечером, ночью, в выходные — когда посетитель на сайте, консультант доступен. Пациент получает ответ и не уходит.</p>
+            <div class="result-card__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="result-card__body">
+              <h3>Меньше тревоги перед обращением</h3>
+              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
+            </div>
           </article>
 
-          <article class="result-card">
-            <div class="result-card__icon">📊</div>
-            <h3>Аналитика вопросов пациентов</h3>
-            <p>Топ страхов, частые возражения, темы без ответа на сайте — ежемесячный отчёт для маркетинга и контента.</p>
+          <!-- col 5–9 / rows 1–2 (featured) -->
+          <article class="result-card result-card--featured">
+            <div class="result-card__big-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="result-card__content">
+              <h3>Пациент может рассказать о своей ситуации</h3>
+              <p>Администратор видит не просто «имя + телефон», а что интересовало пациента, чего боялся и что уже объяснил консультант.</p>
+            </div>
           </article>
 
+          <!-- col 10–12 / row 1 -->
           <article class="result-card">
-            <div class="result-card__icon">🙋</div>
-            <h3>Снятие нагрузки с администратора</h3>
-            <p>Повторяющиеся объяснения про цену, этапы и гарантии берёт на себя консультант. Администратор работает с готовыми обращениями.</p>
+            <div class="result-card__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="result-card__body">
+              <h3>Меньше тревоги перед обращением</h3>
+              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
+            </div>
           </article>
 
+          <!-- col 10–12 / row 2 -->
           <article class="result-card">
-            <div class="result-card__icon">🔒</div>
-            <h3>Только ваши материалы</h3>
-            <p>Никаких выдуманных цен и фантазий. Только то, что есть в базе знаний клиники — услуги, врачи, условия, FAQ.</p>
-          </article>
-
-          <article class="result-card">
-            <div class="result-card__icon">💡</div>
-            <h3>Идеи для сайта и рекламы</h3>
-            <p>Реальные вопросы пациентов — источник для новых посадочных страниц, объявлений, FAQ и скриптов администраторов.</p>
-          </article>
-
-          <article class="result-card">
-            <div class="result-card__icon">🔍</div>
-            <h3>Что мешает записаться</h3>
-            <p>ИИ-консультант помогает не только отвечать пациентам, но и лучше понимать, что мешает им записаться.</p>
+            <div class="result-card__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="result-card__body">
+              <h3>Меньше тревоги перед обращением</h3>
+              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
+            </div>
           </article>
 
         </div>
-
+      </div>
     </section>
 
     <!-- ── ANALYTICS ──────────────────────────────────────── -->
     <section class="section section--dark" id="analytics">
-      <div class="shell analytics__grid">
+      <div class="shell">
+        <div class="analytics__grid">
 
-        <!-- cols 1–4: copy -->
-        <div class="analytics__copy">
-          <div class="label label--teal">Голос пациента</div>
-          <h2>Даже диалог без заявки — <em>ценность</em></h2>
-          <p class="analytics__desc">Обычная аналитика показывает, что человек зашёл и ушёл. Диалог показывает — почему он ушёл.</p>
-        </div>
+          <!-- Left: copy + stat cards -->
+          <div class="analytics__left">
+            <div class="label">Голос пациента</div>
+            <h2>Даже диалог без заявки — <em>ценность</em></h2>
+            <p class="analytics__desc">Обычная аналитика показывает, что человек зашёл и ушёл. Диалог показывает — почему он ушёл.</p>
 
-        <!-- cols 5–8: report visual -->
-        <div class="analytics__report">
-          <div class="report-card">
-            <div class="report-card__head">
-              <span class="report-card__title">Отчёт за октябрь</span>
-              <span class="report-card__period">окт 2025</span>
+            <div class="analytics__stats">
+
+              <article class="analytics-stat">
+                <div class="analytics-stat__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M5 19V9M12 19V5M19 19v-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M4 19h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="analytics-stat__body">
+                  <span class="analytics-stat__num">127</span>
+                  <span class="analytics-stat__label">диалогов за месяц</span>
+                </div>
+              </article>
+
+              <article class="analytics-stat">
+                <div class="analytics-stat__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3 4.5 7v6c0 4.2 3 6.9 7.5 8 4.5-1.1 7.5-3.8 7.5-8V7L12 3Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+                    <path d="M9 12h6" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="analytics-stat__body">
+                  <span class="analytics-stat__num">43</span>
+                  <span class="analytics-stat__label">вопроса без ответа на сайте</span>
+                </div>
+              </article>
+
             </div>
-            <div class="report-card__body">
-              <div class="report-row">
-                <span class="report-row__label">Боль и анестезия</span>
-                <div class="report-row__bar"><div class="report-row__fill"></div></div>
-                <span class="report-row__val">78%</span>
-              </div>
-              <div class="report-row">
-                <span class="report-row__label">Цена имплантации</span>
-                <div class="report-row__bar"><div class="report-row__fill"></div></div>
-                <span class="report-row__val">64%</span>
-              </div>
-              <div class="report-row">
-                <span class="report-row__label">Гарантии клиники</span>
-                <div class="report-row__bar"><div class="report-row__fill"></div></div>
-                <span class="report-row__val">51%</span>
-              </div>
-              <div class="report-row">
-                <span class="report-row__label">Опыт врача</span>
-                <div class="report-row__bar"><div class="report-row__fill"></div></div>
-                <span class="report-row__val">43%</span>
-              </div>
-              <div class="report-row">
-                <span class="report-row__label">Осложнения</span>
-                <div class="report-row__bar"><div class="report-row__fill"></div></div>
-                <span class="report-row__val">29%</span>
-              </div>
-            </div>
-            <div class="report-card__foot">127 диалогов · 43 вопроса без ответа на сайте</div>
           </div>
-        </div>
 
-        <!-- cols 9–12: insight cards -->
-        <div class="analytics__cards">
-          <article class="insight-card">
-            <div class="insight-card__num">1</div>
-            <div class="insight-card__body">
-              <h4>Топ страхов</h4>
-              <p>Боль, осложнения, гарантия, цена, опыт врача.</p>
-            </div>
-          </article>
-          <article class="insight-card">
-            <div class="insight-card__num">2</div>
-            <div class="insight-card__body">
-              <h4>Дыры на сайте</h4>
-              <p>Темы, которые пациенты ищут, но не находят на посадочных страницах.</p>
-            </div>
-          </article>
-          <article class="insight-card">
-            <div class="insight-card__num">3</div>
-            <div class="insight-card__body">
-              <h4>Идеи для рекламы</h4>
-              <p>Реальные формулировки возражений для объявлений, FAQ и квизов.</p>
-            </div>
-          </article>
-        </div>
+          <!-- Right: animated report card -->
+          <div class="analytics__right">
+            <div class="report-stage" id="reportStage">
 
+              <div class="rpt-glow" aria-hidden="true"></div>
+
+              <span class="rpt-chip" style="--x:-280px; --y:-200px;">Сколько стоит имплант?</span>
+              <span class="rpt-chip" style="--x:190px;  --y:-170px;">Больно ли ставить?</span>
+              <span class="rpt-chip" style="--x:-255px; --y:28px;">Есть ли рассрочка?</span>
+              <span class="rpt-chip" style="--x:200px;  --y:88px;">Что если не приживётся?</span>
+              <span class="rpt-chip" style="--x:-200px; --y:210px;">Какая гарантия?</span>
+
+              <article class="rpt-card" aria-label="Анимированный отчёт за октябрь">
+                <div class="rpt-scan" id="rptScanLine" aria-hidden="true"></div>
+
+                <header class="rpt-head">
+                  <h3 class="rpt-title">Отчёт за октябрь</h3>
+                  <div class="rpt-badge" id="rptDialogueBadge">
+                    <span id="rptDialogueCount">0</span>&nbsp;диалогов
+                  </div>
+                </header>
+
+                <div class="rpt-body">
+                  <p class="rpt-section-label">Топ вопросов</p>
+
+                  <div class="rpt-q-list">
+                    <div class="rpt-q-row" data-value="18" data-fill="90">
+                      <div class="rpt-q-title">Сколько стоит имплант?</div>
+                      <div class="rpt-bar" aria-hidden="true"><span class="rpt-bar-fill"></span></div>
+                      <div class="rpt-q-num">0</div>
+                    </div>
+                    <div class="rpt-q-row" data-value="14" data-fill="70">
+                      <div class="rpt-q-title">Больно ли ставить?</div>
+                      <div class="rpt-bar" aria-hidden="true"><span class="rpt-bar-fill"></span></div>
+                      <div class="rpt-q-num">0</div>
+                    </div>
+                    <div class="rpt-q-row" data-value="11" data-fill="55">
+                      <div class="rpt-q-title">Есть ли рассрочка?</div>
+                      <div class="rpt-bar" aria-hidden="true"><span class="rpt-bar-fill"></span></div>
+                      <div class="rpt-q-num">0</div>
+                    </div>
+                    <div class="rpt-q-row" data-value="8" data-fill="40">
+                      <div class="rpt-q-title">Что если не приживётся?</div>
+                      <div class="rpt-bar" aria-hidden="true"><span class="rpt-bar-fill"></span></div>
+                      <div class="rpt-q-num">0</div>
+                    </div>
+                  </div>
+
+                  <div class="rpt-divider"></div>
+
+                  <p class="rpt-section-label">Без ответа на сайте</p>
+                  <div class="rpt-gap-list">
+                    <div class="rpt-gap-row">
+                      <div class="rpt-gap-topic">Опыт врача с костной пластикой</div>
+                      <button class="rpt-add-btn" type="button">добавить</button>
+                    </div>
+                    <div class="rpt-gap-row">
+                      <div class="rpt-gap-topic">Гарантия на имплант</div>
+                      <button class="rpt-add-btn" type="button">добавить</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -424,5 +515,7 @@
   </main>
 
   <script src="script.js"></script>
+  <script src="animations/phone-hero.js"></script>
+  <script src="animations/report-analytics.js"></script>
 </body>
 </html>

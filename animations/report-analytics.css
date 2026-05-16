@@ -1,0 +1,335 @@
+/* ── REPORT ANALYTICS ANIMATION ────────────────────────────
+   Standalone styles for the monthly report card animation.
+   Scoped via .report-stage — safe alongside styles.css.
+   Colors kept as-is from report_monthly.html (bright palette).
+   ─────────────────────────────────────────────────────────── */
+
+/* ── Stage ──────────────────────────────────────────────── */
+.report-stage {
+  position: relative;
+  min-height: 640px;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  overflow: visible;
+}
+
+.rpt-glow {
+  position: absolute;
+  width: 104%;
+  height: 72%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(124, 60, 255, 0.30), transparent 58%),
+    radial-gradient(circle at 68% 44%, rgba(255, 79, 216, 0.22), transparent 52%),
+    radial-gradient(circle at 34% 68%, rgba(72, 232, 255, 0.14), transparent 52%);
+  filter: blur(38px);
+  opacity: 0.92;
+}
+
+/* ── Floating question chips ────────────────────────────── */
+.rpt-chip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 240px;
+  padding: 10px 13px;
+  border-radius: 999px;
+  color: rgba(246, 242, 255, 0.86);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.045));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translate(var(--x), var(--y)) scale(0.86);
+  transition: opacity 520ms ease, transform 720ms cubic-bezier(.2, .9, .2, 1), filter 720ms ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.rpt-chip::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, #7c3cff, #ff4fd8);
+  box-shadow: 0 0 15px rgba(124, 60, 255, 0.72);
+}
+
+.rpt-chip.is-visible {
+  opacity: 1;
+  transform: translate(var(--x), var(--y)) scale(1);
+}
+
+.rpt-chip.is-collected {
+  opacity: 0;
+  filter: blur(3px);
+  transform: translate(-12px, -20px) scale(0.66);
+}
+
+/* ── Report card ────────────────────────────────────────── */
+.rpt-card {
+  position: relative;
+  z-index: 5;
+  width: min(560px, 100%);
+  border-radius: 30px;
+  overflow: hidden;
+  color: #f6f2ff;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(18, 17, 27, 0.96), rgba(14, 13, 21, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.46),
+    0 0 0 1px rgba(124, 60, 255, 0.08);
+  transform: rotateX(4deg) rotateY(-7deg) translateY(0);
+  animation: rptCardBreath 7s ease-in-out infinite;
+  isolation: isolate;
+}
+
+.rpt-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.16) 22%, transparent 43%);
+  opacity: 0.34;
+  pointer-events: none;
+  z-index: 8;
+  mix-blend-mode: screen;
+}
+
+.rpt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 22% 0%, rgba(124, 60, 255, 0.13), transparent 32%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes rptCardBreath {
+  0%, 100% { transform: rotateX(4deg) rotateY(-7deg) translateY(0); }
+  50%       { transform: rotateX(5deg) rotateY(-5deg) translateY(-8px); }
+}
+
+/* ── Scan line ──────────────────────────────────────────── */
+.rpt-scan {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: -14%;
+  height: 160px;
+  z-index: 7;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(124, 60, 255, 0.0),
+    rgba(124, 60, 255, 0.24),
+    rgba(72, 232, 255, 0.12),
+    transparent
+  );
+  filter: blur(2px);
+  opacity: 0;
+  transform: translateY(-120px);
+}
+
+.rpt-scan.is-active {
+  animation: rptScan 2400ms cubic-bezier(.25, .8, .25, 1) forwards;
+}
+
+@keyframes rptScan {
+  0%   { opacity: 0; transform: translateY(-130px); }
+  12%  { opacity: 0.85; }
+  88%  { opacity: 0.72; }
+  100% { opacity: 0; transform: translateY(720px); }
+}
+
+/* ── Card header ────────────────────────────────────────── */
+.rpt-head {
+  min-height: 76px;
+  padding: 19px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.rpt-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: #f6f2ff;
+}
+
+.rpt-badge {
+  min-width: 128px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border-radius: 999px;
+  color: #00F8C6;
+  font-weight: 850;
+  background: rgba(0, 248, 198, 0.11);
+  box-shadow: inset 0 0 0 1px rgba(0, 248, 198, 0.03), 0 0 0 rgba(0, 248, 198, 0);
+  transform: scale(0.96);
+  transition: box-shadow 420ms ease, transform 420ms ease;
+}
+
+.rpt-badge.is-hot {
+  transform: scale(1);
+  box-shadow: 0 0 30px rgba(0, 248, 198, 0.12), inset 0 0 0 1px rgba(0, 248, 198, 0.16);
+}
+
+/* ── Card body ──────────────────────────────────────────── */
+.rpt-body {
+  padding: 24px;
+}
+
+.rpt-section-label {
+  margin: 0 0 20px;
+  color: rgba(166, 157, 215, 0.72);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 760;
+}
+
+/* ── Question list ──────────────────────────────────────── */
+.rpt-q-list {
+  display: grid;
+  gap: 22px;
+}
+
+.rpt-q-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 150px 38px;
+  align-items: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 520ms ease, transform 560ms cubic-bezier(.2, .9, .2, 1);
+}
+
+.rpt-q-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rpt-q-title {
+  color: rgba(220, 214, 255, 0.86);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.rpt-bar {
+  position: relative;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.rpt-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3cff, #a894ff);
+  box-shadow: 0 0 20px rgba(124, 60, 255, 0.56);
+  transition: width 1100ms cubic-bezier(.2, .85, .25, 1);
+}
+
+.rpt-q-num {
+  text-align: right;
+  color: rgba(166, 157, 215, 0.78);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Divider ────────────────────────────────────────────── */
+.rpt-divider {
+  height: 1px;
+  margin: 26px 0 24px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+/* ── Gap list ───────────────────────────────────────────── */
+.rpt-gap-list {
+  display: grid;
+  gap: 12px;
+}
+
+.rpt-gap-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 58px;
+  padding: 12px 14px 12px 0;
+  border-radius: 16px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 520ms ease,
+    transform 560ms cubic-bezier(.2, .9, .2, 1),
+    background 520ms ease,
+    padding-left 520ms ease;
+}
+
+.rpt-gap-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding-left: 14px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.rpt-gap-topic {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f6f2ff;
+}
+
+.rpt-add-btn {
+  min-width: 92px;
+  height: 34px;
+  border: 1px solid rgba(167, 139, 250, 0.50);
+  border-radius: 10px;
+  color: #bda9ff;
+  background: rgba(124, 60, 255, 0.14);
+  box-shadow: 0 0 0 rgba(124, 60, 255, 0);
+  cursor: pointer;
+  font-weight: 780;
+  font: inherit;
+  transition: transform 180ms ease, box-shadow 520ms ease, background 520ms ease;
+}
+
+.rpt-gap-row.is-visible .rpt-add-btn {
+  animation: rptBtnPulse 1600ms ease-in-out 450ms 2;
+}
+
+.rpt-add-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(124, 60, 255, 0.22);
+}
+
+@keyframes rptBtnPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(124, 60, 255, 0); }
+  50%       { box-shadow: 0 0 34px rgba(124, 60, 255, 0.30); }
+}
