@@ -1,3 +1,10 @@
+/* ── NAV SCROLL STATE ───────────────────────────────────── */
+const nav = document.querySelector('.nav');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('nav--scrolled', window.scrollY > 40);
+}, { passive: true });
+
 /* ── FADE-UP REVEAL ─────────────────────────────────────── */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

@@ -16,14 +16,21 @@
   <nav class="nav">
     <a href="index.html" class="nav__logo" aria-label="Artgents">
       <span class="nav__logo-mark">AI</span>
-      art<span>gents</span>
+      <span class="nav__logo-text">art<span>gents</span></span>
     </a>
     <div class="nav__links">
       <a href="index.html" class="nav__link nav__link--active">Главная</a>
       <a href="how.html" class="nav__link">Как работает</a>
       <a href="demo.html" class="nav__link">Демо</a>
     </div>
-    <button class="btn btn--primary nav__cta">Обсудить подключение →</button>
+    <button type="button" class="nav__cta">
+      <span class="nav__cta-text">Обсудить подключение</span>
+      <span class="nav__cta-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
   </nav>
 
   <main>
@@ -454,15 +461,16 @@
     <!-- ── PRICING ───────────────────────────────────────── -->
     <section class="section section--light" id="pricing">
       <div class="shell">
-
-        <div class="pricing__head">
-          <div class="label">Тариф</div>
-          <h2>ИИ-консультант для клиники<br><em>по подписке</em></h2>
-        </div>
-
         <div class="pricing__grid">
 
-          <!-- Col 1, rows 1–2: price card -->
+          <!-- Col 1–4: copy -->
+          <div class="pricing__copy">
+            <div class="label">Тариф</div>
+            <h2>ИИ-консультант для клиники по подписке</h2>
+            <p class="pricing__desc">Никакой разовой разработки и месяцев ожидания. Подключаете консультанта, обученного на материалах вашей клиники, и платите только пока он работает.</p>
+          </div>
+
+          <!-- Col 5–8: dark price card -->
           <div class="price-card">
             <p class="price-card__for">Для стоматологических клиник</p>
             <div class="price-card__amount">
@@ -476,43 +484,77 @@
               <li>Ежемесячный отчёт «Голос пациента»</li>
               <li>Мини-аудит сайта перед запуском</li>
             </ul>
-            <div class="price-card__note">
-              Принципиально не берём больше пяти клиник одновременно. Качество ответов важнее количества подключений.
-            </div>
-            <button type="button" class="btn btn--primary price-card__btn">Обсудить подключение →</button>
+            <button type="button" class="btn btn--primary price-card__btn">Обсудить подключение</button>
             <p class="price-card__after">После первых кейсов: 59 000 ₽/мес + подключение отдельно</p>
           </div>
 
-          <!-- Col 2, row 1 -->
-          <div class="pricing-info-card">
-            <h3>Почему подписка, а не разработка?</h3>
-            <p>Разработка бота с нуля — от 300 до 800 тысяч рублей и несколько месяцев. Результат неизвестен заранее. Вы платите до того, как увидите как это работает с вашими пациентами.</p>
-            <p>Здесь — работающий продукт с первого месяца. Платите только пока он приносит пользу.</p>
-          </div>
-
-          <!-- Col 3, row 1 -->
-          <div class="pricing-info-card">
-            <h3>Мини-аудит сайта — бесплатно</h3>
-            <p>Покажем, какие вопросы пациентов сейчас не закрывает ваш сайт: имплантация, цены, страхи, гарантии, путь к заявке. Без обязательств.</p>
-          </div>
-
-          <!-- Col 2, row 2 -->
-          <div class="pricing-info-card">
-            <h3>После первых кейсов</h3>
-            <p>Стоимость для новых клиник может измениться: подключение отдельно, подписка выше. Первый набор — для клиник, готовых запускаться вместе с ручной доработкой продукта.</p>
-          </div>
-
-          <!-- Col 3, row 2 -->
-          <div class="pricing-info-card">
-            <h3>Не просто запуск</h3>
-            <p>Первый этап нужен не только для запуска, но и для адаптации базы знаний по реальным вопросам пациентов.</p>
+          <!-- Col 9–12: info -->
+          <div class="pricing__info">
+            <div class="pricing__info-top">
+              <h3>Работающий продукт с первого месяца — без разработки и ожидания</h3>
+              <p>Не нужно тратить полгода и сотни тысяч на разработку. Консультант обучается на материалах вашей клиники и начинает отвечать пациентам уже в первую неделю.</p>
+            </div>
+            <div class="pricing__feat">
+              <div class="pricing__feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="currentColor" stroke-width="2.1"/>
+                  <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <p>Первые результаты видны уже через 7 дней после подключения</p>
+            </div>
           </div>
 
         </div>
+
+        <div class="cta-block">
+          <div class="cta-block__left">
+            <h2>Не обязательно начинать с подключения</h2>
+          </div>
+          <div class="cta-block__right">
+            <p>Начните с мини-аудита сайта. Мы посмотрим, какие вопросы клиентов сейчас остаются без ответа, где человек может застрять перед заявкой и какие сценарии можно закрыть ИИ-консультантом.</p>
+            <div class="cta-block__actions">
+              <button type="button" class="btn btn--primary">Заказать бесплатный аудит</button>
+              <button type="button" class="btn btn--ghost">Обсудить подключение</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
   </main>
+
+  <footer class="footer">
+    <div class="shell">
+
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="Artgents">
+            <span class="nav__logo-mark">AI</span>
+            art<span>gents</span>
+          </a>
+          <p class="footer__tagline">ИИ-консультант для стоматологических клиник</p>
+        </div>
+        <nav class="footer__nav" aria-label="Навигация">
+          <a href="index.html" class="footer__link">Главная</a>
+          <a href="how.html" class="footer__link">Как работает</a>
+          <a href="demo.html" class="footer__link">Демо</a>
+          <a href="#pricing" class="footer__link">Тариф</a>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__legal">ИП Артюшенко Д.А. &nbsp;·&nbsp; ИНН 272391711846</p>
+        <div class="footer__bottom-right">
+          <p class="footer__copy">© 2025 Artgents</p>
+          <a href="#" class="footer__link footer__link--small">Политика конфиденциальности</a>
+          <a href="#" class="footer__link footer__link--small">Оферта</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script src="animations/phone-hero.js"></script>
