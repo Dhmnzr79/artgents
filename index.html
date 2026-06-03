@@ -199,9 +199,7 @@
 
     <!-- ── PROBLEMS ─────────────────────────────────────── -->
     <section class="section section--dark" id="problems">
-      <div class="shell problems__grid">
-
-        <!-- cols 1–4: sticky copy -->
+      <div class="shell problems__layout">
         <div class="problems__copy">
           <div>
             <div class="label">Почему пациенты теряются</div>
@@ -210,42 +208,32 @@
           <p class="problems__desc">Часть посетителей не оставляет заявку не потому, что им не нужна услуга. Они просто не получили ответ в нужный момент.</p>
         </div>
 
-        <!-- cols 5–12: sticky card stack -->
-        <div class="problems__stack">
-
-          <article class="problem-card">
+        <div class="problems__stack" data-problems-stack>
+          <article class="problem-card problem-card--one is-visible">
             <div class="problem-card__num">01</div>
             <div class="problem-card__body">
               <h3>Читают вечером и ночью</h3>
-              <p>Когда администраторы недоступны, пациент уходит сравнивать другие клиники</p>
+              <p>Когда администраторы недоступны, пациент уходит сравнивать другие клиники.</p>
             </div>
           </article>
 
-          <article class="problem-card">
+          <article class="problem-card problem-card--two">
             <div class="problem-card__num">02</div>
             <div class="problem-card__body">
               <h3>Сомневаются в цене</h3>
-              <p>Не понимают, почему столько стоит и что входит. Сайт не объясняет</p>
+              <p>Не понимают, почему столько стоит и что входит. Сайт не объясняет этого простым языком.</p>
             </div>
           </article>
 
-          <article class="problem-card">
+          <article class="problem-card problem-card--three">
             <div class="problem-card__num">03</div>
             <div class="problem-card__body">
               <h3>Хотят больше деталей</h3>
-              <p>Про врача, этапы, гарантии — информации на сайте не хватает для решения</p>
+              <p>Про врача, этапы и гарантии информации на сайте часто не хватает для принятия решения.</p>
             </div>
           </article>
-
-          <article class="problem-card">
-            <div class="problem-card__num">04</div>
-            <div class="problem-card__body">
-              <h3>Вопрос остался без ответа</h3>
-              <p>Нашли сайт ночью или в выходные — и просто закрыли вкладку. Администратор узнает об этом никогда.</p>
-            </div>
-          </article>
-
         </div>
+      </div>
     </section>
 
     <!-- ── RESULTS ────────────────────────────────────────── -->
