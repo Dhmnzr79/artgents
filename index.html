@@ -250,87 +250,48 @@
 
     <!-- ── RESULTS ────────────────────────────────────────── -->
     <section class="section section--dark" id="results">
-      <div class="shell">
-
-        <div class="results__head">
+      <div class="shell results__layout">
+        <div class="results__top">
           <div class="results__copy">
             <div class="label">Что получает клиника</div>
             <h2>Результаты,<br><em>а не просто виджет на сайте</em></h2>
+            <p class="results__desc">Система отвечает по делу, собирает контекст разговора и передаёт в клинику не сухой контакт, а понятную историю обращения.</p>
+          </div>
+
+          <div class="results__cards">
+            <article class="result-card">
+              <div class="result-card__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="result-card__body">
+                <h3>Меньше тревоги перед обращением</h3>
+                <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
+              </div>
+            </article>
+
+            <article class="result-card">
+              <div class="result-card__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="result-card__body">
+                <h3>Пациент может рассказать о своей ситуации</h3>
+                <p>Администратор видит не просто «имя + телефон», а что интересовало пациента, чего боялся и что уже объяснил консультант.</p>
+              </div>
+            </article>
           </div>
         </div>
 
-        <div class="results__grid">
-
-          <!-- col 1–4 / row 1 -->
-          <article class="result-card">
-            <div class="result-card__check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="result-card__body">
-              <h3>Меньше тревоги перед обращением</h3>
-              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
-            </div>
-          </article>
-
-          <!-- col 1–4 / row 2 -->
-          <article class="result-card">
-            <div class="result-card__check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="result-card__body">
-              <h3>Меньше тревоги перед обращением</h3>
-              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
-            </div>
-          </article>
-
-          <!-- col 5–9 / rows 1–2 (featured) -->
-          <article class="result-card result-card--featured">
-            <div class="result-card__big-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="result-card__content">
-              <h3>Пациент может рассказать о своей ситуации</h3>
-              <p>Администратор видит не просто «имя + телефон», а что интересовало пациента, чего боялся и что уже объяснил консультант.</p>
-            </div>
-          </article>
-
-          <!-- col 10–12 / row 1 -->
-          <article class="result-card">
-            <div class="result-card__check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="result-card__body">
-              <h3>Меньше тревоги перед обращением</h3>
-              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
-            </div>
-          </article>
-
-          <!-- col 10–12 / row 2 -->
-          <article class="result-card">
-            <div class="result-card__check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="result-card__body">
-              <h3>Меньше тревоги перед обращением</h3>
-              <p>Консультант не давит на заявку, а сначала помогает человеку разобраться: боль, цена, этапы, риски, врач, гарантия.</p>
-            </div>
-          </article>
-
-        </div>
+        <article class="results__wide">
+          <div class="label">Единый контекст</div>
+          <h3>Каждый диалог остаётся в системе как живой след: без обрывов, без повторов и без ощущения, что человек начал всё сначала.</h3>
+          <p>Если пациент вернётся через час или на следующий день, ему не придётся заново объяснять, что именно его тревожит. Виджет держит нить разговора, собирает детали в одну понятную историю и помогает клинике ответить точнее, быстрее и спокойнее.</p>
+        </article>
       </div>
     </section>
-
     <!-- ── ANALYTICS ──────────────────────────────────────── -->
     <section class="section section--dark" id="analytics">
       <div class="shell">
@@ -474,21 +435,22 @@
             <p class="price-card__after">После первых кейсов: 59 000 ₽/мес + подключение отдельно</p>
           </div>
 
-          <!-- Col 9–12: info -->
-          <div class="pricing__info">
-            <div class="pricing__info-top">
-              <h3>Работающий продукт с первого месяца — без разработки и ожидания</h3>
-              <p>Не нужно тратить полгода и сотни тысяч на разработку. Консультант обучается на материалах вашей клиники и начинает отвечать пациентам уже в первую неделю.</p>
+          <!-- Col 9–12: second plan -->
+          <div class="price-card price-card--alt">
+            <p class="price-card__for">Пилотный запуск</p>
+            <div class="price-card__amount">
+              <span class="price-card__num">24 000</span>
+              <span class="price-card__unit">₽ / месяц</span>
             </div>
-            <div class="pricing__feat">
-              <div class="pricing__feat-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="currentColor" stroke-width="2.1"/>
-                  <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <p>Первые результаты видны уже через 7 дней после подключения</p>
-            </div>
+            <ul class="price-card__list">
+              <li>Подключение и адаптация базы знаний включены</li>
+              <li>Запуск за 7 дней без долгой разработки</li>
+              <li>Разбор первых 50 диалогов вручную</li>
+              <li>Отчёт по вопросам, которые чаще всего задают пациенты</li>
+              <li>Подходит, если хотите проверить формат перед масштабированием</li>
+            </ul>
+            <button type="button" class="btn btn--ghost price-card__btn">Запустить пилот</button>
+            <p class="price-card__after">После пилота можно перейти на основной тариф без повторного старта</p>
           </div>
 
         </div>
