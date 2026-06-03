@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>??? ????????? ?????-???????? ??? ???????? ???????????.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+
+    --text: #f0eff8;
+    --text2: #aaa7cd;
+    --text3: #6b678b;
+
+    --accent: #7b6ef6;
+    --accent2: #a99ff8;
+    --accent-bg: rgba(123,110,246,0.12);
+    --accent-border: rgba(123,110,246,0.32);
+
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+
+    --light-card: #f6f4ff;
+    --light-card-2: #ffffff;
+    --light-text: #191827;
+    --light-text-2: #5f5b74;
+    --light-text-3: #918ca8;
+    --light-border: rgba(25,24,39,0.10);
+
+    --font-head: 'Unbounded', sans-serif;
+    --font-body: 'Golos Text', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 16% 6%, rgba(123,110,246,0.18), transparent 30%),
+      radial-gradient(circle at 78% 18%, rgba(255,79,216,0.07), transparent 28%),
+      linear-gradient(135deg, #09090e 0%, #0d0b14 48%, #07070c 100%);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at 50% 10%, black, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 10%, black, transparent 70%);
+    z-index: -2;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  .page-shell {
+    width: 100%;
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 0 80px 110px;
+  }
+
+  .top-note {
+    padding: 34px 0 18px;
+    color: var(--text3);
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-section {
+    padding: 112px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-section:last-child {
+    border-bottom: none;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 28px;
+    align-items: start;
+  }
+
+  .faq-copy {
+    grid-column: 1 / 5;
+    position: sticky;
+    top: 48px;
+  }
+
+  .faq-list {
+    grid-column: 5 / 13;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h2 {
+    margin-bottom: 24px;
+    font-family: var(--font-head);
+    font-size: clamp(40px, 4.1vw, 72px);
+    line-height: 1.12;
+    font-weight: 700;
+  }
+
+  h2 em {
+    font-style: normal;
+    color: var(--accent2);
+    text-shadow: 0 0 32px rgba(123,110,246,0.18);
+  }
+
+  .lead {
+    max-width: 500px;
+    color: var(--text2);
+    font-size: 19px;
+    line-height: 1.72;
+    margin-bottom: 0;
+  }
+
+  .copy-note {
+    margin-top: 28px;
+    max-width: 430px;
+    color: var(--text3);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* ---------- Variant 01: Naked / line accordion ---------- */
+
+  .variant-plain .faq-list {
+    border-top: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .faq-line-item {
+    border-bottom: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .faq-line-trigger {
+    width: 100%;
+    min-height: 108px;
+    display: grid;
+    grid-template-columns: 72px 1fr 72px;
+    gap: 24px;
+    align-items: center;
+    padding: 30px 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .faq-index {
+    color: var(--text3);
+    font-family: var(--font-head);
+    font-size: 13px;
+  }
+
+  .faq-question {
+    color: var(--text);
+    font-size: 25px;
+    line-height: 1.35;
+    font-weight: 500;
+    transition: color 220ms ease, transform 220ms ease;
+  }
+
+  .faq-line-trigger:hover .faq-question,
+  .faq-line-item.is-open .faq-question {
+    color: var(--accent2);
+  }
+
+  .faq-line-trigger:hover .faq-question {
+    transform: translateX(4px);
+  }
+
+  .faq-icon {
+    justify-self: end;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    color: var(--text2);
+    transition:
+      color 220ms ease,
+      transform 220ms ease;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition:
+      transform 240ms ease,
+      background 220ms ease;
+  }
+
+  .faq-icon::after {
+    transform: rotate(90deg);
+  }
+
+  .faq-line-item.is-open .faq-icon {
+    color: var(--accent2);
+    transform: rotate(180deg);
+  }
+
+  .faq-line-item.is-open .faq-icon::after {
+    transform: rotate(0deg);
+  }
+
+  .faq-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 360ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  .faq-answer {
+    max-width: 760px;
+    padding: 0 72px 34px 96px;
+    color: var(--text2);
+    font-size: 17px;
+    line-height: 1.78;
+  }
+
+  .faq-answer p {
+    margin: 0;
+  }
+
+  .faq-answer strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ---------- Variant 02: Light cards ---------- */
+
+  .variant-card .light-frame {
+    position: relative;
+    padding: 54px;
+    border-radius: 38px;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(123,110,246,0.18), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.035));
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.18);
+  }
+
+  .variant-card .faq-copy {
+    top: 54px;
+  }
+
+  .variant-card .lead {
+    color: var(--text2);
+  }
+
+  .faq-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .faq-card-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 16% 0%, rgba(123,110,246,0.10), transparent 34%),
+      linear-gradient(180deg, var(--light-card-2), var(--light-card));
+    border: 1px solid var(--light-border);
+    color: var(--light-text);
+    box-shadow:
+      0 20px 58px rgba(12,10,25,0.16),
+      inset 0 1px 0 rgba(255,255,255,0.85);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .faq-card-item::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .faq-card-item:hover,
+  .faq-card-item.is-open {
+    transform: translateY(-2px);
+    border-color: rgba(123,110,246,0.24);
+    box-shadow:
+      0 28px 72px rgba(12,10,25,0.24),
+      0 0 0 1px rgba(123,110,246,0.06),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  .faq-card-item.is-open::before {
+    opacity: 1;
+  }
+
+  .faq-card-trigger {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 54px;
+    gap: 24px;
+    align-items: center;
+    min-height: 104px;
+    padding: 28px 30px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .card-question-wrap {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .faq-card-index {
+    margin-top: 4px;
+    color: var(--accent);
+    font-family: var(--font-head);
+    font-size: 12px;
+  }
+
+  .faq-card-question {
+    color: var(--light-text);
+    font-size: 22px;
+    line-height: 1.38;
+    font-weight: 600;
+  }
+
+  .card-icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    justify-self: end;
+    background: rgba(123,110,246,0.08);
+    border: 1px solid rgba(123,110,246,0.14);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+    transition:
+      background 220ms ease,
+      border-color 220ms ease,
+      transform 220ms ease,
+      color 220ms ease;
+  }
+
+  .card-icon::before,
+  .card-icon::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 240ms ease;
+  }
+
+  .card-icon::after {
+    transform: rotate(90deg);
+  }
+
+  .faq-card-item.is-open .card-icon {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: rotate(180deg);
+  }
+
+  .faq-card-item.is-open .card-icon::after {
+    transform: rotate(0deg);
+  }
+
+  .faq-card-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 360ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  .faq-card-answer {
+    padding: 0 104px 30px 104px;
+    color: var(--light-text-2);
+    font-size: 16px;
+    line-height: 1.74;
+  }
+
+  .faq-card-answer p {
+    margin: 0;
+  }
+
+  .faq-card-answer strong {
+    color: var(--light-text);
+    font-weight: 600;
+  }
+
+  .faq-card-note {
+    margin-top: 28px;
+    padding: 22px 24px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.075);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text2);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .faq-card-note strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+</style>
+</head>
+
+<body>
+  <main class="page-shell">
+    <div class="top-note">??? ????????? ???????: ?? ???????? ?????????, ?? ?? ????? ????????? ???????? ? ???????? ????????? ????.</div>
+
+    <!-- VARIANT 01 -->
+    <section class="faq-section variant-plain">
+      <div class="faq-grid">
+        <div class="faq-copy">
+          <div class="section-label">?????? ???????? ?? ??????????? ????? ? ?????????? UTF-8.</div>
+          <h2>??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.<br>??????????? ???? <em>????????? ???????</em></h2>
+          <p class="lead">
+            Максимально спокойный FAQ: без карточек, без подложек, без лишнего декора.
+            Только вопросы, линии и крупный плюс.
+          </p>
+          <p class="copy-note">
+            Такой вариант хорошо работает после визуально насыщенных блоков:
+            он даёт странице паузу и не спорит с основной анимацией.
+          </p>
+        </div>
+
+        <div class="faq-list" data-accordion>
+          <article class="faq-line-item is-open">
+            <button class="faq-line-trigger" type="button" aria-expanded="true">
+              <span class="faq-index">07</span>
+              <span class="faq-question">?????? ???????? ????? ????? ????? ????? ????????? ?????, ?????????? ? ??????? UTF-8.</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-answer">
+                <p>
+                  Да. База знаний собирается из ваших материалов: сайт, услуги, цены, врачи, FAQ,
+                  условия лечения и согласованные формулировки. Если точного ответа нет,
+                  консультант не должен выдумывать — он предлагает передать вопрос администратору.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-line-item">
+            <button class="faq-line-trigger" type="button" aria-expanded="false">
+              <span class="faq-index">03</span>
+              <span class="faq-question">?? ???????? ???????????? ????????? ?????, ????? ????????? ????????? ? ?? ??????? ????????? ??????.</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-answer">
+                <p>
+                  Обычно да. На сайт добавляется фрагмент кода виджета. При необходимости внешний вид
+                  можно адаптировать под цвета, шрифты и общий стиль клиники, чтобы он не выглядел чужим элементом.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-line-item">
+            <button class="faq-line-trigger" type="button" aria-expanded="false">
+              <span class="faq-index">18</span>
+              <span class="faq-question">???????? ???????? ??? ?? ?? ?????????, ?? ??????????? ???????????? ??????? ??? ?????????? ????????.</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-answer">
+                <p>
+                  Консультант не ставит диагнозы и не назначает лечение. Он может объяснить общий порядок,
+                  этапы, ограничения и подготовить пациента к консультации. Всё, что требует личной оценки врача,
+                  переводится в запись или обращение к администратору.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-line-item">
+            <button class="faq-line-trigger" type="button" aria-expanded="false">
+              <span class="faq-index">79</span>
+              <span class="faq-question">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-answer">
+                <p>
+                  Консультанта нельзя честно оценить за несколько дней. Сначала нужно собрать базу,
+                  протестировать ответы, запустить на реальный трафик, разобрать первые диалоги и доработать
+                  ответы по живым вопросам пациентов.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-line-item">
+            <button class="faq-line-trigger" type="button" aria-expanded="false">
+              <span class="faq-index">31</span>
+              <span class="faq-question">???????? ?????????, ? ????? ??????? ?? ????????? ???????? ??? ?????????? ???????? ??? ?????? ??????.</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-answer">
+                <p>
+                  Не просто телефон, а контекст: что спрашивал пациент, какая услуга интересовала,
+                  какие сомнения уже обсудили и какой следующий шаг логичен. Это помогает администратору
+                  продолжить разговор без повторения всего с нуля.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VARIANT 02 -->
+    <section class="faq-section variant-card">
+      <div class="light-frame">
+        <div class="faq-grid">
+          <div class="faq-copy">
+            <div class="section-label">?????? ???????? ?? ??????????? ????? ? ?????????? UTF-8.</div>
+            <h2>?????? ??????<br>??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????. <em>??????????? ????</em></h2>
+            <p class="lead">
+              Чуть более оформленный вариант: светлые карточки на тёмном фоне,
+              мягкий hover и аккуратная иконка раскрытия.
+            </p>
+            <div class="faq-card-note">
+              <strong>??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</strong><br>
+              FAQ визуально продолжает светлый roadmap, но остаётся достаточно спокойным.
+            </div>
+          </div>
+
+          <div class="faq-list faq-card-list" data-accordion>
+            <article class="faq-card-item is-open">
+              <button class="faq-card-trigger" type="button" aria-expanded="true">
+                <span class="card-question-wrap">
+                  <span class="faq-card-index">64</span>
+                  <span class="faq-card-question">?????? ???????? ????? ????? ????? ????? ????????? ?????, ?????????? ? ??????? UTF-8.</span>
+                </span>
+                <span class="card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-card-content">
+                <div class="faq-card-answer">
+                  <p>
+                    Да. Ответы строятся на базе знаний клиники: услуги, цены, врачи, FAQ, условия лечения,
+                    гарантии и согласованные ограничения. Если информации нет, консультант не выдумывает —
+                    предлагает передать вопрос администратору.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-card-item">
+              <button class="faq-card-trigger" type="button" aria-expanded="false">
+                <span class="card-question-wrap">
+                  <span class="faq-card-index">03</span>
+                  <span class="faq-card-question">??? ????????? ?????-???????? ??? ???????? ???????????.</span>
+                </span>
+                <span class="card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-card-content">
+                <div class="faq-card-answer">
+                  <p>
+                    Срок зависит от объёма материалов клиники и количества направлений. Обычно сначала собираются
+                    данные, затем формируется база знаний, после чего консультант проверяется на типовых вопросах:
+                    цена, боль, гарантии, врач, противопоказания и запись.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-card-item">
+              <button class="faq-card-trigger" type="button" aria-expanded="false">
+                <span class="card-question-wrap">
+                  <span class="faq-card-index">31</span>
+                  <span class="faq-card-question">????? ????? ????????? ????? ??? ????????? ????????.</span>
+                </span>
+                <span class="card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-card-content">
+                <div class="faq-card-answer">
+                  <p>
+                    Да. Это важная часть первых месяцев. После запуска появляются реальные вопросы пациентов,
+                    и по ним видно, какие темы нужно добавить в базу, где уточнить формулировки и какие ответы
+                    стоит усилить.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-card-item">
+              <button class="faq-card-trigger" type="button" aria-expanded="false">
+                <span class="card-question-wrap">
+                  <span class="faq-card-index">03</span>
+                  <span class="faq-card-question">????? ????? ????????? ????? ??? ????????? ????????.</span>
+                </span>
+                <span class="card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-card-content">
+                <div class="faq-card-answer">
+                  <p>
+                    Диалоги показывают, что реально волнует пациентов: цена, страх боли, гарантии,
+                    опыт врача, рассрочка, этапы лечения. Эти темы можно использовать для FAQ, посадочных страниц,
+                    рекламы и скриптов администраторов.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-card-item">
+              <button class="faq-card-trigger" type="button" aria-expanded="false">
+                <span class="card-question-wrap">
+                  <span class="faq-card-index">79</span>
+                  <span class="faq-card-question">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</span>
+                </span>
+                <span class="card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-card-content">
+                <div class="faq-card-answer">
+                  <p>
+                    Консультант мягко переводит диалог к заявке: уточняет имя, удобный способ связи
+                    и передаёт администратору контекст обращения. Администратор видит не холодный контакт,
+                    а историю вопроса и интерес пациента.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+  const accordions = document.querySelectorAll('[data-accordion]');
+
+  accordions.forEach((accordion) => {
+    const items = Array.from(accordion.children);
+
+    function closeItem(item) {
+      item.classList.remove('is-open');
+
+      const trigger = item.querySelector('button');
+      const content = item.querySelector('.faq-content, .faq-card-content');
+
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      if (content) content.style.maxHeight = '0px';
+    }
+
+    function openItem(item) {
+      item.classList.add('is-open');
+
+      const trigger = item.querySelector('button');
+      const content = item.querySelector('.faq-content, .faq-card-content');
+
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      if (content) content.style.maxHeight = content.scrollHeight + 'px';
+    }
+
+    items.forEach((item) => {
+      const trigger = item.querySelector('button');
+      const content = item.querySelector('.faq-content, .faq-card-content');
+
+      if (content) {
+        content.style.maxHeight = item.classList.contains('is-open')
+          ? content.scrollHeight + 'px'
+          : '0px';
+      }
+
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+
+        items.forEach(closeItem);
+
+        if (!isOpen) {
+          openItem(item);
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      items.forEach((item) => {
+        const content = item.querySelector('.faq-content, .faq-card-content');
+        if (item.classList.contains('is-open') && content) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

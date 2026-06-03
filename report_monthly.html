@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>?????????? ????? ????? ?????? ???????????? ? ???????? ????????.</title>
+
+  <style>
+    :root {
+      --bg: #05030b;
+      --panel: #12111a;
+      --panel-2: #171520;
+      --violet: #7c3cff;
+      --violet-soft: #a894ff;
+      --pink: #ff4fd8;
+      --cyan: #48e8ff;
+      --green: #39f89a;
+      --text: #f6f2ff;
+      --muted: rgba(218, 211, 255, 0.66);
+      --faint: rgba(218, 211, 255, 0.42);
+      --border: rgba(255, 255, 255, 0.12);
+      --glass: rgba(255, 255, 255, 0.065);
+      --shadow: 0 34px 90px rgba(0, 0, 0, 0.46);
+      --radius: 30px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 16%, rgba(124, 60, 255, 0.32), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(255, 79, 216, 0.22), transparent 30%),
+        radial-gradient(circle at 70% 84%, rgba(72, 232, 255, 0.12), transparent 32%),
+        linear-gradient(135deg, #05030b 0%, #0d0718 52%, #05030b 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 74%);
+      -webkit-mask-image: radial-gradient(circle at center, black, transparent 74%);
+      opacity: 0.36;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.075;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.75'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    button { font: inherit; }
+
+    .month-report-hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      width: min(1480px, 100%);
+      margin: 0 auto;
+      padding: 82px clamp(20px, 5vw, 88px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(520px, 1.08fr);
+      align-items: center;
+      gap: clamp(48px, 7vw, 112px);
+    }
+
+    .copy {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      margin-bottom: 26px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(57, 248, 154, 0.76);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 5.4vw, 88px);
+      line-height: 0.96;
+    }
+
+    .gradient-text {
+      display: inline-block;
+      background: linear-gradient(90deg, #ffffff 0%, #d9ccff 36%, #ff7ee8 74%, #83f4ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 1.34vw, 23px);
+      line-height: 1.58;
+    }
+
+    .lead strong {
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .feature-stack {
+      margin-top: 36px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 17px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.48), transparent 30%),
+        linear-gradient(135deg, rgba(124,60,255,0.9), rgba(255,79,216,0.72));
+      box-shadow: 0 18px 34px rgba(124,60,255,0.22);
+    }
+
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #fff;
+    }
+
+    .feature-title {
+      margin: 0;
+      font-weight: 850;
+      font-size: 17px;
+    }
+
+    .feature-text {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .stage-wrap {
+      position: relative;
+      min-height: 720px;
+      display: grid;
+      place-items: center;
+      perspective: 1200px;
+    }
+
+    .stage-glow {
+      position: absolute;
+      width: 104%;
+      height: 72%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -48%);
+      pointer-events: none;
+      background:
+        radial-gradient(circle, rgba(124, 60, 255, 0.30), transparent 58%),
+        radial-gradient(circle at 68% 44%, rgba(255, 79, 216, 0.22), transparent 52%),
+        radial-gradient(circle at 34% 68%, rgba(72, 232, 255, 0.14), transparent 52%);
+      filter: blur(38px);
+      opacity: 0.92;
+    }
+
+    .question-chip {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 12;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      max-width: 260px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: rgba(246,242,255,0.86);
+      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.045));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 22px 54px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.18);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      font-size: 13px;
+      font-weight: 650;
+      opacity: 0;
+      transform: translate(var(--x), var(--y)) scale(0.86);
+      transition: opacity 520ms ease, transform 720ms cubic-bezier(.2,.9,.2,1), filter 720ms ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .question-chip::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+      background: linear-gradient(135deg, var(--violet), var(--pink));
+      box-shadow: 0 0 15px rgba(124,60,255,0.72);
+    }
+
+    .question-chip.is-visible {
+      opacity: 1;
+      transform: translate(var(--x), var(--y)) scale(1);
+    }
+
+    .question-chip.is-collected {
+      opacity: 0;
+      filter: blur(3px);
+      transform: translate(-12px, -20px) scale(0.66);
+    }
+
+    .report-card {
+      position: relative;
+      z-index: 5;
+      width: min(640px, 100%);
+      border-radius: var(--radius);
+      overflow: hidden;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02)),
+        linear-gradient(180deg, rgba(18,17,27,0.96), rgba(14,13,21,0.96));
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: var(--shadow), 0 0 0 1px rgba(124,60,255,0.08);
+      transform: rotateX(4deg) rotateY(-7deg) translateY(0);
+      animation: cardBreath 7s ease-in-out infinite;
+      isolation: isolate;
+    }
+
+    @keyframes cardBreath {
+      0%, 100% { transform: rotateX(4deg) rotateY(-7deg) translateY(0); }
+      50% { transform: rotateX(5deg) rotateY(-5deg) translateY(-8px); }
+    }
+
+    .report-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.16) 22%, transparent 43%);
+      opacity: 0.34;
+      pointer-events: none;
+      z-index: 8;
+      mix-blend-mode: screen;
+    }
+
+    .report-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 22% 0%, rgba(124,60,255,0.13), transparent 32%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .scan-line {
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      top: -14%;
+      height: 160px;
+      z-index: 7;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(124,60,255,0.0), rgba(124,60,255,0.24), rgba(72,232,255,0.12), transparent);
+      filter: blur(2px);
+      opacity: 0;
+      transform: translateY(-120px);
+    }
+
+    .scan-line.is-active {
+      animation: scan 2400ms cubic-bezier(.25,.8,.25,1) forwards;
+    }
+
+    @keyframes scan {
+      0% { opacity: 0; transform: translateY(-130px); }
+      12% { opacity: 0.85; }
+      88% { opacity: 0.72; }
+      100% { opacity: 0; transform: translateY(720px); }
+    }
+
+    .report-head {
+      min-height: 76px;
+      padding: 19px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .report-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .dialogue-badge {
+      min-width: 128px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 15px;
+      border-radius: 999px;
+      color: var(--green);
+      font-weight: 850;
+      background: rgba(57, 248, 154, 0.11);
+      box-shadow: inset 0 0 0 1px rgba(57,248,154,0.03), 0 0 0 rgba(57,248,154,0);
+      transform: scale(0.96);
+      transition: box-shadow 420ms ease, transform 420ms ease;
+    }
+
+    .dialogue-badge.is-hot {
+      transform: scale(1);
+      box-shadow: 0 0 30px rgba(57,248,154,0.12), inset 0 0 0 1px rgba(57,248,154,0.16);
+    }
+
+    .report-body {
+      padding: 24px;
+    }
+
+    .section-label {
+      margin: 0 0 20px;
+      color: rgba(166,157,215,0.72);
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 760;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .question-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 150px 38px;
+      align-items: center;
+      gap: 18px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 520ms ease, transform 560ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    .question-row.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .q-title {
+      color: rgba(220,214,255,0.86);
+      font-size: 17px;
+    }
+
+    .bar {
+      position: relative;
+      height: 6px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.09);
+    }
+
+    .bar-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--violet), var(--violet-soft));
+      box-shadow: 0 0 20px rgba(124,60,255,0.56);
+      transition: width 1100ms cubic-bezier(.2,.85,.25,1);
+    }
+
+    .q-num {
+      text-align: right;
+      color: rgba(166,157,215,0.78);
+      font-size: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 26px 0 24px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    }
+
+    .gap-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .gap-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      min-height: 58px;
+      padding: 12px 14px 12px 0;
+      border-radius: 16px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 520ms ease, transform 560ms cubic-bezier(.2,.9,.2,1), background 520ms ease, padding-left 520ms ease;
+    }
+
+    .gap-row.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      padding-left: 14px;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .gap-topic {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .add-button {
+      min-width: 92px;
+      height: 34px;
+      border: 1px solid rgba(167, 139, 250, 0.50);
+      border-radius: 10px;
+      color: #bda9ff;
+      background: rgba(124,60,255,0.14);
+      box-shadow: 0 0 0 rgba(124,60,255,0);
+      cursor: pointer;
+      font-weight: 780;
+      transition: transform 180ms ease, box-shadow 520ms ease, background 520ms ease;
+    }
+
+    .gap-row.is-visible .add-button {
+      animation: buttonPulse 1600ms ease-in-out 450ms 2;
+    }
+
+    .add-button:hover {
+      transform: translateY(-1px);
+      background: rgba(124,60,255,0.22);
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(124,60,255,0); }
+      50% { box-shadow: 0 0 34px rgba(124,60,255,0.30); }
+    }
+
+    .restart {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: rgba(255,255,255,0.80);
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      cursor: pointer;
+    }
+
+    @media (max-width: 1180px) {
+      .month-report-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .copy,
+      .lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .feature {
+        text-align: left;
+      }
+
+      .stage-wrap {
+        min-height: 650px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .month-report-hero {
+        padding: 54px 16px 90px;
+      }
+
+      .stage-wrap {
+        min-height: 570px;
+      }
+
+      .report-card {
+        width: 100%;
+        border-radius: 24px;
+        transform: none;
+        animation: mobileCardBreath 7s ease-in-out infinite;
+      }
+
+      @keyframes mobileCardBreath {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+      }
+
+      .report-head,
+      .report-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .question-row {
+        grid-template-columns: 1fr 86px 30px;
+        gap: 10px;
+      }
+
+      .q-title {
+        font-size: 14px;
+      }
+
+      .q-num {
+        font-size: 14px;
+      }
+
+      .gap-topic {
+        font-size: 14px;
+      }
+
+      .add-button {
+        min-width: 76px;
+        font-size: 13px;
+      }
+
+      .question-chip {
+        display: none;
+      }
+
+      .stage-caption {
+        position: static;
+        width: 100%;
+        margin-top: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="month-report-hero" aria-label="Отчёт для клиентов за месяц">
+    <div class="copy">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</div>
+      <h1>
+        Диалоги сами собираются<br>
+        <span class="gradient-text">?????????? ????? ????? ?????? ???????????? ? ???????? ????????.</span>
+      </h1>
+      <p class="lead">
+        AI-бот показывает не только заявки. Он собирает вопросы пациентов, находит пробелы на сайте
+        и подсказывает, какие темы добавить в контент, рекламу и скрипты администратора.
+      </p>
+
+      <div class="feature-stack" aria-label="Что показывает отчёт">
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 19V9M12 19V5M19 19v-8" stroke-width="2.2" stroke-linecap="round"/><path d="M4 19h16" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="feature-title">??? ????????? ?????-???????? ??? ???????? ???????????.</p>
+            <p class="feature-text">?????? ???????? ?? ??????????? ????? ? ?????????? UTF-8.</p>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4.5 7v6c0 4.2 3 6.9 7.5 8 4.5-1.1 7.5-3.8 7.5-8V7L12 3Z" stroke-width="2.1" stroke-linejoin="round"/><path d="M9 12h6" stroke-width="2.1" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="feature-title">?????????? ????? ????? ?????? ???????????? ? ???????? ????????.</p>
+            <p class="feature-text">???????? ?????????, ? ????? ??????? ?? ????????? ???????? ??? ?????????? ???????? ??? ?????? ??????.</p>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 13.5 18.5 5 16 20l-5-4-3 3v-4.5Z" stroke-width="2.1" stroke-linejoin="round"/><path d="m8 14.5 10.5-9.5" stroke-width="2.1" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="feature-title">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</p>
+            <p class="feature-text">???????? ?????????, ? ????? ??????? ?? ????????? ???????? ??? ?????????? ???????? ??? ?????? ??????.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="stage-wrap" id="reportStage">
+      <div class="stage-glow" aria-hidden="true"></div>
+
+      <span class="question-chip" style="--x:-355px; --y:-236px;">??? ????????? ?????-???????? ??? ???????? ???????????.</span>
+      <span class="question-chip" style="--x:230px; --y:-198px;">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</span>
+      <span class="question-chip" style="--x:-325px; --y:32px;">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</span>
+      <span class="question-chip" style="--x:244px; --y:94px;">????? ????? ????????? ????? ??? ????????? ????????.</span>
+      <span class="question-chip" style="--x:-260px; --y:246px;">????? ????? ????????? ????? ??? ????????? ????????.</span>
+
+      <article class="report-card" aria-label="Анимированный отчёт за октябрь">
+        <div class="scan-line" id="scanLine" aria-hidden="true"></div>
+        <header class="report-head">
+          <h2 class="report-title">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</h2>
+          <div class="dialogue-badge" id="dialogueBadge"><span id="dialogueCount">03</span>?????????? ????? ????? ?????? ???????????? ? ???????? ????????.</div>
+        </header>
+
+        <div class="report-body">
+          <p class="section-label">??????? ?????</p>
+
+          <div class="question-list">
+            <div class="question-row" data-value="18" data-fill="90">
+              <div class="q-title">?????? ???????? ?? ??????????? ????? ? ?????????? UTF-8.</div>
+              <div class="bar" aria-hidden="true"><span class="bar-fill"></span></div>
+              <div class="q-num">18</div>
+            </div>
+            <div class="question-row" data-value="14" data-fill="70">
+              <div class="q-title">??? ????????? ?????-???????? ??? ???????? ???????????.</div>
+              <div class="bar" aria-hidden="true"><span class="bar-fill"></span></div>
+              <div class="q-num">64</div>
+            </div>
+            <div class="question-row" data-value="11" data-fill="55">
+              <div class="q-title">??? ????????? ?????-???????? ??? ???????? ???????????.</div>
+              <div class="bar" aria-hidden="true"><span class="bar-fill"></span></div>
+              <div class="q-num">07</div>
+            </div>
+            <div class="question-row" data-value="8" data-fill="40">
+              <div class="q-title">??? ????????? ?????-???????? ??? ???????? ???????????.</div>
+              <div class="bar" aria-hidden="true"><span class="bar-fill"></span></div>
+              <div class="q-num">11</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="section-label">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</p>
+          <div class="gap-list">
+            <div class="gap-row">
+              <div class="gap-topic">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</div>
+              <button class="add-button" type="button">????? ?????</button>
+            </div>
+            <div class="gap-row">
+              <div class="gap-topic">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</div>
+              <button class="add-button" type="button">????????? ???????</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <button class="restart" type="button" id="restartButton">??? ????? ???????? ??????????, ??? ????????? ???????????? ?????????.</button>
+
+  <script>
+    const stage = document.querySelector('#reportStage');
+    const chips = Array.from(stage.querySelectorAll('.question-chip'));
+    const rows = Array.from(stage.querySelectorAll('.question-row'));
+    const gaps = Array.from(stage.querySelectorAll('.gap-row'));
+    const dialogueCount = document.querySelector('#dialogueCount');
+    const dialogueBadge = document.querySelector('#dialogueBadge');
+    const scanLine = document.querySelector('#scanLine');
+    const restartButton = document.querySelector('#restartButton');
+    let timers = [];
+
+    function wait(ms) {
+      return new Promise(resolve => {
+        const timer = setTimeout(resolve, ms);
+        timers.push(timer);
+      });
+    }
+
+    function clearTimers() {
+      timers.forEach(clearTimeout);
+      timers = [];
+    }
+
+    function animateNumber(element, to, duration = 900) {
+      const startTime = performance.now();
+      const from = Number(element.textContent) || 0;
+
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        element.textContent = Math.round(from + (to - from) * eased);
+
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    function resetScene() {
+      clearTimers();
+      chips.forEach(chip => chip.classList.remove('is-visible', 'is-collected'));
+      rows.forEach(row => {
+        row.classList.remove('is-visible');
+        row.querySelector('.bar-fill').style.width = '0%';
+        row.querySelector('.q-num').textContent = '0';
+      });
+      gaps.forEach(gap => gap.classList.remove('is-visible'));
+      dialogueCount.textContent = '0';
+      dialogueBadge.classList.remove('is-hot');
+      scanLine.classList.remove('is-active');
+      void scanLine.offsetWidth;
+    }
+
+    async function runScene() {
+      resetScene();
+      await wait(420);
+
+      for (let i = 0; i < chips.length; i++) {
+        chips[i].classList.add('is-visible');
+        await wait(230);
+      }
+
+      await wait(620);
+      scanLine.classList.add('is-active');
+      chips.forEach((chip, index) => {
+        const timer = setTimeout(() => chip.classList.add('is-collected'), index * 90);
+        timers.push(timer);
+      });
+
+      await wait(380);
+      dialogueBadge.classList.add('is-hot');
+      animateNumber(dialogueCount, 47, 1150);
+
+      await wait(720);
+      for (const row of rows) {
+        row.classList.add('is-visible');
+        await wait(170);
+        const fill = row.dataset.fill;
+        const value = Number(row.dataset.value);
+        row.querySelector('.bar-fill').style.width = fill + '%';
+        animateNumber(row.querySelector('.q-num'), value, 720);
+        await wait(360);
+      }
+
+      await wait(420);
+      for (const gap of gaps) {
+        gap.classList.add('is-visible');
+        await wait(420);
+      }
+
+    }
+
+    restartButton.addEventListener('click', runScene);
+    runScene();
+
+    setInterval(() => {
+      runScene();
+    }, 13500);
+  </script>
+</body>
+</html>

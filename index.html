@@ -6,7 +6,7 @@
   <title>Artgents — ИИ-консультант для клиник</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="animations/phone-hero.css" />
   <link rel="stylesheet" href="animations/report-analytics.css" />
@@ -137,23 +137,16 @@
     </section>
 
     <!-- ── WHAT ──────────────────────────────────────────── -->
-    <section class="section section--light" id="what">
-      <div class="shell what__grid">
-
-        <!-- cols 1–4: copy -->
-        <div class="what__copy">
-          <div>
-            <div class="label">Что это такое</div>
-            <h2>Не справочник и не форма звонка. <em>Живой диалог</em></h2>
-          </div>
+    <section class="section section--dark" id="what">
+      <div class="shell what__layout">
+        <div class="what__head">
+          <div class="label">Что это такое</div>
+          <h2>Не справочник и не форма звонка. <em>Живой диалог</em></h2>
           <p class="what__desc">Виджет на сайте клиники. Внутри — ИИ, обученный на материалах вашей клиники. Пациент пишет что угодно своими словами и получает ответ — без скриптов, без кнопок, без «оставьте телефон».</p>
         </div>
 
-        <!-- cols 5–12: bento grid 6×2 -->
-        <div class="what__bento">
-
-          <!-- row 1 / cols 1–2 -->
-          <article class="what-card what-card--a">
+        <div class="what__cards">
+          <article class="what-card">
             <div class="what-card__num">01</div>
             <div class="what-card__body">
               <h3>Не выдумывает факты</h3>
@@ -161,38 +154,45 @@
             </div>
           </article>
 
-          <!-- row 1 / cols 3–4 -->
-          <article class="what-card what-card--b">
+          <article class="what-card">
             <div class="what-card__num">02</div>
             <div class="what-card__body">
               <h3>Помнит контекст</h3>
-              <p>Не переспрашивает одно и то же. Если пациент сказал что боится боли — консультант учитывает это в каждом следующем ответе.</p>
+              <p>Не переспрашивает одно и то же. Если пациент сказал, что боится боли, консультант учитывает это в каждом следующем ответе.</p>
             </div>
           </article>
 
-          <!-- row 1 / cols 5–6 -->
-          <article class="what-card what-card--c">
+          <article class="what-card">
             <div class="what-card__num">03</div>
             <div class="what-card__body">
-              <h3>Ведёт разговор, не просто отвечает</h3>
+              <h3>Ведёт разговор</h3>
               <p>На сложных темах объясняет, снимает сомнения и мягко предлагает следующий шаг.</p>
             </div>
           </article>
 
-          <!-- row 2 / cols 1–2: photo placeholder -->
-          <div class="what-photo">
-            <span>фото / иллюстрация</span>
-          </div>
-
-          <!-- row 2 / cols 3–6 -->
-          <article class="what-card what-card--d">
+          <article class="what-card">
             <div class="what-card__num">04</div>
             <div class="what-card__body">
               <h3>Передаёт заявку с историей</h3>
-              <p>Администратор получает не холодный номер, а контекст — что спрашивал, чего боялся, что уже объяснил консультант.</p>
+              <p>Администратор получает не холодный номер, а контекст: что спрашивал пациент, чего боялся и что уже объяснил консультант.</p>
             </div>
           </article>
 
+          <article class="what-card">
+            <div class="what-card__num">05</div>
+            <div class="what-card__body">
+              <h3>Подсказывает следующий шаг</h3>
+              <p>Мягко ведёт человека к записи, консультации или уточнению деталей, не перегружая его лишними кнопками.</p>
+            </div>
+          </article>
+
+          <article class="what-card">
+            <div class="what-card__num">06</div>
+            <div class="what-card__body">
+              <h3>Работает без пауз</h3>
+              <p>Отвечает ночью, в выходные и в часы, когда администратор занят. Сайт не оставляет вопрос без ответа.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -246,24 +246,10 @@
           </article>
 
         </div>
-      </div>
-
-      <!-- ── COMPARE ──────────────────────────────────────── -->
-      <div class="shell compare-wrap">
-        <div class="compare">
-          <div class="compare__left">
-            <div class="label">Отличие от обычного чата</div>
-            <h2>Один вопрос. <em>Два разных ответа</em></h2>
-            <p class="compare__desc">Обычный виджет просит контакты. ИИ-консультант слышит страх пациента, отвечает по делу и мягко ведёт к следующему шагу.</p>
-          </div>
-          <div class="compare__right"></div>
-        </div>
-      </div>
-
     </section>
 
     <!-- ── RESULTS ────────────────────────────────────────── -->
-    <section class="section section--light" id="results">
+    <section class="section section--dark" id="results">
       <div class="shell">
 
         <div class="results__head">
@@ -459,7 +445,7 @@
     </section>
 
     <!-- ── PRICING ───────────────────────────────────────── -->
-    <section class="section section--light" id="pricing">
+    <section class="section section--dark" id="pricing">
       <div class="shell">
         <div class="pricing__grid">
 

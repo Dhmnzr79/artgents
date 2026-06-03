@@ -50,7 +50,6 @@
   -webkit-backdrop-filter: blur(20px);
   font-size: 13px;
   font-weight: 650;
-  letter-spacing: -0.01em;
   opacity: 0;
   transform: translate(var(--x), var(--y)) scale(0.86);
   transition: opacity 520ms ease, transform 720ms cubic-bezier(.2, .9, .2, 1), filter 720ms ease;
@@ -172,7 +171,6 @@
   margin: 0;
   font-size: 18px;
   font-weight: 850;
-  letter-spacing: -0.03em;
   color: #f6f2ff;
 }
 
@@ -205,7 +203,6 @@
   margin: 0 0 20px;
   color: rgba(166, 157, 215, 0.72);
   font-size: 13px;
-  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 760;
 }
@@ -234,7 +231,6 @@
 .rpt-q-title {
   color: rgba(220, 214, 255, 0.86);
   font-size: 17px;
-  letter-spacing: -0.02em;
 }
 
 .rpt-bar {
@@ -302,7 +298,6 @@
 .rpt-gap-topic {
   font-size: 16px;
   font-weight: 800;
-  letter-spacing: -0.02em;
   color: #f6f2ff;
 }
 
