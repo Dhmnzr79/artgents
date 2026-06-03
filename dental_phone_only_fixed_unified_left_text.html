@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Дентал-ассистент клиники</title>
+
+  <style>
+    :root {
+      --bg: #05030b;
+      --violet: #7c3cff;
+      --pink: #ff4fd8;
+      --cyan: #48e8ff;
+      --text: #f6f2ff;
+      --muted: rgba(246, 242, 255, 0.68);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --steel-1: #f3f6f8;
+      --steel-2: #b7bec7;
+      --steel-3: #7a8490;
+      --steel-4: #e6ebf0;
+      --black: #030406;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 80px clamp(20px, 5vw, 96px);
+      display: grid;
+      grid-template-columns: 1fr;
+      place-items: center;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(124, 60, 255, 0.34), transparent 24%),
+        radial-gradient(circle at 78% 22%, rgba(255, 79, 216, 0.24), transparent 32%),
+        radial-gradient(circle at 68% 78%, rgba(72, 232, 255, 0.14), transparent 26%),
+        linear-gradient(135deg, #05030b 0%, #0d0718 52%, #05030b 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+      -webkit-mask-image: radial-gradient(circle at center, black, transparent 72%);
+      opacity: 0.35;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.08;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.75'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
+    }
+.phone-stage {
+      position: relative;
+      width: min(560px, 92vw);
+      margin-inline: auto;
+      aspect-ratio: 430 / 820;
+      perspective: 1500px;
+      display: grid;
+      place-items: center;
+    }
+
+    .phone-stage::before {
+      content: "";
+      position: absolute;
+      width: 154%;
+      height: 72%;
+      left: 50%;
+      top: 14%;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(circle, rgba(124, 60, 255, 0.34), transparent 58%),
+        radial-gradient(circle at 65% 45%, rgba(255, 79, 216, 0.24), transparent 52%),
+        radial-gradient(circle at 35% 62%, rgba(72, 232, 255, 0.18), transparent 50%);
+      filter: blur(32px);
+      opacity: 0.95;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .phone-stage::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -34px;
+      width: 80%;
+      height: 64px;
+      transform: translateX(-50%) rotateX(62deg);
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse,
+        rgba(0, 0, 0, 0.58) 0%,
+        rgba(124, 60, 255, 0.22) 42%,
+        transparent 72%
+      );
+      filter: blur(17px);
+      z-index: 0;
+    }
+
+    /*
+      iPhone-like корпус:
+      - меньше скругления, чем в исходнике;
+      - сильнее rotateY, чтобы была видна правая грань;
+      - отдельная металлическая боковая грань через ::after.
+    */
+    .phone {
+      position: relative;
+      width: 368px;
+      max-width: 100%;
+      aspect-ratio: 9 / 18.7;
+      padding: 6px;
+      border-radius: 34px;
+      transform-style: preserve-3d;
+      transform:
+        rotateX(6deg)
+        rotateY(-21deg)
+        rotateZ(0.55deg)
+        translateY(0);
+      animation: phoneFloat 6.5s ease-in-out infinite;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04) 8%, rgba(0,0,0,0.10) 62%, rgba(238,242,246,0.18) 100%),
+        linear-gradient(180deg, #17191f 0%, #050609 42%, #101217 100%);
+      box-shadow:
+        0 82px 132px rgba(0, 0, 0, 0.52),
+        0 30px 62px rgba(124, 60, 255, 0.18),
+        0 0 0 1px rgba(255,255,255,0.12),
+        inset 0 1px 1px rgba(255,255,255,0.30),
+        inset -5px 0 9px rgba(255,255,255,0.06),
+        inset 0 -5px 12px rgba(0,0,0,0.58);
+      z-index: 5;
+      transition: transform 250ms ease;
+    }
+
+    @keyframes phoneFloat {
+      0%, 100% {
+        transform:
+          rotateX(6deg)
+          rotateY(-21deg)
+          rotateZ(0.55deg)
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          rotateX(7deg)
+          rotateY(-18deg)
+          rotateZ(0.2deg)
+          translateY(-10px);
+      }
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.10);
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      right: -15px;
+      width: 40px;
+      height: calc(100% - 4px);
+      border-radius: 0 30px 30px 0;
+      background: linear-gradient(
+            180deg,
+            #f6f8fa 0%,
+            #c6cdd5 12%,
+            #7e8995 34%,
+            #eef2f5 52%,
+            #727c88 78%,
+            #cbd2da 100%
+          );
+      box-shadow: inset 1px 0 0 rgba(255,255,255,0.62),
+          inset -2px 0 4px rgba(0,0,0,0.24),
+          4px 0 12px rgba(0,0,0,0.16);
+      transform: skewY(-0.45deg) translateZ(-4px);
+      transform-origin: left center;
+      z-index: -1;
+    }
+
+    .side-button {
+      position: absolute;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #eef3f7, #87919d 42%, #e4ebf1);
+      box-shadow:
+        inset 1px 0 1px rgba(255,255,255,0.38),
+        inset -1px 0 1px rgba(0,0,0,0.22);
+      z-index: 8;
+    }
+
+    .side-button.left-1 {
+      left: -3px;
+      top: 142px;
+      height: 54px;
+      opacity: 0.5;
+    }
+
+    .side-button.left-2 {
+      left: -3px;
+      top: 218px;
+      height: 76px;
+      opacity: 0.5;
+    }
+
+    .side-button.right-1 {
+      right: -12px;
+      top: 178px;
+      height: 92px;
+      width: 4px;
+      z-index: 10;
+    }
+
+    .phone-glass {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #020304;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.07),
+        inset 0 0 18px rgba(255,255,255,0.035);
+      isolation: isolate;
+      transform: translateZ(1px);
+      clip-path: inset(0 round 28px);
+      z-index: 3;
+    }
+
+    .phone-glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: transparent;
+      z-index: 1;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.045),
+        inset 0 8px 18px rgba(0,0,0,0.32);
+      pointer-events: none;
+    }
+
+    .phone-glass::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        linear-gradient(
+          115deg,
+          rgba(255,255,255,0.22) 0%,
+          rgba(255,255,255,0.07) 17%,
+          transparent 43%
+        );
+      opacity: 0.36;
+      pointer-events: none;
+      z-index: 8;
+      mix-blend-mode: screen;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 9px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #f7f5fb;
+      z-index: 2;
+      isolation: isolate;
+      transform: translateZ(1px);
+      clip-path: inset(0 round 22px);
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.56),
+        inset 0 0 0 1px rgba(255,255,255,0.82),
+        inset 0 14px 26px rgba(0,0,0,0.07);
+    }
+
+    .dynamic-island {
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 104px;
+      height: 30px;
+      border-radius: 999px;
+      background: #050509;
+      box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.12),
+        0 2px 8px rgba(0,0,0,0.42);
+      z-index: 10;
+    }
+
+    .dynamic-island::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #111827;
+      box-shadow: inset 0 0 0 1px rgba(96,165,250,0.24);
+    }
+
+    .chat-app {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      border-radius: inherit;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(124,60,255,0.16), transparent 32%),
+        linear-gradient(180deg, #fbfaff 0%, #f2f0f8 100%);
+      color: #111827;
+    }
+
+    .chat-header {
+      padding: 47px 18px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(246,242,255,0.92));
+      border-bottom: 1px solid rgba(17,24,39,0.08);
+      border-radius: 22px 22px 0 0;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      background:
+        radial-gradient(circle at 28% 20%, rgba(255,255,255,0.48), transparent 26%),
+        linear-gradient(135deg, #7c3cff, #ff4fd8);
+      box-shadow: 0 10px 24px rgba(124,60,255,0.32);
+      flex: 0 0 auto;
+    }
+
+    .header-text {
+      min-width: 0;
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-status {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #667085;
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.13);
+    }
+
+    .header-action {
+      margin-left: auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(17,24,39,0.08);
+      background: rgba(255,255,255,0.68);
+      display: grid;
+      place-items: center;
+      color: #7c3cff;
+      flex: 0 0 auto;
+    }
+
+    .messages {
+      padding: 18px 15px 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .day-label {
+      align-self: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(17,24,39,0.05);
+      color: #667085;
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+
+    .message {
+      max-width: 84%;
+      display: flex;
+      gap: 7px;
+      align-items: flex-end;
+      animation: messageIn 420ms cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .message.bot {
+      align-self: flex-start;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      justify-content: flex-end;
+    }
+
+    .bubble {
+      position: relative;
+      padding: 10px 12px;
+      border-radius: 18px;
+      font-size: 12.7px;
+      line-height: 1.38;
+      box-shadow: 0 7px 16px rgba(17,24,39,0.05);
+    }
+
+    .bot .bubble {
+      color: #1f2937;
+      background: #ffffff;
+      border-bottom-left-radius: 7px;
+      border: 1px solid rgba(17,24,39,0.05);
+    }
+
+    .user .bubble {
+      color: #fff;
+      background: linear-gradient(135deg, #7c3cff, #c047ff 48%, #ff4fd8);
+      border-bottom-right-radius: 7px;
+      box-shadow: 0 12px 22px rgba(124,60,255,0.22);
+    }
+
+    .message-text {
+      white-space: pre-wrap;
+    }
+
+    .message-time {
+      display: block;
+      margin-top: 5px;
+      font-size: 9px;
+      opacity: 0.55;
+    }
+
+    .typing {
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 11px 13px;
+      border-radius: 18px;
+      border-bottom-left-radius: 7px;
+      background: #fff;
+      box-shadow: 0 7px 16px rgba(17,24,39,0.05);
+      animation: messageIn 320ms ease both;
+    }
+
+    .typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9ca3af;
+      animation: typingDot 1s infinite ease-in-out;
+    }
+
+    .typing span:nth-child(2) {
+      animation-delay: 0.14s;
+    }
+
+    .typing span:nth-child(3) {
+      animation-delay: 0.28s;
+    }
+
+    @keyframes typingDot {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.35;
+      }
+
+      50% {
+        transform: translateY(-4px);
+        opacity: 1;
+      }
+    }
+
+    .chat-input {
+      padding: 12px;
+      border-top: 1px solid rgba(17,24,39,0.08);
+      background: rgba(255,255,255,0.86);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chat-input input {
+      width: 100%;
+      min-width: 0;
+      height: 42px;
+      border: 1px solid rgba(17,24,39,0.08);
+      border-radius: 999px;
+      padding: 0 14px;
+      font-size: 12px;
+      outline: none;
+      background: #fff;
+      color: #111827;
+      box-shadow: inset 0 1px 2px rgba(17,24,39,0.04);
+    }
+
+    .chat-input input::placeholder {
+      color: #98a2b3;
+    }
+
+    .send-button {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      background: linear-gradient(135deg, #7c3cff, #ff4fd8);
+      box-shadow:
+        0 12px 26px rgba(124,60,255,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.34);
+      color: #fff;
+      flex: 0 0 auto;
+      transition: transform 180ms ease;
+    }
+
+    .send-button:active {
+      transform: scale(0.94);
+    }
+
+    .send-button svg {
+      width: 18px;
+      height: 18px;
+      transform: translateX(1px);
+    }
+
+    .floating-card {
+      position: absolute;
+      z-index: 15;
+      width: 238px;
+      padding: 12px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: rgba(255,255,255,0.92);
+      background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.055));
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        0 26px 64px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      opacity: 0;
+      transform: translateY(18px) scale(0.94);
+      pointer-events: none;
+    }
+
+    .floating-card.is-visible {
+      animation: cardReveal 720ms cubic-bezier(.2,.9,.2,1) forwards,
+                 cardFloat 4.8s ease-in-out infinite 720ms;
+    }
+
+    @keyframes cardReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes cardFloat {
+      0%, 100% {
+        translate: 0 0;
+      }
+
+      50% {
+        translate: 0 -8px;
+      }
+    }
+
+    .floating-card.card-1 {
+      top: 72px;
+      left: -94px;
+    }
+
+    .floating-card.card-2 {
+      top: 272px;
+      right: -130px;
+      width: 252px;
+    }
+
+    .floating-card.card-3 {
+      bottom: 118px;
+      left: -112px;
+      width: 250px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.52), transparent 28%),
+        linear-gradient(135deg, #7c3cff, #ff4fd8);
+      box-shadow:
+        0 12px 24px rgba(124,60,255,0.36),
+        inset 0 1px 0 rgba(255,255,255,0.26);
+    }
+
+    .card-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .card-text {
+      font-size: 13px;
+      line-height: 1.28;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 1060px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 56px;
+        padding-bottom: 96px;
+      }
+.phone-stage {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-inline: 18px;
+      }
+
+      .phone-stage {
+        width: min(360px, 94vw);
+      }
+
+      .floating-card {
+        width: 210px;
+      }
+
+      .floating-card.card-1 {
+        left: -18px;
+        top: 50px;
+      }
+
+      .floating-card.card-2 {
+        right: -20px;
+        top: 246px;
+      }
+
+      .floating-card.card-3 {
+        display: none;
+      }
+
+      .phone {
+        width: 318px;
+        border-radius: 32px;
+      }
+
+      .phone::after {
+        top: 2px;
+        right: -8px;
+        width: 12px;
+        height: calc(100% - 4px);
+      }
+
+      .side-button.right-1 {
+        right: -10px;
+      }
+
+      .bubble {
+        font-size: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .phone,
+      .floating-card.is-visible,
+      .message,
+      .typing span {
+        animation: none !important;
+      }
+    }
+</style>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="phone-stage" id="phoneStage">
+      <div class="floating-card card-1" data-card>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2.1"/>
+            <path d="M12 7.5v5l3.2 2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="card-text">Отвечает пациентам ночью, в выходные и в моменты, когда администратор занят.</div>
+      </div>
+
+      <div class="floating-card card-2" data-card>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 11.5 10.2 15 17.5 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12a9 9 0 1 1-5.2-8.15" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-text">Подсказывает по имплантации, стоимости, срокам лечения и помогает дойти до консультации.</div>
+      </div>
+
+      <div class="floating-card card-3" data-card>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 7h8M8 12h5M6 20l3-3h8a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="card-text">Передаёт заявку в клинику, когда пациент готов записаться или оставить контакт.</div>
+      </div>
+
+      <div class="phone" id="phone">
+        <span class="side-button left-1"></span>
+        <span class="side-button left-2"></span>
+        <span class="side-button right-1"></span>
+
+        <div class="phone-glass">
+          <div class="dynamic-island"></div>
+
+          <div class="phone-screen">
+            <div class="chat-app">
+              <header class="chat-header">
+                <div class="avatar">AI</div>
+
+                <div class="header-text">
+                  <div class="header-title">Дентал-ассистент клиники</div>
+                  <div class="header-status">
+                    <span class="status-dot"></span>
+                    online · отвечает сразу
+                  </div>
+                </div>
+
+                <div class="header-action">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                    <path d="M7 10.5v3a5 5 0 0 0 10 0v-3M12 4v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </header>
+
+              <main class="messages" id="messages">
+                <div class="day-label">Сегодня</div>
+              </main>
+
+              <footer class="chat-input">
+                <input id="chatInput" type="text" placeholder="Напишите вопрос..." />
+                <button class="send-button" id="sendButton" aria-label="Отправить">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21 3 10.6 13.4M21 3l-6.6 18-3.8-7.6L3 9.6 21 3Z" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const messagesEl = document.querySelector("#messages");
+    const cards = document.querySelectorAll("[data-card]");
+    const input = document.querySelector("#chatInput");
+    const sendButton = document.querySelector("#sendButton");
+
+    const dialogues = [
+      [
+        {
+          role: "bot",
+          text: "Здравствуйте! Я ассистент клиники. Подскажу по имплантации и помогу с записью."
+        },
+        {
+          role: "user",
+          text: "Здравствуйте. Имплантация — это больно?"
+        },
+        {
+          role: "bot",
+          text: "Процедура проходит под анестезией. Во время установки пациент обычно чувствует давление, но не боль."
+        },
+        {
+          role: "user",
+          text: "А сколько времени занимает установка одного импланта?"
+        },
+        {
+          role: "bot",
+          text: "В среднем 20–40 минут. Точное время зависит от состояния кости и плана лечения."
+        },
+        {
+          role: "bot",
+          text: "Лучше начать с консультации и 3D-снимка — врач оценит ситуацию и предложит безопасный план."
+        },
+        {
+          role: "user",
+          text: "Можно узнать стоимость?"
+        },
+        {
+          role: "bot",
+          text: "Да. Стоимость зависит от системы имплантов и объёма лечения. Могу помочь подобрать удобное время для консультации."
+        }
+      ],
+      [
+        {
+          role: "bot",
+          text: "Здравствуйте! Я помогу разобраться с лечением и записью в клинику."
+        },
+        {
+          role: "user",
+          text: "Мне нужно восстановить зуб. Не понимаю, коронка или имплант."
+        },
+        {
+          role: "bot",
+          text: "Если корень зуба сохранён, врач может рассмотреть коронку. Если зуб утрачен полностью, чаще обсуждают имплантацию."
+        },
+        {
+          role: "user",
+          text: "А можно поставить имплант сразу после удаления?"
+        },
+        {
+          role: "bot",
+          text: "Иногда можно, но решение принимает врач после осмотра и 3D-диагностики."
+        },
+        {
+          role: "bot",
+          text: "Я могу записать вас на консультацию, чтобы врач оценил снимок и предложил план лечения."
+        }
+      ]
+    ];
+
+    const quickReplies = [
+      "Понял вопрос. Лучше начать с консультации и 3D-диагностики, чтобы врач оценил ситуацию точно.",
+      "Да, подскажу. Окончательный вариант лечения врач определит после осмотра и снимка.",
+      "Обычно план зависит от состояния зуба, кости и количества единиц, которые нужно восстановить."
+    ];
+
+    const selectedDialogue = dialogues[Math.floor(Math.random() * dialogues.length)];
+
+    function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function getTime() {
+      return "12:" + String(Math.floor(10 + Math.random() * 49)).padStart(2, "0");
+    }
+
+    function scrollMessagesToBottom() {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function createMessageShell(role) {
+      const message = document.createElement("div");
+      message.className = `message ${role}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+
+      const textSpan = document.createElement("span");
+      textSpan.className = "message-text";
+
+      const timeSpan = document.createElement("span");
+      timeSpan.className = "message-time";
+      timeSpan.textContent = getTime();
+
+      bubble.appendChild(textSpan);
+      bubble.appendChild(timeSpan);
+      message.appendChild(bubble);
+
+      messagesEl.appendChild(message);
+      scrollMessagesToBottom();
+
+      return textSpan;
+    }
+
+    function addMessageInstant({ role, text }) {
+      const textSpan = createMessageShell(role);
+      textSpan.textContent = text;
+      scrollMessagesToBottom();
+    }
+
+    async function addMessageStream({ role, text }) {
+      const textSpan = createMessageShell(role);
+
+      for (let i = 0; i < text.length; i++) {
+        textSpan.textContent += text[i];
+        scrollMessagesToBottom();
+
+        const char = text[i];
+        let delay = 22;
+
+        if (char === "." || char === "!" || char === "?") delay = 170;
+        if (char === "," || char === "—" || char === ":") delay = 80;
+        if (char === " ") delay = 10;
+
+        await wait(delay);
+      }
+    }
+
+    function showTyping() {
+      const oldTyping = document.querySelector("#typing");
+      if (oldTyping) oldTyping.remove();
+
+      const typing = document.createElement("div");
+      typing.className = "typing";
+      typing.id = "typing";
+      typing.innerHTML = "<span></span><span></span><span></span>";
+      messagesEl.appendChild(typing);
+      scrollMessagesToBottom();
+    }
+
+    function hideTyping() {
+      const typing = document.querySelector("#typing");
+      if (typing) typing.remove();
+    }
+
+    function revealCard(index) {
+      if (cards[index]) {
+        cards[index].classList.add("is-visible");
+      }
+    }
+
+    async function runDialogue() {
+      await wait(700);
+
+      for (let i = 0; i < selectedDialogue.length; i++) {
+        const message = selectedDialogue[i];
+
+        if (message.role === "bot") {
+          showTyping();
+          await wait(600 + Math.random() * 300);
+          hideTyping();
+          await addMessageStream(message);
+        } else {
+          await wait(520);
+          addMessageInstant(message);
+        }
+
+        if (i === 1) revealCard(0);
+        if (i === 3) revealCard(1);
+        if (i === 5) revealCard(2);
+
+        await wait(650);
+      }
+    }
+
+    async function sendManualMessage() {
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      addMessageInstant({
+        role: "user",
+        text
+      });
+
+      input.value = "";
+
+      await wait(450);
+      showTyping();
+      await wait(700);
+      hideTyping();
+
+      await addMessageStream({
+        role: "bot",
+        text: quickReplies[Math.floor(Math.random() * quickReplies.length)]
+      });
+    }
+
+    sendButton.addEventListener("click", sendManualMessage);
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        sendManualMessage();
+      }
+    });
+
+    runDialogue();
+  </script>
+</body>
+</html>

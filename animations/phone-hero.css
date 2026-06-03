@@ -1,15 +1,12 @@
-/* ── PHONE HERO ANIMATION ───────────────────────────────────
-   Standalone styles for the 3-D phone + chat dialogue widget.
-   Scoped to .phone-stage — safe to include alongside styles.css.
-   ─────────────────────────────────────────────────────────── */
+/* Phone hero widget */
 
-/* ── Stage ──────────────────────────────────────────────── */
 .phone-stage {
   position: relative;
-  width: min(400px, 88vw);
+  width: min(520px, 91vw);
   margin-inline: auto;
+  margin-top: -10px;
   aspect-ratio: 430 / 820;
-  perspective: 1400px;
+  perspective: 1500px;
   display: grid;
   place-items: center;
 }
@@ -17,16 +14,16 @@
 .phone-stage::before {
   content: "";
   position: absolute;
-  width: 160%;
-  height: 78%;
+  width: 156%;
+  height: 76%;
   left: 50%;
-  top: 10%;
+  top: 13%;
   transform: translateX(-50%);
   background:
     radial-gradient(circle at 34% 42%, rgba(255, 84, 188, 0.34), transparent 34%),
     radial-gradient(circle at 68% 38%, rgba(138, 92, 255, 0.36), transparent 36%);
-  filter: blur(52px);
-  opacity: 0.96;
+  filter: blur(42px);
+  opacity: 0.92;
   z-index: 0;
   pointer-events: none;
 }
@@ -36,116 +33,163 @@
   position: absolute;
   left: 50%;
   bottom: -34px;
-  width: 76%;
+  width: 80%;
   height: 64px;
   transform: translateX(-50%) rotateX(62deg);
   border-radius: 50%;
   background: radial-gradient(
     ellipse,
     rgba(0, 0, 0, 0.58) 0%,
-    rgba(123, 110, 246, 0.22) 42%,
+    rgba(124, 60, 255, 0.22) 42%,
     transparent 72%
   );
   filter: blur(17px);
   z-index: 0;
 }
 
-/* ── Phone body ─────────────────────────────────────────── */
 .phone {
   position: relative;
-  width: 324px;
+  left: -10px;
+  width: 322px;
   max-width: 100%;
-  aspect-ratio: 9 / 18.6;
-  padding: 13px;
-  border-radius: 54px;
+  aspect-ratio: 9 / 18.7;
+  padding: 6px;
+  border-radius: 34px;
   transform-style: preserve-3d;
   transform:
-    rotateX(7deg)
-    rotateY(-13deg)
-    rotateZ(1.5deg)
+    rotateX(6deg)
+    rotateY(-21deg)
+    rotateZ(0.55deg)
     translateY(0);
   animation: phoneFloat 6.5s ease-in-out infinite;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 18%),
-    linear-gradient(145deg, #383746 0%, #07070d 38%, #191726 68%, #040407 100%);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04) 8%, rgba(0, 0, 0, 0.1) 62%, rgba(238, 242, 246, 0.18) 100%),
+    linear-gradient(180deg, #17191f 0%, #050609 42%, #101217 100%);
   box-shadow:
-    0 86px 140px rgba(0, 0, 0, 0.55),
-    0 34px 72px rgba(123, 110, 246, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.16),
-    inset 0 1px 2px rgba(255, 255, 255, 0.45),
-    inset 0 -10px 24px rgba(0, 0, 0, 0.72);
+    0 74px 118px rgba(0, 0, 0, 0.5),
+    0 26px 54px rgba(124, 60, 255, 0.17),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset -5px 0 9px rgba(255, 255, 255, 0.06),
+    inset 0 -5px 12px rgba(0, 0, 0, 0.58);
   z-index: 5;
+  transition: transform 250ms ease;
 }
 
 .phone::before {
   content: "";
   position: absolute;
-  inset: 5px;
-  border-radius: 49px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  inset: 3px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   pointer-events: none;
-  z-index: 4;
+  z-index: 9;
+}
+
+.phone::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: -15px;
+  width: 40px;
+  height: calc(100% - 4px);
+  border-radius: 0 30px 30px 0;
+  background: linear-gradient(
+    180deg,
+    #f6f8fa 0%,
+    #c6cdd5 12%,
+    #7e8995 34%,
+    #eef2f5 52%,
+    #727c88 78%,
+    #cbd2da 100%
+  );
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.62),
+    inset -2px 0 4px rgba(0, 0, 0, 0.24),
+    4px 0 12px rgba(0, 0, 0, 0.16);
+  transform: skewY(-0.45deg) translateZ(-4px);
+  transform-origin: left center;
+  z-index: -1;
 }
 
 @keyframes phoneFloat {
   0%, 100% {
     transform:
-      rotateX(7deg)
-      rotateY(-13deg)
-      rotateZ(1.5deg)
+      rotateX(6deg)
+      rotateY(-21deg)
+      rotateZ(0.55deg)
       translateY(0);
   }
+
   50% {
     transform:
-      rotateX(8deg)
-      rotateY(-10deg)
-      rotateZ(1deg)
-      translateY(-12px);
+      rotateX(7deg)
+      rotateY(-18deg)
+      rotateZ(0.2deg)
+      translateY(-10px);
   }
 }
 
-/* ── Side buttons ───────────────────────────────────────── */
 .side-button {
   position: absolute;
   width: 4px;
   border-radius: 999px;
-  background: linear-gradient(to bottom, #3e3d4a, #111018);
-  box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.16);
-  z-index: -1;
+  background: linear-gradient(to bottom, #eef3f7, #87919d 42%, #e4ebf1);
+  box-shadow:
+    inset 1px 0 1px rgba(255, 255, 255, 0.38),
+    inset -1px 0 1px rgba(0, 0, 0, 0.22);
+  z-index: 8;
 }
 
 .side-button.left-1 {
   left: -3px;
   top: 142px;
   height: 54px;
+  opacity: 0.5;
 }
 
 .side-button.left-2 {
   left: -3px;
   top: 218px;
   height: 76px;
+  opacity: 0.5;
 }
 
 .side-button.right-1 {
-  right: -3px;
+  right: -9px;
   top: 178px;
+  width: 4px;
   height: 92px;
+  z-index: 10;
 }
 
-/* ── Phone glass + screen ───────────────────────────────── */
 .phone-glass {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 43px;
+  border-radius: 28px;
   overflow: hidden;
-  background: #05050a;
+  background: #020304;
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 0 28px rgba(255, 255, 255, 0.05);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    inset 0 0 18px rgba(255, 255, 255, 0.035);
   isolation: isolate;
-  transform: translateZ(0);
-  clip-path: inset(0 round 43px);
+  transform: translateZ(1px);
+  clip-path: inset(0 round 28px);
+  z-index: 3;
+}
+
+.phone-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: transparent;
+  z-index: 1;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.045),
+    inset 0 8px 18px rgba(0, 0, 0, 0.32);
+  pointer-events: none;
 }
 
 .phone-glass::after {
@@ -155,11 +199,11 @@
   border-radius: inherit;
   background: linear-gradient(
     115deg,
-    rgba(255, 255, 255, 0.20) 0%,
+    rgba(255, 255, 255, 0.22) 0%,
     rgba(255, 255, 255, 0.07) 17%,
     transparent 43%
   );
-  opacity: 0.38;
+  opacity: 0.36;
   pointer-events: none;
   z-index: 8;
   mix-blend-mode: screen;
@@ -167,24 +211,24 @@
 
 .phone-screen {
   position: absolute;
-  inset: 14px;
-  border-radius: 34px;
+  inset: 9px 13px 9px 9px;
+  border-radius: 22px;
   overflow: hidden;
   background: #f7f5fb;
   z-index: 2;
   isolation: isolate;
-  transform: translateZ(0);
-  clip-path: inset(0 round 34px);
+  transform: translateZ(1px);
+  clip-path: inset(0 round 22px);
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
-    inset 0 18px 32px rgba(0, 0, 0, 0.08);
+    0 0 0 1px rgba(0, 0, 0, 0.56),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.82),
+    inset 0 14px 26px rgba(0, 0, 0, 0.07);
 }
 
-/* ── Dynamic island ─────────────────────────────────────── */
 .dynamic-island {
   position: absolute;
-  top: 20px;
+  top: 13px;
   left: 50%;
   transform: translateX(-50%);
   width: 104px;
@@ -210,7 +254,6 @@
   box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.24);
 }
 
-/* ── Chat app ───────────────────────────────────────────── */
 .chat-app {
   height: 100%;
   display: grid;
@@ -218,43 +261,46 @@
   border-radius: inherit;
   overflow: hidden;
   background:
-    radial-gradient(circle at 12% 0%, rgba(123, 110, 246, 0.16), transparent 32%),
+    radial-gradient(circle at 12% 0%, rgba(124, 60, 255, 0.16), transparent 32%),
     linear-gradient(180deg, #fbfaff 0%, #f2f0f8 100%);
   color: #111827;
 }
 
 .chat-header {
-  padding: 54px 18px 14px;
+  padding: 42px 15px 11px;
   display: flex;
   align-items: center;
   gap: 12px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(246, 242, 255, 0.92));
   border-bottom: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: 34px 34px 0 0;
+  border-radius: 22px 22px 0 0;
 }
 
+.avatar,
 .chat-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
   display: grid;
   place-items: center;
   color: #fff;
-  font-weight: 900;
   font-size: 13px;
+  font-weight: 900;
   background:
     radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.48), transparent 26%),
     linear-gradient(135deg, #7c3cff, #ff4fd8);
-  box-shadow: 0 10px 24px rgba(123, 110, 246, 0.32);
+  box-shadow: 0 10px 24px rgba(124, 60, 255, 0.32);
   flex: 0 0 auto;
 }
 
+.header-text,
 .chat-header-text {
   min-width: 0;
 }
 
+.header-title,
 .chat-header-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
   line-height: 1.1;
   white-space: nowrap;
@@ -262,15 +308,17 @@
   text-overflow: ellipsis;
 }
 
+.header-status,
 .chat-header-status {
   margin-top: 4px;
   display: flex;
   align-items: center;
   gap: 6px;
   color: #667085;
-  font-size: 12px;
+  font-size: 11px;
 }
 
+.status-dot,
 .chat-status-dot {
   width: 7px;
   height: 7px;
@@ -279,28 +327,30 @@
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.13);
 }
 
+.header-action,
 .chat-header-action {
   margin-left: auto;
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 11px;
   border: 1px solid rgba(17, 24, 39, 0.08);
   background: rgba(255, 255, 255, 0.68);
   display: grid;
   place-items: center;
-  color: #7b6ef6;
+  color: #7c3cff;
   flex: 0 0 auto;
 }
 
-/* ── Messages ───────────────────────────────────────────── */
+.messages,
 .chat-messages {
-  padding: 18px 15px;
+  padding: 14px 14px 14px 12px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
+.day-label,
 .chat-day-label {
   align-self: center;
   padding: 6px 10px;
@@ -311,50 +361,57 @@
   margin-bottom: 3px;
 }
 
+.message,
 .chat-message {
   max-width: 84%;
   display: flex;
   gap: 7px;
   align-items: flex-end;
-  animation: chatMessageIn 420ms cubic-bezier(.2, .8, .2, 1) both;
+  animation: messageIn 420ms cubic-bezier(.2, .8, .2, 1) both;
 }
 
-@keyframes chatMessageIn {
+@keyframes messageIn {
   from {
     opacity: 0;
     transform: translateY(10px) scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
+.message.bot,
 .chat-message.bot {
   align-self: flex-start;
 }
 
+.message.user,
 .chat-message.user {
   align-self: flex-end;
   justify-content: flex-end;
 }
 
+.bubble,
 .chat-bubble {
   position: relative;
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-radius: 18px;
-  font-size: 12.7px;
-  line-height: 1.38;
+  font-size: 11.6px;
+  line-height: 1.3;
   box-shadow: 0 7px 16px rgba(17, 24, 39, 0.05);
 }
 
+.bot .bubble,
 .bot .chat-bubble {
   color: #1f2937;
-  background: #ffffff;
+  background: #fff;
   border-bottom-left-radius: 7px;
   border: 1px solid rgba(17, 24, 39, 0.05);
 }
 
+.user .bubble,
 .user .chat-bubble {
   color: #fff;
   background: linear-gradient(135deg, #7c3cff, #c047ff 48%, #ff4fd8);
@@ -362,18 +419,20 @@
   box-shadow: 0 12px 22px rgba(124, 60, 255, 0.22);
 }
 
+.message-text,
 .chat-message-text {
   white-space: pre-wrap;
 }
 
+.message-time,
 .chat-message-time {
   display: block;
-  margin-top: 5px;
+  margin-top: 4px;
   font-size: 9px;
   opacity: 0.55;
 }
 
-/* ── Typing indicator ───────────────────────────────────── */
+.typing,
 .chat-typing {
   align-self: flex-start;
   display: flex;
@@ -384,9 +443,10 @@
   border-bottom-left-radius: 7px;
   background: #fff;
   box-shadow: 0 7px 16px rgba(17, 24, 39, 0.05);
-  animation: chatMessageIn 320ms ease both;
+  animation: messageIn 320ms ease both;
 }
 
+.typing span,
 .chat-typing span {
   width: 6px;
   height: 6px;
@@ -395,23 +455,31 @@
   animation: typingDot 1s infinite ease-in-out;
 }
 
-.chat-typing span:nth-child(2) { animation-delay: 0.14s; }
-.chat-typing span:nth-child(3) { animation-delay: 0.28s; }
+.typing span:nth-child(2),
+.chat-typing span:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.typing span:nth-child(3),
+.chat-typing span:nth-child(3) {
+  animation-delay: 0.28s;
+}
 
 @keyframes typingDot {
   0%, 100% {
     transform: translateY(0);
     opacity: 0.35;
   }
+
   50% {
     transform: translateY(-4px);
     opacity: 1;
   }
 }
 
-/* ── Chat input ─────────────────────────────────────────── */
+.chat-input,
 .chat-input-bar {
-  padding: 12px;
+  padding: 9px 11px 9px 9px;
   border-top: 1px solid rgba(17, 24, 39, 0.08);
   background: rgba(255, 255, 255, 0.86);
   display: flex;
@@ -419,27 +487,30 @@
   align-items: center;
 }
 
+.chat-input input,
 .chat-input-field {
   width: 100%;
   min-width: 0;
-  height: 42px;
+  height: 38px;
   border: 1px solid rgba(17, 24, 39, 0.08);
   border-radius: 999px;
   padding: 0 14px;
-  font-size: 12px;
+  font-size: 10.8px;
   outline: none;
   background: #fff;
   color: #111827;
   box-shadow: inset 0 1px 2px rgba(17, 24, 39, 0.04);
 }
 
+.chat-input input::placeholder,
 .chat-input-field::placeholder {
   color: #98a2b3;
 }
 
+.send-button,
 .chat-send-btn {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border: 0;
   border-radius: 50%;
   display: grid;
@@ -454,21 +525,22 @@
   transition: transform 180ms ease;
 }
 
+.send-button:active,
 .chat-send-btn:active {
   transform: scale(0.94);
 }
 
+.send-button svg,
 .chat-send-btn svg {
   width: 18px;
   height: 18px;
   transform: translateX(1px);
 }
 
-/* ── Floating glass cards ───────────────────────────────── */
 .floating-card {
   position: absolute;
   z-index: 15;
-  width: 220px;
+  width: 238px;
   padding: 12px;
   border-radius: 22px;
   display: flex;
@@ -501,25 +573,28 @@
 }
 
 @keyframes cardFloat {
-  0%, 100% { translate: 0 0; }
-  50%       { translate: 0 -8px; }
+  0%, 100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -8px;
+  }
 }
 
 .floating-card.card-1 {
-  top: 72px;
-  left: -80px;
+  top: 172px;
+  left: -36px;
 }
 
 .floating-card.card-2 {
-  top: 272px;
-  right: -100px;
-  width: 230px;
+  right: -40px;
+  bottom: 182px;
+  width: 236px;
 }
 
 .floating-card.card-3 {
-  bottom: 118px;
-  left: -96px;
-  width: 228px;
+  display: none;
 }
 
 .card-icon {
@@ -547,4 +622,66 @@
   font-size: 13px;
   line-height: 1.28;
   font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 1060px) {
+  .phone-stage {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .phone-stage {
+    width: min(348px, 94vw);
+  }
+
+  .floating-card {
+    width: 188px;
+  }
+
+  .floating-card.card-1 {
+    left: -6px;
+    top: 96px;
+  }
+
+  .floating-card.card-2 {
+    right: -6px;
+    top: auto;
+    bottom: 122px;
+    width: 188px;
+  }
+
+  .phone {
+    left: -8px;
+    width: 272px;
+    border-radius: 32px;
+  }
+
+  .phone::after {
+    top: 2px;
+    right: -8px;
+    width: 12px;
+    height: calc(100% - 4px);
+  }
+
+  .side-button.right-1 {
+    right: -7px;
+  }
+
+  .bubble,
+  .chat-bubble {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone,
+  .floating-card.is-visible,
+  .message,
+  .chat-message,
+  .typing span,
+  .chat-typing span {
+    animation: none !important;
+  }
 }

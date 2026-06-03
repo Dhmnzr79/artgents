@@ -1,172 +1,198 @@
-/* ── PHONE HERO ANIMATION ───────────────────────────────────
-   Self-contained IIFE. Expects #phoneStage in the DOM.
-   ─────────────────────────────────────────────────────────── */
+/* Phone hero animation */
 (function () {
   const stage = document.getElementById('phoneStage');
   if (!stage) return;
 
-  const messagesEl = stage.querySelector('.chat-messages');
-  const cards      = stage.querySelectorAll('[data-card]');
-  const input      = stage.querySelector('.chat-input-field');
-  const sendBtn    = stage.querySelector('.chat-send-btn');
+  const messagesEl = stage.querySelector('#messages, .messages, .chat-messages');
+  const cards = Array.from(stage.querySelectorAll('[data-card]'));
+  const input = stage.querySelector('#chatInput, .chat-input-field, .chat-input input');
+  const sendButton = stage.querySelector('#sendButton, .chat-send-btn, .send-button');
+  const titleEl = stage.querySelector('.header-title, .chat-header-title');
+  const statusEl = stage.querySelector('.header-status, .chat-header-status');
+  const dayLabelEl = stage.querySelector('.day-label, .chat-day-label');
 
-  /* ── Dialogues ────────────────────────────────────────── */
+  if (!messagesEl || !input || !sendButton) return;
+
+  const cardCopy = [
+    'Отвечает пациентам ночью, в выходные и в моменты, когда администратор занят.',
+    'Подсказывает по имплантации, стоимости, срокам лечения и помогает дойти до консультации.',
+  ];
+
+  stage.querySelectorAll('.card-text').forEach((cardText, index) => {
+    if (cardCopy[index]) {
+      cardText.textContent = cardCopy[index];
+    }
+  });
+
+  if (titleEl) {
+    titleEl.textContent = 'Ассистент клиники';
+  }
+
+  if (statusEl) {
+    statusEl.innerHTML = '<span class="status-dot"></span>online · отвечает сразу';
+  }
+
+  if (dayLabelEl) {
+    dayLabelEl.textContent = 'Сегодня';
+  }
+
+  input.placeholder = 'Напишите вопрос...';
+  input.setAttribute('aria-label', 'Вопрос');
+  sendButton.setAttribute('aria-label', 'Отправить');
+
   const dialogues = [
     [
-      { role: 'bot',  text: 'Здравствуйте! Я ассистент клиники. Подскажу по имплантации и помогу с записью.' },
+      { role: 'bot', text: 'Здравствуйте! Я ассистент клиники. Подскажу по имплантации и помогу с записью.' },
       { role: 'user', text: 'Здравствуйте. Имплантация — это больно?' },
-      { role: 'bot',  text: 'Процедура проходит под анестезией. Во время установки пациент обычно чувствует давление, но не боль.' },
+      { role: 'bot', text: 'Процедура проходит под анестезией. Во время установки пациент обычно чувствует давление, но не боль.' },
       { role: 'user', text: 'А сколько времени занимает установка одного импланта?' },
-      { role: 'bot',  text: 'В среднем 20–40 минут. Точное время зависит от состояния кости и плана лечения.' },
-      { role: 'bot',  text: 'Лучше начать с консультации и 3D-снимка — врач оценит ситуацию и предложит безопасный план.' },
+      { role: 'bot', text: 'В среднем 20–40 минут. Точное время зависит от состояния кости и плана лечения.' },
+      { role: 'bot', text: 'Лучше начать с консультации и 3D-снимка — врач оценит ситуацию и предложит безопасный план.' },
       { role: 'user', text: 'Можно узнать стоимость?' },
-      { role: 'bot',  text: 'Да. Стоимость зависит от системы имплантов и объёма лечения. Могу помочь подобрать удобное время для консультации.' }
+      { role: 'bot', text: 'Да. Стоимость зависит от системы имплантов и объёма лечения. Могу помочь подобрать удобное время для консультации.' },
     ],
     [
-      { role: 'bot',  text: 'Здравствуйте! Я помогу разобраться с лечением и записью в клинику.' },
+      { role: 'bot', text: 'Здравствуйте! Я помогу разобраться с лечением и записью в клинику.' },
       { role: 'user', text: 'Мне нужно восстановить зуб. Не понимаю, коронка или имплант.' },
-      { role: 'bot',  text: 'Если корень зуба сохранён, врач может рассмотреть коронку. Если зуб утрачен полностью, чаще обсуждают имплантацию.' },
+      { role: 'bot', text: 'Если корень зуба сохранён, врач может рассмотреть коронку. Если зуб утрачен полностью, чаще обсуждают имплантацию.' },
       { role: 'user', text: 'А можно поставить имплант сразу после удаления?' },
-      { role: 'bot',  text: 'Иногда можно, но решение принимает врач после осмотра и 3D-диагностики.' },
-      { role: 'bot',  text: 'Я могу записать вас на консультацию, чтобы врач оценил снимок и предложил план лечения.' }
-    ]
+      { role: 'bot', text: 'Иногда можно, но решение принимает врач после осмотра и 3D-диагностики.' },
+      { role: 'bot', text: 'Я могу записать вас на консультацию, чтобы врач оценил снимок и предложил план лечения.' },
+    ],
   ];
 
   const quickReplies = [
-    'Понял вопрос. В такой ситуации лучше начать с консультации и диагностики.',
-    'Да, подскажу. Точный вариант лечения врач сможет определить после осмотра.',
-    'Обычно план лечения зависит от снимка, состояния кости и количества зубов, которые нужно восстановить.'
+    'Понял вопрос. Лучше начать с консультации и 3D-диагностики, чтобы врач оценил ситуацию точно.',
+    'Да, подскажу. Окончательный вариант лечения врач определит после осмотра и снимка.',
+    'Обычно план зависит от состояния зуба, кости и количества единиц, которые нужно восстановить.',
   ];
 
-  const dialogue = dialogues[Math.floor(Math.random() * dialogues.length)];
+  const selectedDialogue = dialogues[Math.floor(Math.random() * dialogues.length)];
 
-  /* ── Helpers ──────────────────────────────────────────── */
   function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   function getTime() {
-    return '12:' + String(Math.floor(10 + Math.random() * 49)).padStart(2, '0');
+    return `12:${String(Math.floor(10 + Math.random() * 49)).padStart(2, '0')}`;
   }
 
-  function scrollToBottom() {
+  function scrollMessagesToBottom() {
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  /* ── Message builders ─────────────────────────────────── */
   function createMessageShell(role) {
-    const msg = document.createElement('div');
-    msg.className = 'chat-message ' + role;
+    const message = document.createElement('div');
+    message.className = `message ${role}`;
 
     const bubble = document.createElement('div');
-    bubble.className = 'chat-bubble';
+    bubble.className = 'bubble';
 
     const textSpan = document.createElement('span');
-    textSpan.className = 'chat-message-text';
+    textSpan.className = 'message-text';
 
     const timeSpan = document.createElement('span');
-    timeSpan.className = 'chat-message-time';
+    timeSpan.className = 'message-time';
     timeSpan.textContent = getTime();
 
     bubble.appendChild(textSpan);
     bubble.appendChild(timeSpan);
-    msg.appendChild(bubble);
-    messagesEl.appendChild(msg);
-    scrollToBottom();
+    message.appendChild(bubble);
+    messagesEl.appendChild(message);
+    scrollMessagesToBottom();
 
     return textSpan;
   }
 
-  function addInstant({ role, text }) {
-    const span = createMessageShell(role);
-    span.textContent = text;
-    scrollToBottom();
+  function addMessageInstant(message) {
+    const textSpan = createMessageShell(message.role);
+    textSpan.textContent = message.text;
+    scrollMessagesToBottom();
   }
 
-  async function addStream({ role, text }) {
-    const span = createMessageShell(role);
+  async function addMessageStream(message) {
+    const textSpan = createMessageShell(message.role);
 
-    for (let i = 0; i < text.length; i++) {
-      span.textContent += text[i];
-      scrollToBottom();
+    for (let index = 0; index < message.text.length; index += 1) {
+      const char = message.text[index];
+      textSpan.textContent += char;
+      scrollMessagesToBottom();
 
-      const ch = text[i];
       let delay = 22;
-      if (ch === '.' || ch === '!' || ch === '?') delay = 170;
-      else if (ch === ',' || ch === '—' || ch === ':') delay = 80;
-      else if (ch === ' ') delay = 10;
+      if (char === '.' || char === '!' || char === '?') delay = 170;
+      else if (char === ',' || char === '—' || char === ':') delay = 80;
+      else if (char === ' ') delay = 10;
 
       await wait(delay);
     }
   }
 
-  /* ── Typing indicator ─────────────────────────────────── */
   function showTyping() {
     hideTyping();
-    const el = document.createElement('div');
-    el.className = 'chat-typing';
-    el.id = 'chatTyping';
-    el.innerHTML = '<span></span><span></span><span></span>';
-    messagesEl.appendChild(el);
-    scrollToBottom();
+    const typing = document.createElement('div');
+    typing.className = 'typing';
+    typing.id = 'typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(typing);
+    scrollMessagesToBottom();
   }
 
   function hideTyping() {
-    const el = stage.querySelector('#chatTyping');
-    if (el) el.remove();
+    const typing = stage.querySelector('#typing');
+    if (typing) typing.remove();
   }
 
-  /* ── Card reveal ──────────────────────────────────────── */
   function revealCard(index) {
-    if (cards[index]) cards[index].classList.add('is-visible');
+    if (cards[index]) {
+      cards[index].classList.add('is-visible');
+    }
   }
 
-  /* ── Auto dialogue ────────────────────────────────────── */
   async function runDialogue() {
     await wait(700);
 
-    for (let i = 0; i < dialogue.length; i++) {
-      const msg = dialogue[i];
+    for (let index = 0; index < selectedDialogue.length; index += 1) {
+      const message = selectedDialogue[index];
 
-      if (msg.role === 'bot') {
+      if (message.role === 'bot') {
         showTyping();
         await wait(600 + Math.random() * 300);
         hideTyping();
-        await addStream(msg);
+        await addMessageStream(message);
       } else {
         await wait(520);
-        addInstant(msg);
+        addMessageInstant(message);
       }
 
-      if (i === 1) revealCard(0);
-      if (i === 3) revealCard(1);
-      if (i === 5) revealCard(2);
+      if (index === 1) revealCard(0);
+      if (index === 4) revealCard(1);
 
       await wait(650);
     }
   }
 
-  /* ── Manual send ──────────────────────────────────────── */
   async function sendManualMessage() {
     const text = input.value.trim();
     if (!text) return;
 
-    addInstant({ role: 'user', text });
+    addMessageInstant({ role: 'user', text });
     input.value = '';
 
     await wait(450);
     showTyping();
     await wait(700);
     hideTyping();
-    await addStream({
+    await addMessageStream({
       role: 'bot',
-      text: quickReplies[Math.floor(Math.random() * quickReplies.length)]
+      text: quickReplies[Math.floor(Math.random() * quickReplies.length)],
     });
   }
 
-  sendBtn.addEventListener('click', sendManualMessage);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') sendManualMessage();
+  sendButton.addEventListener('click', sendManualMessage);
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      sendManualMessage();
+    }
   });
 
   runDialogue();

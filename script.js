@@ -17,133 +17,119 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 
-/* ── PROBLEMS STACK REVEAL ─────────────────────────────── */
+/* ── PROBLEMS PANEL ────────────────────────────────────── */
 const problemsSection = document.querySelector('#problems');
-const problemsStack = document.querySelector('[data-problems-stack]');
+const problemsPanel = document.querySelector('[data-problems-panel]');
 
-if (problemsSection && problemsStack) {
-  const problemCards = Array.from(problemsStack.querySelectorAll('.problem-card'));
-  const [firstCard, secondCard, thirdCard] = problemCards;
+if (problemsSection && problemsPanel) {
+  const problemItems = Array.from(problemsPanel.querySelectorAll('[data-problem-item]'));
+  const problemSteps = Array.from(problemsPanel.querySelectorAll('[data-problem-step]'));
+  const progressFill = problemsPanel.querySelector('[data-problem-progress]');
   const desktopMq = window.matchMedia('(min-width: 1121px)');
-  const HOLD_DISTANCE = 900;
+  const WHEEL_THRESHOLD = 140;
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  const lerp = (start, end, progress) => start + ((end - start) * progress);
-  const getReveal = (value, start, end) => clamp((value - start) / (end - start), 0, 1);
 
-  let progress = 0;
+  let stage = 0;
+  let wheelDelta = 0;
   let rafId = 0;
 
-  const applyCardState = (card, reveal, options) => {
-    if (!card) return;
+  const maxStage = Math.max(problemItems.length - 1, 0);
 
-    const visible = reveal > 0.001;
-    const offset = lerp(options.offset, 0, reveal);
-    const rotation = lerp(options.rotateFrom, options.rotateTo, reveal);
-    const scale = lerp(options.scaleFrom, 1, reveal);
-    const blur = lerp(10, 0, reveal);
+  const setStage = (nextStage) => {
+    stage = clamp(nextStage, 0, maxStage);
 
-    card.classList.toggle('is-visible', visible);
-    card.style.opacity = String(reveal);
-    card.style.filter = `blur(${blur}px)`;
-    card.style.transform = `translateY(calc(-50% + ${offset}px)) rotate(${rotation}deg) scale(${scale})`;
-    card.style.pointerEvents = reveal > 0.98 ? 'auto' : 'none';
-  };
-
-  const setDesktopState = () => {
-    if (firstCard) {
-      firstCard.classList.add('is-visible');
-      firstCard.style.opacity = '1';
-      firstCard.style.filter = 'blur(0px)';
-      firstCard.style.transform = 'translateY(-50%) rotate(-2.75deg)';
-      firstCard.style.pointerEvents = 'auto';
-    }
-
-    applyCardState(secondCard, getReveal(progress, 0.18, 0.5), {
-      offset: 28,
-      rotateFrom: 1.8,
-      rotateTo: 1.1,
-      scaleFrom: 0.985,
+    problemItems.forEach((item, index) => {
+      item.classList.toggle('is-active', index === stage);
     });
 
-    applyCardState(thirdCard, getReveal(progress, 0.52, 0.84), {
-      offset: 32,
-      rotateFrom: -1.35,
-      rotateTo: -0.85,
-      scaleFrom: 0.97,
+    problemSteps.forEach((step, index) => {
+      const isActive = index === stage;
+      step.classList.toggle('is-active', isActive);
+      step.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
-  };
 
-  const setMobileState = () => {
-    problemCards.forEach((card) => {
-      card.classList.add('is-visible');
-      card.removeAttribute('style');
-    });
-  };
-
-  const updateProblems = () => {
-    if (!desktopMq.matches) {
-      progress = 0;
-      setMobileState();
-      return;
+    if (progressFill) {
+      progressFill.style.width = `${((stage + 1) / (maxStage + 1)) * 100}%`;
     }
-
-    const rect = problemsSection.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-    if (rect.top >= viewportHeight) {
-      progress = 0;
-    } else if (rect.bottom <= 0) {
-      progress = 1;
-    }
-
-    setDesktopState();
   };
 
   const isSectionLocked = () => {
     const rect = problemsSection.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const sectionCenter = rect.top + (rect.height / 2);
-    return sectionCenter >= viewportHeight * 0.35 && sectionCenter <= viewportHeight * 0.65;
+    return rect.top <= viewportHeight * 0.16 && rect.bottom >= viewportHeight * 0.84;
   };
 
-  const stepProgress = (delta) => {
-    const nextProgress = clamp(progress + (delta / HOLD_DISTANCE), 0, 1);
-
-    if (nextProgress === progress) {
-      return false;
-    }
-
-    progress = nextProgress;
-    setDesktopState();
-    return true;
-  };
-
-  const scheduleUpdate = () => {
-    if (rafId) return;
-    rafId = window.requestAnimationFrame(() => {
-      rafId = 0;
-      updateProblems();
-    });
-  };
-
-  const handleWheel = (event) => {
-    if (!desktopMq.matches || !isSectionLocked() || event.deltaY === 0) {
+  const syncStageToViewport = () => {
+    if (!desktopMq.matches) {
+      wheelDelta = 0;
+      setStage(0);
       return;
     }
 
-    const scrollingDown = event.deltaY > 0;
-    const scrollingUp = event.deltaY < 0;
-    const shouldHold = (scrollingDown && progress < 1) || (scrollingUp && progress > 0);
+    const rect = problemsSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-    if (!shouldHold) {
+    if (rect.top >= viewportHeight * 0.55) {
+      setStage(0);
+      wheelDelta = 0;
+      return;
+    }
+
+    if (rect.bottom <= viewportHeight * 0.45) {
+      setStage(maxStage);
+      wheelDelta = 0;
+    }
+  };
+
+  const scheduleSync = () => {
+    if (rafId) return;
+    rafId = window.requestAnimationFrame(() => {
+      rafId = 0;
+      syncStageToViewport();
+    });
+  };
+
+  const stepStage = (direction) => {
+    const nextStage = clamp(stage + direction, 0, maxStage);
+    if (nextStage === stage) {
+      return false;
+    }
+
+    wheelDelta = 0;
+    setStage(nextStage);
+    return true;
+  };
+
+  const handleWheel = (event) => {
+    if (!desktopMq.matches || event.deltaY === 0) {
+      wheelDelta = 0;
+      return;
+    }
+
+    if (!isSectionLocked()) {
+      wheelDelta = 0;
+      return;
+    }
+
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const canHold = (direction > 0 && stage < maxStage) || (direction < 0 && stage > 0);
+
+    if (!canHold) {
+      wheelDelta = 0;
       return;
     }
 
     event.preventDefault();
-    if (Math.abs(window.scrollY - problemsSection.offsetTop) > 1) {
-      window.scrollTo(0, problemsSection.offsetTop);
+
+    if (wheelDelta !== 0 && Math.sign(wheelDelta) !== direction) {
+      wheelDelta = 0;
     }
-    stepProgress(event.deltaY);
+
+    wheelDelta += event.deltaY;
+
+    if (Math.abs(wheelDelta) >= WHEEL_THRESHOLD) {
+      stepStage(direction);
+    }
   };
 
   const handleKeydown = (event) => {
@@ -151,37 +137,41 @@ if (problemsSection && problemsStack) {
       return;
     }
 
-    const keySteps = {
-      ArrowDown: 120,
-      ArrowUp: -120,
-      PageDown: 240,
-      PageUp: -240,
-      Space: event.shiftKey ? -180 : 180,
+    const keyDirection = {
+      ArrowDown: 1,
+      PageDown: 1,
+      Space: event.shiftKey ? -1 : 1,
+      ArrowUp: -1,
+      PageUp: -1,
     };
 
-    const delta = keySteps[event.code];
-    if (!delta) {
+    const direction = keyDirection[event.code];
+    if (!direction) {
       return;
     }
 
-    const scrollingDown = delta > 0;
-    const scrollingUp = delta < 0;
-    const shouldHold = (scrollingDown && progress < 1) || (scrollingUp && progress > 0);
-
-    if (!shouldHold) {
+    const canHold = (direction > 0 && stage < maxStage) || (direction < 0 && stage > 0);
+    if (!canHold) {
       return;
     }
 
     event.preventDefault();
-    if (Math.abs(window.scrollY - problemsSection.offsetTop) > 1) {
-      window.scrollTo(0, problemsSection.offsetTop);
-    }
-    stepProgress(delta);
+    stepStage(direction);
   };
+
+  problemSteps.forEach((step, index) => {
+    step.addEventListener('click', () => {
+      wheelDelta = 0;
+      setStage(index);
+    });
+  });
 
   window.addEventListener('wheel', handleWheel, { passive: false });
   window.addEventListener('keydown', handleKeydown);
-  window.addEventListener('scroll', scheduleUpdate, { passive: true });
-  window.addEventListener('resize', scheduleUpdate);
-  updateProblems();
+  window.addEventListener('scroll', scheduleSync, { passive: true });
+  window.addEventListener('resize', scheduleSync);
+  desktopMq.addEventListener('change', scheduleSync);
+
+  setStage(0);
+  syncStageToViewport();
 }
