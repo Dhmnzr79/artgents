@@ -542,13 +542,14 @@
   z-index: 15;
   width: 238px;
   padding: 12px;
-  border-radius: 22px;
+  border-radius: 3px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 11px;
   color: rgba(255, 255, 255, 0.92);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.055));
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
     0 26px 64px rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.22);
@@ -583,13 +584,13 @@
 }
 
 .floating-card.card-1 {
-  top: 172px;
+  top: 270px;
   left: -36px;
 }
 
 .floating-card.card-2 {
   right: -40px;
-  bottom: 182px;
+  bottom: 230px;
   width: 236px;
 }
 
@@ -600,7 +601,7 @@
 .card-icon {
   width: 42px;
   height: 42px;
-  border-radius: 15px;
+  border-radius: 3px;
   display: grid;
   place-items: center;
   color: #fff;
@@ -619,10 +620,10 @@
 }
 
 .card-text {
-  font-size: 13px;
-  line-height: 1.28;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 @media (max-width: 1060px) {

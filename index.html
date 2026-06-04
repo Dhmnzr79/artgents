@@ -46,7 +46,7 @@
             <h1 class="hero__title">Чат&#x2011;бот, который говорит как администратор.</h1>
             <p class="hero__sub">на сайте клиники, который знает ваши услуги, цены и врачей</p>
             <div class="hero__actions">
-              <button type="button" class="btn btn--primary">Посмотреть демо</button>
+              <button type="button" class="btn btn--primary"><span class="btn__inner">Посмотреть демо</span></button>
               <button type="button" class="btn btn--ghost">Как это работает</button>
             </div>
           </div>
@@ -145,54 +145,64 @@
           <p class="what__desc">Виджет на сайте клиники. Внутри — ИИ, обученный на материалах вашей клиники. Пациент пишет что угодно своими словами и получает ответ — без скриптов, без кнопок, без «оставьте телефон».</p>
         </div>
 
-        <div class="what__cards">
-          <article class="what-card">
-            <div class="what-card__num">01</div>
-            <div class="what-card__body">
-              <h3>Не выдумывает факты</h3>
-              <p>Отвечает только по материалам вашей клиники — услуги, цены, врачи, условия. Никаких данных из интернета.</p>
+        <div class="what__story">
+          <div class="what__visual-col">
+            <div class="what__visual-frame">
+              <div class="what__visual">
+                <img src="images/img1.jpg" alt="Интерфейс диалога с пациентом">
+              </div>
             </div>
-          </article>
+          </div>
 
-          <article class="what-card">
-            <div class="what-card__num">02</div>
-            <div class="what-card__body">
-              <h3>Помнит контекст</h3>
-              <p>Не переспрашивает одно и то же. Если пациент сказал, что боится боли, консультант учитывает это в каждом следующем ответе.</p>
-            </div>
-          </article>
+          <div class="what__list">
+            <article class="what-item">
+              <div class="what-item__num">01</div>
+              <div class="what-item__body">
+                <h3>Не выдумывает факты</h3>
+                <p>Отвечает только по материалам вашей клиники — услуги, цены, врачи, условия. Никаких данных из интернета.</p>
+              </div>
+            </article>
 
-          <article class="what-card">
-            <div class="what-card__num">03</div>
-            <div class="what-card__body">
-              <h3>Ведёт разговор</h3>
-              <p>На сложных темах объясняет, снимает сомнения и мягко предлагает следующий шаг.</p>
-            </div>
-          </article>
+            <article class="what-item">
+              <div class="what-item__num">02</div>
+              <div class="what-item__body">
+                <h3>Помнит контекст</h3>
+                <p>Не переспрашивает одно и то же. Если пациент сказал, что боится боли, консультант учитывает это в каждом следующем ответе.</p>
+              </div>
+            </article>
 
-          <article class="what-card">
-            <div class="what-card__num">04</div>
-            <div class="what-card__body">
-              <h3>Передаёт заявку с историей</h3>
-              <p>Администратор получает не холодный номер, а контекст: что спрашивал пациент, чего боялся и что уже объяснил консультант.</p>
-            </div>
-          </article>
+            <article class="what-item">
+              <div class="what-item__num">03</div>
+              <div class="what-item__body">
+                <h3>Ведёт разговор</h3>
+                <p>На сложных темах объясняет, снимает сомнения и мягко предлагает следующий шаг.</p>
+              </div>
+            </article>
 
-          <article class="what-card">
-            <div class="what-card__num">05</div>
-            <div class="what-card__body">
-              <h3>Подсказывает следующий шаг</h3>
-              <p>Мягко ведёт человека к записи, консультации или уточнению деталей, не перегружая его лишними кнопками.</p>
-            </div>
-          </article>
+            <article class="what-item">
+              <div class="what-item__num">04</div>
+              <div class="what-item__body">
+                <h3>Передаёт заявку с историей</h3>
+                <p>Администратор получает не холодный номер, а контекст: что спрашивал пациент, чего боялся и что уже объяснил консультант.</p>
+              </div>
+            </article>
 
-          <article class="what-card">
-            <div class="what-card__num">06</div>
-            <div class="what-card__body">
-              <h3>Работает без пауз</h3>
-              <p>Отвечает ночью, в выходные и в часы, когда администратор занят. Сайт не оставляет вопрос без ответа.</p>
-            </div>
-          </article>
+            <article class="what-item">
+              <div class="what-item__num">05</div>
+              <div class="what-item__body">
+                <h3>Подсказывает следующий шаг</h3>
+                <p>Мягко ведёт человека к записи, консультации или уточнению деталей, не перегружая его лишними кнопками.</p>
+              </div>
+            </article>
+
+            <article class="what-item">
+              <div class="what-item__num">06</div>
+              <div class="what-item__body">
+                <h3>Работает без пауз</h3>
+                <p>Отвечает ночью, в выходные и в часы, когда администратор занят. Сайт не оставляет вопрос без ответа.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -200,46 +210,19 @@
     <!-- ── PROBLEMS ─────────────────────────────────────── -->
     <section class="section section--dark" id="problems">
       <div class="shell problems__layout">
-        <div class="problems__copy">
-          <div>
-            <div class="label">Почему пациенты теряются</div>
-            <h2>Вопрос есть. <em>Ответа нет</em></h2>
+        <div class="problems__top">
+          <div class="problems__copy">
+            <div>
+              <div class="label">Почему пациенты теряются</div>
+              <h2>Вопрос есть. <em>Ответа нет</em></h2>
+            </div>
+            <p class="problems__desc">Часть посетителей не оставляет заявку не потому, что им не нужна услуга. Они просто не получили ответ в нужный момент.</p>
           </div>
-          <p class="problems__desc">Часть посетителей не оставляет заявку не потому, что им не нужна услуга. Они просто не получили ответ в нужный момент.</p>
-        </div>
 
-        <div class="problems__panel-wrap" data-problems-panel>
-          <article class="problem-panel">
-            <div class="problem-panel__steps" role="tablist" aria-label="Причины, почему пациент не оставляет заявку">
-              <button class="problem-panel__step is-active" type="button" role="tab" aria-selected="true" aria-label="Показать первую причину" data-problem-step="0">01</button>
-              <button class="problem-panel__step" type="button" role="tab" aria-selected="false" aria-label="Показать вторую причину" data-problem-step="1">02</button>
-              <button class="problem-panel__step" type="button" role="tab" aria-selected="false" aria-label="Показать третью причину" data-problem-step="2">03</button>
-            </div>
-
-            <div class="problem-panel__viewport">
-              <article class="problem-point is-active" data-problem-item>
-                <div class="problem-point__meta">Причина 01</div>
-                <h3>Читают вечером и ночью</h3>
-                <p>Когда администраторы недоступны, пациент уходит сравнивать другие клиники.</p>
-              </article>
-
-              <article class="problem-point" data-problem-item>
-                <div class="problem-point__meta">Причина 02</div>
-                <h3>Сомневаются в цене</h3>
-                <p>Не понимают, почему столько стоит и что входит. Сайт не объясняет этого простым языком.</p>
-              </article>
-
-              <article class="problem-point" data-problem-item>
-                <div class="problem-point__meta">Причина 03</div>
-                <h3>Хотят больше деталей</h3>
-                <p>Про врача, этапы и гарантии информации на сайте часто не хватает для принятия решения.</p>
-              </article>
-            </div>
-
-            <div class="problem-panel__progress" aria-hidden="true">
-              <span data-problem-progress></span>
-            </div>
-          </article>
+          <div class="problems__notes" aria-label="Дополнительный текст">
+            <p>Иногда человек уже готов спросить, но не готов оставить номер. Ему нужен короткий, понятный ответ именно в тот момент, когда возникло сомнение.</p>
+            <p>Если сайт молчит или отвечает слишком сухо, интерес быстро остывает. Дальше пациент просто уходит смотреть другие варианты, не дождавшись ясности.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -427,7 +410,7 @@
               <li>Ежемесячный отчёт «Голос пациента»</li>
               <li>Мини-аудит сайта перед запуском</li>
             </ul>
-            <button type="button" class="btn btn--primary price-card__btn">Обсудить подключение</button>
+            <button type="button" class="btn btn--primary price-card__btn"><span class="btn__inner">Обсудить подключение</span></button>
             <p class="price-card__after">После первых кейсов: 59 000 ₽/мес + подключение отдельно</p>
           </div>
 
@@ -458,7 +441,7 @@
           <div class="cta-block__right">
             <p>Начните с мини-аудита сайта. Мы посмотрим, какие вопросы клиентов сейчас остаются без ответа, где человек может застрять перед заявкой и какие сценарии можно закрыть ИИ-консультантом.</p>
             <div class="cta-block__actions">
-              <button type="button" class="btn btn--primary">Заказать бесплатный аудит</button>
+              <button type="button" class="btn btn--primary"><span class="btn__inner">Заказать бесплатный аудит</span></button>
               <button type="button" class="btn btn--ghost">Обсудить подключение</button>
             </div>
           </div>
