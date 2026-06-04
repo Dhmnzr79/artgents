@@ -246,67 +246,84 @@ h3 em {
 .btn--primary {
   --btn-radius: 2px;
   --btn-radius-hover: 18px;
-  display: inline-block;
+  --gradient-angle: 115.83deg;
+  --btn-ease: cubic-bezier(0.4, 0.03, 0.685, 0.22);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  gap: 0;
   min-height: 0;
   padding: 1px;
   border: 0;
   border-radius: var(--btn-radius);
+  background: transparent;
   color: #fff;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,0.18) 0%,
-      rgba(255,120,210,0.92) 18%,
-      rgba(255,74,184,1) 46%,
-      rgba(255,130,214,0.82) 74%,
-      rgba(255,255,255,0.22) 100%
-    );
-  box-shadow:
-    0 10px 30px rgba(255, 78, 186, 0.18),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
-  transition:
-    border-radius 0.35s ease,
-    transform 0.25s ease,
-    box-shadow 0.35s ease;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: all 0.4s var(--btn-ease);
 }
 
-.btn__inner {
-  display: flex;
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--gradient-angle),
+    rgba(255, 228, 255, 0.5) 0%,
+    #db2777 60%,
+    #db2777 80%,
+    #f472b6 92.98%
+  );
+  transition: all 0.4s var(--btn-ease);
+}
+
+.btn__bg {
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: 2px;
+  background: linear-gradient(289deg, #db2777 30%, #963fb4 137%);
+  transition: all 0.4s var(--btn-ease);
+}
+
+.btn__text {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-height: 54px;
-  padding: 0 26px;
-  border-radius: inherit;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 122, 209, 0.95) 0%,
-      rgba(255, 75, 184, 1) 45%,
-      rgba(178, 76, 255, 0.96) 100%
-    );
-  color: #fff;
-  font: 600 15px/1 "Geist", sans-serif;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  transition:
-    border-radius 0.35s ease,
-    filter 0.35s ease;
+  padding: 14px 20px;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
 }
 
 .btn--primary:hover,
 .btn--primary:focus-visible {
   border-radius: var(--btn-radius-hover);
-  transform: translateY(-1px);
-  box-shadow:
-    0 16px 40px rgba(255, 78, 186, 0.24),
-    inset 0 0 0 1px rgba(255,255,255,0.1);
 }
 
-.btn--primary:hover .btn__inner,
-.btn--primary:focus-visible .btn__inner {
+.btn--primary:hover::before,
+.btn--primary:hover .btn__bg,
+.btn--primary:focus-visible::before,
+.btn--primary:focus-visible .btn__bg {
   border-radius: var(--btn-radius-hover);
-  filter: saturate(1.08) brightness(1.04);
 }
 
 .btn--primary:focus-visible {
