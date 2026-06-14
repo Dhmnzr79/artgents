@@ -32,3 +32,5 @@ if (whatVisualCol) {
 
   whatVisualObserver.observe(whatVisualCol);
 }
+
+/* ── RESULTS FEATURE SPOTLIGHT ─────────────────────────── */
