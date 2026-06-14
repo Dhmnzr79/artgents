@@ -372,53 +372,127 @@
             <p class="pricing__desc">Никакой разовой разработки и месяцев ожидания. Подключаете консультанта, обученного на материалах вашей клиники, и платите только пока он работает.</p>
           </div>
 
-          <!-- Col 5–8: dark price card -->
-          <div class="price-card">
-            <p class="price-card__for">Для стоматологических клиник</p>
-            <div class="price-card__amount">
-              <span class="price-card__num">39 000</span>
-              <span class="price-card__unit">₽ / месяц</span>
-            </div>
-            <ul class="price-card__list">
-              <li>Подключение и адаптация базы знаний включены</li>
-              <li>Первый этап — 3 месяца, оплата помесячно</li>
-              <li>Ручной разбор первых 100 диалогов</li>
-              <li>Ежемесячный отчёт «Голос пациента»</li>
-              <li>Мини-аудит сайта перед запуском</li>
-            </ul>
-            <button type="button" class="btn btn--primary price-card__btn"><span class="btn__bg"></span><span class="btn__text">Обсудить подключение</span></button>
-            <p class="price-card__after">После первых кейсов: 59 000 ₽/мес + подключение отдельно</p>
-          </div>
+          <div class="pricing__plans">
+            <!-- Col 5–8: price card -->
+            <article class="price-card">
+              <p class="price-card__for">Для стоматологических клиник</p>
+              <div class="price-card__amount">
+                <span class="price-card__num">39 000</span>
+                <span class="price-card__unit">₽ / месяц</span>
+              </div>
+              <ul class="price-card__list">
+                <li>Подключение и адаптация базы знаний включены</li>
+                <li>Первый этап — 3 месяца, оплата помесячно</li>
+                <li>Ручной разбор первых 100 диалогов</li>
+                <li>Ежемесячный отчёт «Голос пациента»</li>
+                <li>Мини-аудит сайта перед запуском</li>
+              </ul>
+              <div class="price-card__action">
+                <button type="button" class="btn btn--primary price-card__btn"><span class="btn__bg"></span><span class="btn__text">Обсудить подключение</span></button>
+              </div>
+              <ul class="price-card__notes">
+                <li>Подключение включено в стартовый этап</li>
+                <li>Оплата помесячно без длинных обязательств</li>
+              </ul>
+            </article>
 
-          <!-- Col 9–12: second plan -->
-          <div class="price-card price-card--alt">
-            <p class="price-card__for">Пилотный запуск</p>
-            <div class="price-card__amount">
-              <span class="price-card__num">24 000</span>
-              <span class="price-card__unit">₽ / месяц</span>
-            </div>
-            <ul class="price-card__list">
-              <li>Подключение и адаптация базы знаний включены</li>
-              <li>Запуск за 7 дней без долгой разработки</li>
-              <li>Разбор первых 50 диалогов вручную</li>
-              <li>Отчёт по вопросам, которые чаще всего задают пациенты</li>
-              <li>Подходит, если хотите проверить формат перед масштабированием</li>
-            </ul>
-            <button type="button" class="btn btn--ghost price-card__btn">Запустить пилот</button>
-            <p class="price-card__after">После пилота можно перейти на основной тариф без повторного старта</p>
+            <!-- Col 9–12: second plan -->
+            <article class="price-card price-card--alt">
+              <span class="price-card__ribbon">Рекомендуем</span>
+              <p class="price-card__for">Пилотный запуск</p>
+              <div class="price-card__amount">
+                <span class="price-card__num">24 000</span>
+                <span class="price-card__unit">₽ / месяц</span>
+              </div>
+              <ul class="price-card__list">
+                <li>Подключение и адаптация базы знаний включены</li>
+                <li>Запуск за 7 дней без долгой разработки</li>
+                <li>Разбор первых 50 диалогов вручную</li>
+                <li>Отчёт по вопросам, которые чаще всего задают пациенты</li>
+                <li>Подходит, если хотите проверить формат перед масштабированием</li>
+              </ul>
+              <div class="price-card__action">
+                <button type="button" class="btn btn--primary price-card__btn"><span class="btn__bg"></span><span class="btn__text">Запустить пилот</span></button>
+              </div>
+              <ul class="price-card__notes">
+                <li>Можно перейти на основной тариф без повторного старта</li>
+                <li>Подходит для спокойной проверки формата на практике</li>
+              </ul>
+            </article>
           </div>
 
         </div>
 
-        <div class="cta-block">
-          <div class="cta-block__left">
-            <h2>Не обязательно начинать с подключения</h2>
+        <div class="pricing-faq">
+          <div class="pricing-faq__copy">
+            <div class="label">FAQ</div>
+            <h2>Частые вопросы перед запуском</h2>
+            <p class="pricing-faq__desc">Собрали короткие ответы на вопросы, которые обычно появляются перед первым запуском ИИ-консультанта для клиники.</p>
           </div>
-          <div class="cta-block__right">
+
+          <div class="pricing-faq__list">
+            <details class="pricing-faq__item" open>
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index">01</span>
+                <span class="pricing-faq__question">Сколько времени занимает запуск?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Обычно старт занимает от нескольких дней до пары недель. Срок зависит от того, насколько быстро удаётся собрать материалы клиники, согласовать сценарии и проверить ответы на типовых вопросах пациентов.</p>
+              </div>
+            </details>
+
+            <details class="pricing-faq__item">
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index">02</span>
+                <span class="pricing-faq__question">Нужны ли сложные интеграции с сайтом?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Не обязательно. На первом этапе можно запустить консультанта без тяжёлой разработки: подключить базовую логику, проверить сценарии и посмотреть, как пациенты реально пользуются диалогом.</p>
+              </div>
+            </details>
+
+            <details class="pricing-faq__item">
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index">03</span>
+                <span class="pricing-faq__question">Кто готовит материалы для базы знаний?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Обычно мы вместе собираем основу из сайта, прайса, описаний услуг, акций, информации о врачах и частых вопросов. Клиника даёт материалы, а мы помогаем превратить их в понятную рабочую структуру.</p>
+              </div>
+            </details>
+
+            <details class="pricing-faq__item">
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index">04</span>
+                <span class="pricing-faq__question">Можно ли начать с тестового формата, а потом масштабировать?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Да. Для этого как раз подходит пилотный запуск: сначала проверяем интерес пациентов, реальные вопросы и качество сценариев, а уже потом расширяем использование консультанта на ключевые разделы сайта.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="cta-block">
+          <div class="cta-block__visual" aria-hidden="true">
+            <div class="cta-collage">
+              <figure class="cta-collage__card cta-collage__card--left" data-speed="0.35">
+                <img src="images/img-01.jpg" alt="" />
+              </figure>
+              <figure class="cta-collage__card cta-collage__card--right" data-speed="0.8">
+                <img src="images/img-04.jpg" alt="" />
+              </figure>
+            </div>
+          </div>
+          <div class="cta-block__content">
+            <h2>Не обязательно начинать с подключения</h2>
             <p>Начните с мини-аудита сайта. Мы посмотрим, какие вопросы клиентов сейчас остаются без ответа, где человек может застрять перед заявкой и какие сценарии можно закрыть ИИ-консультантом.</p>
             <div class="cta-block__actions">
               <button type="button" class="btn btn--primary"><span class="btn__bg"></span><span class="btn__text">Заказать бесплатный аудит</span></button>
-              <button type="button" class="btn btn--ghost">Обсудить подключение</button>
             </div>
           </div>
         </div>
