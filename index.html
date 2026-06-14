@@ -17,7 +17,7 @@
     <a href="index.html" class="nav__logo" aria-label="Artgents">
       <img src="assets/artgents-logo-header.svg" alt="Artgents" class="nav__logo-image" />
     </a>
-    <button type="button" class="nav__cta">
+    <button type="button" class="nav__cta" data-open-contact-popup aria-controls="contactPopup">
       <span class="nav__cta-text">Обсудить подключение</span>
       <span class="nav__cta-telegram" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
@@ -142,7 +142,6 @@
         <div class="what__head">
           <div class="label">Что это такое</div>
           <h2>Не форма заявки,<br><em>а полноценный диалог с пациентом</em></h2>
-          <p class="what__desc">Пациент задаёт вопрос своими словами. ИИ понимает смысл, отвечает по базе клиники и ведёт к следующему шагу: уточнению, материалу, акции или заявке.</p>
         </div>
 
         <div class="what__story">
@@ -271,7 +270,7 @@
             <div class="results-feature__content">
               <h3>Запускает диалог из нужной секции сайта</h3>
               <p>ИИ-консультанта можно встроить в ключевые секции сайта: имплантация, рассрочка, врачи, акции. Пациент нажимает кнопку в нужном блоке — и сразу получает диалог по этой теме.</p>
-              <button type="button" class="btn btn--hero-outline"><span class="btn--hero-outline__text">Узнать подробнее</span></button>
+              <button type="button" class="btn btn--hero-outline" data-open-detail-popup aria-controls="detailPopup"><span class="btn--hero-outline__text">Узнать подробнее</span></button>
             </div>
           </article>
         </div>
@@ -420,7 +419,11 @@
           </div>
 
         </div>
+      </div>
+    </section>
 
+    <section class="section section--dark section--faq" id="faq">
+      <div class="shell">
         <div class="pricing-faq">
           <div class="pricing-faq__copy">
             <div class="label">FAQ</div>
@@ -432,49 +435,93 @@
             <details class="pricing-faq__item" open>
               <summary class="pricing-faq__trigger">
                 <span class="pricing-faq__index ui-num-badge">01</span>
-                <span class="pricing-faq__question">Сколько времени занимает запуск?</span>
+                <span class="pricing-faq__question">Как технически работает ИИ-консультант?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
               <div class="pricing-faq__content">
-                <p>Обычно старт занимает от нескольких дней до пары недель. Срок зависит от того, насколько быстро удаётся собрать материалы клиники, согласовать сценарии и проверить ответы на типовых вопросах пациентов.</p>
+                <p>Это связка из трёх частей: чат на сайте, база знаний клиники и ИИ-модель. Пациент пишет вопрос в чат, система ищет подходящую информацию в базе знаний, а ИИ формулирует понятный ответ на основе найденных данных.</p>
+                <p>ИИ не ищет информацию в интернете и не отвечает «из головы». Он использует материалы клиники: услуги, цены, врачей, акции, FAQ, видео и другие данные, которые заранее подключены к консультанту.</p>
               </div>
             </details>
 
             <details class="pricing-faq__item">
               <summary class="pricing-faq__trigger">
                 <span class="pricing-faq__index ui-num-badge">02</span>
-                <span class="pricing-faq__question">Нужны ли сложные интеграции с сайтом?</span>
+                <span class="pricing-faq__question">ИИ-консультант отвечает сам или по заранее прописанным скриптам?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
               <div class="pricing-faq__content">
-                <p>Не обязательно. На первом этапе можно запустить консультанта без тяжёлой разработки: подключить базовую логику, проверить сценарии и посмотреть, как пациенты реально пользуются диалогом.</p>
+                <p>Он не ведёт пациента по жёсткому скрипту и не заставляет выбирать только готовые кнопки. Человек может задать вопрос своими словами, а консультант понимает смысл и отвечает по базе знаний клиники.</p>
+                <p>Если в базе нет точной информации, он не должен придумывать ответ. В таком случае консультант предложит уточнить вопрос у администратора или записаться на консультацию.</p>
               </div>
             </details>
 
             <details class="pricing-faq__item">
               <summary class="pricing-faq__trigger">
                 <span class="pricing-faq__index ui-num-badge">03</span>
-                <span class="pricing-faq__question">Кто готовит материалы для базы знаний?</span>
+                <span class="pricing-faq__question">За счёт чего ИИ-консультант помогает повысить конверсию сайта?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
               <div class="pricing-faq__content">
-                <p>Обычно мы вместе собираем основу из сайта, прайса, описаний услуг, акций, информации о врачах и частых вопросов. Клиника даёт материалы, а мы помогаем превратить их в понятную рабочую структуру.</p>
+                <p>Он не просто отвечает на вопросы, а работает как часть воронки. В консультанта закладываются данные клиники, преимущества, акции, сценарии по ключевым услугам, ответы на возражения, работа со страхами и мягкие переходы к заявке.</p>
+                <p>Поэтому пациент не попадает в шаблонный чат. Он получает ответ по своей ситуации, видит следующий шаг и быстрее доходит до консультации или записи.</p>
               </div>
             </details>
 
             <details class="pricing-faq__item">
               <summary class="pricing-faq__trigger">
                 <span class="pricing-faq__index ui-num-badge">04</span>
-                <span class="pricing-faq__question">Можно ли начать с тестового формата, а потом масштабировать?</span>
+                <span class="pricing-faq__question">Что нужно от клиники для запуска?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
               <div class="pricing-faq__content">
-                <p>Да. Для этого как раз подходит пилотный запуск: сначала проверяем интерес пациентов, реальные вопросы и качество сценариев, а уже потом расширяем использование консультанта на ключевые разделы сайта.</p>
+                <p>Нужны материалы, по которым консультант будет отвечать: описание услуг, цены, врачи, акции, FAQ, условия, гарантии, ссылки на видео и другие данные.</p>
+                <p>Если часть информации уже есть на сайте, её можно использовать как основу. Остальное собираем и структурируем в базу знаний.</p>
+              </div>
+            </details>
+
+            <details class="pricing-faq__item">
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index ui-num-badge">05</span>
+                <span class="pricing-faq__question">Куда попадают заявки?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Заявка может передаваться администратору вместе с историей диалога: что спрашивал пациент, чем интересовался и какие сомнения нужно закрыть.</p>
+                <p>Формат передачи зависит от подключения: CRM, почта, мессенджер или другой удобный канал.</p>
+              </div>
+            </details>
+
+            <details class="pricing-faq__item">
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index ui-num-badge">06</span>
+                <span class="pricing-faq__question">ИИ-консультант заменяет администратора?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Нет. Он закрывает первичные вопросы на сайте, снижает тревогу пациента и помогает довести его до обращения.</p>
+                <p>Администратор подключается уже на следующем этапе, когда есть контакт и понятный контекст диалога.</p>
+              </div>
+            </details>
+
+            <details class="pricing-faq__item">
+              <summary class="pricing-faq__trigger">
+                <span class="pricing-faq__index ui-num-badge">07</span>
+                <span class="pricing-faq__question">Можно ли встроить его не только как общий чат?</span>
+                <span class="pricing-faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pricing-faq__content">
+                <p>Да. Консультанта можно запускать из конкретных секций сайта: имплантация, рассрочка, врачи, акции и другие блоки.</p>
+                <p>Тогда диалог сразу начинается по теме интереса пациента, без лишних уточнений и объяснений с нуля.</p>
               </div>
             </details>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section class="section section--dark section--cta">
+      <div class="shell">
         <div class="cta-block">
           <div class="cta-block__visual" aria-hidden="true">
             <div class="cta-collage">
@@ -490,11 +537,10 @@
             <h2>Не обязательно начинать с подключения</h2>
             <p>Начните с мини-аудита сайта. Мы посмотрим, какие вопросы клиентов сейчас остаются без ответа, где человек может застрять перед заявкой и какие сценарии можно закрыть ИИ-консультантом.</p>
             <div class="cta-block__actions">
-              <button type="button" class="btn btn--primary"><span class="btn__bg"></span><span class="btn__text">Заказать бесплатный аудит</span></button>
+              <button type="button" class="btn btn--primary" data-open-audit-popup aria-controls="auditPopup"><span class="btn__bg"></span><span class="btn__text">Заказать бесплатный аудит</span></button>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -582,6 +628,122 @@
             <span class="btn__text">Обсудить подключение</span>
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-popup" id="auditPopup" aria-hidden="true">
+    <div class="contact-popup__backdrop" data-close-contact-popup></div>
+
+    <div class="contact-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
+      <button class="contact-popup__close" type="button" aria-label="Закрыть" data-close-contact-popup>
+        &times;
+      </button>
+
+      <div class="contact-popup__scroll">
+        <div class="contact-popup__top">
+          <div class="contact-popup__badge">Мини-аудит сайта</div>
+
+          <h2 id="audit-popup-title">Получить мини-аудит сайта</h2>
+
+          <p class="contact-popup__description">
+            Пришлите сайт клиники — мы дадим обратную связь, где пациенты могут теряться
+            до заявки и какие сценарии можно закрыть ИИ-консультантом.
+          </p>
+        </div>
+
+        <form class="contact-popup__form" action="#" method="post">
+          <div class="contact-popup__grid">
+            <label class="contact-popup__field">
+              <span>Имя</span>
+              <input type="text" name="audit_name" placeholder="Например, Анна" required>
+            </label>
+
+            <label class="contact-popup__field">
+              <span>Сайт клиники</span>
+              <input type="url" name="audit_site" placeholder="https://example.ru" required>
+            </label>
+          </div>
+
+          <div class="contact-popup__methods">
+            <div class="contact-popup__methods-title">Удобный способ связи</div>
+
+            <div class="contact-popup__methods-items">
+              <label>
+                <input type="radio" name="audit_contact_method" value="Telegram" checked>
+                <span>Telegram</span>
+              </label>
+
+              <label>
+                <input type="radio" name="audit_contact_method" value="Телефон">
+                <span>Телефон</span>
+              </label>
+
+              <label>
+                <input type="radio" name="audit_contact_method" value="Email">
+                <span>Email</span>
+              </label>
+            </div>
+          </div>
+
+          <label class="contact-popup__field">
+            <span>Контакт</span>
+            <input type="text" name="audit_contact" placeholder="@username, номер телефона или email" required>
+          </label>
+
+          <label class="contact-popup__field">
+            <span>Что хотите понять? <em>— необязательно</em></span>
+            <textarea name="audit_goal" placeholder="Напишите, что именно хотите понять по сайту или воронке."></textarea>
+          </label>
+
+          <label class="contact-popup__policy">
+            <input type="checkbox" name="audit_policy" required>
+            <span>
+              Я согласен(на) с
+              <a href="https://artgents.ru/pricacy.pdf" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+            </span>
+          </label>
+
+          <button class="btn btn--primary contact-popup__submit" type="submit">
+            <span class="btn__bg"></span>
+            <span class="btn__text">Отправить сайт на разбор</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-popup" id="detailPopup" aria-hidden="true">
+    <div class="contact-popup__backdrop" data-close-contact-popup></div>
+
+    <div class="contact-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="detail-popup-title">
+      <button class="contact-popup__close" type="button" aria-label="Закрыть" data-close-contact-popup>
+        &times;
+      </button>
+
+      <div class="contact-popup__scroll">
+        <div class="contact-popup__top">
+          <div class="contact-popup__badge">Диалог по секции</div>
+
+          <h2 id="detail-popup-title">Диалог сразу по теме секции сайта</h2>
+
+          <div class="contact-popup__richtext">
+            <p>Обычная кнопка «Узнать подробнее» чаще всего ведёт к той же форме: имя, телефон, отправить. Квизы тоже часто работают по старой логике — прогоняют человека по шагам, чтобы в конце снова попросить контакт.</p>
+            <p>ИИ-консультант работает иначе. Кнопка в конкретной секции сайта запускает диалог уже с нужным контекстом. Если пациент нажал кнопку в блоке про имплантацию, рассрочку или врачей, консультант сразу начинает разговор по этой теме: уточняет ситуацию, отвечает на вопросы, показывает нужный материал и ведёт к консультации.</p>
+            <p>Это не просто сбор заявки, а вовлечение пациента в воронку прямо с того места, где у него возник интерес. Человеку не нужно начинать с нуля, а клиника получает более тёплое обращение с понятным контекстом.</p>
+          </div>
+        </div>
+
+        <div class="contact-popup__summary">
+          <div class="contact-popup__summary-title">Коротко</div>
+          <ul class="contact-popup__checklist">
+            <li>Сильнее обычной формы «узнать подробнее»</li>
+            <li>Не общий чат, а диалог по теме блока</li>
+            <li>Пациент сразу попадает в нужный сценарий</li>
+            <li>Консультант вовлекает в разговор, а не просто просит телефон</li>
+            <li>Обращение передаётся с контекстом</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

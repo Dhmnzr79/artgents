@@ -198,50 +198,55 @@ if (ctaCollage && ctaCards.length) {
 }
 
 /* в”Ђв”Ђ CONTACT POPUP в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
-const contactPopup = document.getElementById('contactPopup');
+const initContactStylePopup = (popupId, openSelector) => {
+  const popup = document.getElementById(popupId);
+  if (!popup) return;
 
-if (contactPopup) {
-  const contactPopupOpenButtons = document.querySelectorAll('[data-open-contact-popup]');
-  const contactPopupCloseButtons = contactPopup.querySelectorAll('[data-close-contact-popup]');
-  const contactPopupForm = contactPopup.querySelector('.contact-popup__form');
-  const contactPopupFirstField = contactPopup.querySelector('input, textarea, button');
-  let contactPopupLastTrigger = null;
+  const openButtons = document.querySelectorAll(openSelector);
+  const closeButtons = popup.querySelectorAll('[data-close-contact-popup]');
+  const popupForm = popup.querySelector('.contact-popup__form');
+  const firstField = popup.querySelector('input, textarea, button');
+  let lastTrigger = null;
 
-  const openContactPopup = (event) => {
-    contactPopupLastTrigger = event?.currentTarget ?? null;
-    contactPopup.classList.add('is-open');
-    contactPopup.setAttribute('aria-hidden', 'false');
+  const openPopup = (event) => {
+    lastTrigger = event?.currentTarget ?? null;
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
     document.body.classList.add('contact-popup-open');
 
     requestAnimationFrame(() => {
-      contactPopupFirstField?.focus();
+      firstField?.focus();
     });
   };
 
-  const closeContactPopup = () => {
-    if (!contactPopup.classList.contains('is-open')) return;
+  const closePopup = () => {
+    if (!popup.classList.contains('is-open')) return;
 
-    contactPopup.classList.remove('is-open');
-    contactPopup.setAttribute('aria-hidden', 'true');
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('contact-popup-open');
-    contactPopupLastTrigger?.focus?.();
+    lastTrigger?.focus?.();
   };
 
-  contactPopupOpenButtons.forEach((button) => {
-    button.addEventListener('click', openContactPopup);
+  openButtons.forEach((button) => {
+    button.addEventListener('click', openPopup);
   });
 
-  contactPopupCloseButtons.forEach((button) => {
-    button.addEventListener('click', closeContactPopup);
+  closeButtons.forEach((button) => {
+    button.addEventListener('click', closePopup);
   });
 
-  contactPopupForm?.addEventListener('submit', (event) => {
+  popupForm?.addEventListener('submit', (event) => {
     event.preventDefault();
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && contactPopup.classList.contains('is-open')) {
-      closeContactPopup();
+    if (event.key === 'Escape' && popup.classList.contains('is-open')) {
+      closePopup();
     }
   });
-}
+};
+
+initContactStylePopup('contactPopup', '[data-open-contact-popup]');
+initContactStylePopup('auditPopup', '[data-open-audit-popup]');
+initContactStylePopup('detailPopup', '[data-open-detail-popup]');
