@@ -17,22 +17,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 
-/* ── WHAT VISUAL ZOOM ───────────────────────────────────── */
-const whatVisualCol = document.querySelector('.what__visual-col');
-
-if (whatVisualCol) {
-  const whatVisualObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      whatVisualCol.classList.toggle('is-active', entry.isIntersecting);
-    });
-  }, {
-    threshold: 0.35,
-    rootMargin: '-8% 0px -8% 0px',
-  });
-
-  whatVisualObserver.observe(whatVisualCol);
-}
-
 /* ── PRICING FAQ ACCORDION ─────────────────────────────── */
 const pricingFaqItems = document.querySelectorAll('.pricing-faq__item');
 

@@ -17,13 +17,14 @@
     <a href="index.html" class="nav__logo" aria-label="Artgents">
       <img src="assets/artgents-logo-header.svg" alt="Artgents" class="nav__logo-image" />
     </a>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link nav__link--active">Главная</a>
-      <a href="how.html" class="nav__link">Как работает</a>
-      <a href="demo.html" class="nav__link">Демо</a>
-    </div>
     <button type="button" class="nav__cta">
       <span class="nav__cta-text">Обсудить подключение</span>
+      <span class="nav__cta-telegram" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M20.54 4.52 3.84 10.96c-1.14.46-1.13 1.1-.21 1.38l4.29 1.34 1.66 5.22c.2.56.1.78.69.78.45 0 .65-.2.9-.45l2.08-2.02 4.33 3.2c.8.44 1.37.21 1.57-.74l2.84-13.38c.29-1.17-.45-1.7-1.29-1.32Z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/>
+          <path d="m8.33 13.35 9.4-5.94M10.18 18.9l1.13-4.86" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
       <span class="nav__cta-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -148,14 +149,14 @@
           <div class="what__visual-col">
             <div class="what__visual-frame">
               <div class="what__visual">
-                <img src="images/img1.jpg" alt="Интерфейс диалога с пациентом">
+                <img src="images/woman-bg.jpg" alt="Интерфейс диалога с пациентом">
               </div>
             </div>
           </div>
 
           <div class="what__list">
             <article class="what-item">
-              <div class="what-item__num">01</div>
+              <div class="what-item__num ui-num-badge">01</div>
               <div class="what-item__body">
                 <h3>Понимает свободный вопрос</h3>
                 <p>Пациенту не нужно выбирать готовую кнопку или знать медицинские термины. Он пишет как умеет, а консультант понимает суть запроса.</p>
@@ -163,7 +164,7 @@
             </article>
 
             <article class="what-item">
-              <div class="what-item__num">02</div>
+              <div class="what-item__num ui-num-badge">02</div>
               <div class="what-item__body">
                 <h3>Отвечает по вашей базе</h3>
                 <p>ИИ использует данные клиники: услуги, цены, врачей, акции, FAQ, условия, гарантии и другие материалы, которые вы передаёте для обучения.</p>
@@ -171,7 +172,7 @@
             </article>
 
             <article class="what-item">
-              <div class="what-item__num">03</div>
+              <div class="what-item__num ui-num-badge">03</div>
               <div class="what-item__body">
                 <h3>Говорит человеческим языком</h3>
                 <p>Объясняет сложные услуги понятно и спокойно: без сухих шаблонов, канцелярита и ощущения, что пациент общается с формой заявки.</p>
@@ -179,7 +180,7 @@
             </article>
 
             <article class="what-item">
-              <div class="what-item__num">04</div>
+              <div class="what-item__num ui-num-badge">04</div>
               <div class="what-item__body">
                 <h3>Снижает тревогу перед записью</h3>
                 <p>Если человек боится боли, цены или осложнений, консультант отвечает спокойно, снимает часть напряжения и помогает не потерять пациента до заявки.</p>
@@ -187,7 +188,7 @@
             </article>
 
             <article class="what-item">
-              <div class="what-item__num">05</div>
+              <div class="what-item__num ui-num-badge">05</div>
               <div class="what-item__body">
                 <h3>Показывает следующий шаг</h3>
                 <p>Может задать уточняющий вопрос, показать видео врача, рассказать об акции, предложить консультацию или передать обращение администратору.</p>
@@ -195,7 +196,7 @@
             </article>
 
             <article class="what-item">
-              <div class="what-item__num">06</div>
+              <div class="what-item__num ui-num-badge">06</div>
               <div class="what-item__body">
                 <h3>Передаёт обращение в CRM</h3>
                 <p>Клиника получает не просто имя и телефон, а историю диалога: что спрашивал пациент, чем интересовался и какие сомнения нужно закрыть.</p>
@@ -433,7 +434,7 @@
           <div class="pricing-faq__list">
             <details class="pricing-faq__item" open>
               <summary class="pricing-faq__trigger">
-                <span class="pricing-faq__index">01</span>
+                <span class="pricing-faq__index ui-num-badge">01</span>
                 <span class="pricing-faq__question">Сколько времени занимает запуск?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
@@ -444,7 +445,7 @@
 
             <details class="pricing-faq__item">
               <summary class="pricing-faq__trigger">
-                <span class="pricing-faq__index">02</span>
+                <span class="pricing-faq__index ui-num-badge">02</span>
                 <span class="pricing-faq__question">Нужны ли сложные интеграции с сайтом?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
@@ -455,7 +456,7 @@
 
             <details class="pricing-faq__item">
               <summary class="pricing-faq__trigger">
-                <span class="pricing-faq__index">03</span>
+                <span class="pricing-faq__index ui-num-badge">03</span>
                 <span class="pricing-faq__question">Кто готовит материалы для базы знаний?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
@@ -466,7 +467,7 @@
 
             <details class="pricing-faq__item">
               <summary class="pricing-faq__trigger">
-                <span class="pricing-faq__index">04</span>
+                <span class="pricing-faq__index ui-num-badge">04</span>
                 <span class="pricing-faq__question">Можно ли начать с тестового формата, а потом масштабировать?</span>
                 <span class="pricing-faq__icon" aria-hidden="true"></span>
               </summary>
@@ -481,10 +482,10 @@
           <div class="cta-block__visual" aria-hidden="true">
             <div class="cta-collage">
               <figure class="cta-collage__card cta-collage__card--left" data-speed="0.35">
-                <img src="images/img-01.jpg" alt="" />
+                <img src="images/bg-02.jpg" alt="" />
               </figure>
               <figure class="cta-collage__card cta-collage__card--right" data-speed="0.8">
-                <img src="images/img-04.jpg" alt="" />
+                <img src="images/bg-01.jpg" alt="" />
               </figure>
             </div>
           </div>
@@ -508,17 +509,10 @@
       <div class="footer__main">
         <div class="footer__brand">
           <a href="index.html" class="footer__logo" aria-label="Artgents">
-            <span class="nav__logo-mark">AI</span>
-            art<span>gents</span>
+            <img src="assets/artgents-logo-header.svg" alt="Artgents" class="nav__logo-image" />
           </a>
           <p class="footer__tagline">ИИ-консультант для стоматологических клиник</p>
         </div>
-        <nav class="footer__nav" aria-label="Навигация">
-          <a href="index.html" class="footer__link">Главная</a>
-          <a href="how.html" class="footer__link">Как работает</a>
-          <a href="demo.html" class="footer__link">Демо</a>
-          <a href="#pricing" class="footer__link">Тариф</a>
-        </nav>
       </div>
 
       <div class="footer__bottom">

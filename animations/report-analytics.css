@@ -83,12 +83,12 @@
   position: relative;
   z-index: 5;
   width: min(560px, 100%);
-  border-radius: 30px;
+  border-radius: 5px;
   overflow: hidden;
   color: #f6f2ff;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(18, 17, 27, 0.96), rgba(14, 13, 21, 0.96));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.016)),
+    linear-gradient(180deg, rgba(18, 17, 27, 0.9), rgba(14, 13, 21, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow:
     0 34px 90px rgba(0, 0, 0, 0.46),
