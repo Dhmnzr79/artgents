@@ -46,8 +46,8 @@
             <h1 class="hero__title">ИИ-консультант для сайта клиники, обученный на ваших данных</h1>
             <p class="hero__sub">Отвечает пациентам живым языком, работает по базе знаний клиники и помогает довести вопрос до обращения. Администратор получает не холодный контакт, а диалог с понятным контекстом.</p>
             <div class="hero__actions">
-              <button type="button" class="btn btn--primary"><span class="btn__bg"></span><span class="btn__text">Посмотреть демо</span></button>
-              <button type="button" class="btn btn--hero-outline"><span class="btn--hero-outline__text">Как это работает</span></button>
+              <button type="button" class="btn btn--primary" data-open-contact-popup aria-controls="contactPopup"><span class="btn__bg"></span><span class="btn__text">Обсудить подключение</span></button>
+              <button type="button" class="btn btn--hero-outline"><span class="btn--hero-outline__text">Посмотреть демо</span></button>
             </div>
           </div>
 
@@ -376,49 +376,46 @@
           <div class="pricing__plans">
             <!-- Col 5–8: price card -->
             <article class="price-card">
-              <p class="price-card__for">Для стоматологических клиник</p>
+              <p class="price-card__for">AI-консультант</p>
               <div class="price-card__amount">
-                <span class="price-card__num">39 000</span>
+                <span class="price-card__num">19 900</span>
                 <span class="price-card__unit">₽ / месяц</span>
               </div>
               <ul class="price-card__list">
-                <li>Подключение и адаптация базы знаний включены</li>
-                <li>Первый этап — 3 месяца, оплата помесячно</li>
+                <li>Обучение на базе данных вашей клиники</li>
+                <li>Ответы по услугам, ценам, врачам, акциям и FAQ</li>
+                <li>Живые ответы на свободные вопросы пациентов</li>
+                <li>Сбор контактов и передача обращения администратору</li>
+                <li>История диалога вместе с заявкой</li>
+                <li>Работа 24/7</li>
                 <li>Ручной разбор первых 100 диалогов</li>
                 <li>Ежемесячный отчёт «Голос пациента»</li>
-                <li>Мини-аудит сайта перед запуском</li>
               </ul>
               <div class="price-card__action">
-                <button type="button" class="btn btn--primary price-card__btn"><span class="btn__bg"></span><span class="btn__text">Обсудить подключение</span></button>
+                <button type="button" class="btn btn--primary price-card__btn" data-open-contact-popup aria-controls="contactPopup"><span class="btn__bg"></span><span class="btn__text">Обсудить подключение</span></button>
               </div>
-              <ul class="price-card__notes">
-                <li>Подключение включено в стартовый этап</li>
-                <li>Оплата помесячно без длинных обязательств</li>
-              </ul>
             </article>
 
             <!-- Col 9–12: second plan -->
             <article class="price-card price-card--alt">
-              <span class="price-card__ribbon">Рекомендуем</span>
-              <p class="price-card__for">Пилотный запуск</p>
+              <span class="price-card__ribbon">Оптимальный выбор</span>
+              <p class="price-card__for">AI-консультант Pro</p>
               <div class="price-card__amount">
-                <span class="price-card__num">24 000</span>
+                <span class="price-card__num">29 900</span>
                 <span class="price-card__unit">₽ / месяц</span>
               </div>
               <ul class="price-card__list">
-                <li>Подключение и адаптация базы знаний включены</li>
-                <li>Запуск за 7 дней без долгой разработки</li>
-                <li>Разбор первых 50 диалогов вручную</li>
-                <li>Отчёт по вопросам, которые чаще всего задают пациенты</li>
-                <li>Подходит, если хотите проверить формат перед масштабированием</li>
+                <li>Всё из тарифа AI-консультант</li>
+                <li>Интеграция с кнопками и секциями сайта</li>
+                <li>Отдельные сценарии под ключевые услуги</li>
+                <li>Первый ответ сразу по теме блока или страницы</li>
+                <li>Диалоги под имплантацию, протезирование, терапию, ортодонтию или другие направления</li>
+                <li>Более точное ведение пациента к консультации</li>
+                <li>Синхронизация с CRM</li>
               </ul>
               <div class="price-card__action">
-                <button type="button" class="btn btn--primary price-card__btn"><span class="btn__bg"></span><span class="btn__text">Запустить пилот</span></button>
+                <button type="button" class="btn btn--primary price-card__btn" data-open-contact-popup aria-controls="contactPopup"><span class="btn__bg"></span><span class="btn__text">Обсудить подключение</span></button>
               </div>
-              <ul class="price-card__notes">
-                <li>Можно перейти на основной тариф без повторного старта</li>
-                <li>Подходит для спокойной проверки формата на практике</li>
-              </ul>
             </article>
           </div>
 
@@ -502,6 +499,92 @@
     </section>
 
   </main>
+
+  <div class="contact-popup" id="contactPopup" aria-hidden="true">
+    <div class="contact-popup__backdrop" data-close-contact-popup></div>
+
+    <div class="contact-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="contact-popup-title">
+      <button class="contact-popup__close" type="button" aria-label="Закрыть" data-close-contact-popup>
+        &times;
+      </button>
+
+      <div class="contact-popup__scroll">
+        <div class="contact-popup__top">
+          <div class="contact-popup__badge">ИИ-консультант для клиники</div>
+
+          <h2 id="contact-popup-title">Обсудить подключение</h2>
+
+          <p class="contact-popup__description">
+            Оставьте удобный способ связи — я напишу, уточню задачу и подскажу,
+            какой формат ИИ-консультанта подойдёт для вашей клиники.
+          </p>
+        </div>
+
+        <form class="contact-popup__form" action="#" method="post">
+          <div class="contact-popup__grid">
+            <label class="contact-popup__field">
+              <span>Имя</span>
+              <input type="text" name="name" placeholder="Например, Анна" required>
+            </label>
+
+            <label class="contact-popup__field">
+              <span>Клиника / город</span>
+              <input type="text" name="clinic_city" placeholder="Клиника, город" required>
+            </label>
+          </div>
+
+          <div class="contact-popup__methods">
+            <div class="contact-popup__methods-title">Удобный способ связи</div>
+
+            <div class="contact-popup__methods-items">
+              <label>
+                <input type="radio" name="contact_method" value="Telegram" checked>
+                <span>Telegram</span>
+              </label>
+
+              <label>
+                <input type="radio" name="contact_method" value="Телефон">
+                <span>Телефон</span>
+              </label>
+
+              <label>
+                <input type="radio" name="contact_method" value="Email">
+                <span>Email</span>
+              </label>
+            </div>
+          </div>
+
+          <label class="contact-popup__field">
+            <span>Контакт</span>
+            <input type="text" name="contact" placeholder="@username, номер телефона или email" required>
+          </label>
+
+          <label class="contact-popup__field">
+            <span>Сайт клиники <em>— необязательно</em></span>
+            <input type="url" name="site" placeholder="https://example.ru">
+          </label>
+
+          <label class="contact-popup__field">
+            <span>Комментарий <em>— необязательно</em></span>
+            <textarea name="comment" placeholder="Например: нужен консультант по имплантации, консультациям, ценам, записи на приём..."></textarea>
+          </label>
+
+          <label class="contact-popup__policy">
+            <input type="checkbox" name="policy" required>
+            <span>
+              Я согласен(на) с
+              <a href="https://artgents.ru/pricacy.pdf" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+            </span>
+          </label>
+
+          <button class="btn btn--primary contact-popup__submit" type="submit">
+            <span class="btn__bg"></span>
+            <span class="btn__text">Обсудить подключение</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="shell">

@@ -196,3 +196,52 @@ if (ctaCollage && ctaCards.length) {
   window.addEventListener('scroll', requestCtaParallaxUpdate, { passive: true });
   window.addEventListener('resize', requestCtaParallaxUpdate);
 }
+
+/* в”Ђв”Ђ CONTACT POPUP в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
+const contactPopup = document.getElementById('contactPopup');
+
+if (contactPopup) {
+  const contactPopupOpenButtons = document.querySelectorAll('[data-open-contact-popup]');
+  const contactPopupCloseButtons = contactPopup.querySelectorAll('[data-close-contact-popup]');
+  const contactPopupForm = contactPopup.querySelector('.contact-popup__form');
+  const contactPopupFirstField = contactPopup.querySelector('input, textarea, button');
+  let contactPopupLastTrigger = null;
+
+  const openContactPopup = (event) => {
+    contactPopupLastTrigger = event?.currentTarget ?? null;
+    contactPopup.classList.add('is-open');
+    contactPopup.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('contact-popup-open');
+
+    requestAnimationFrame(() => {
+      contactPopupFirstField?.focus();
+    });
+  };
+
+  const closeContactPopup = () => {
+    if (!contactPopup.classList.contains('is-open')) return;
+
+    contactPopup.classList.remove('is-open');
+    contactPopup.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('contact-popup-open');
+    contactPopupLastTrigger?.focus?.();
+  };
+
+  contactPopupOpenButtons.forEach((button) => {
+    button.addEventListener('click', openContactPopup);
+  });
+
+  contactPopupCloseButtons.forEach((button) => {
+    button.addEventListener('click', closeContactPopup);
+  });
+
+  contactPopupForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && contactPopup.classList.contains('is-open')) {
+      closeContactPopup();
+    }
+  });
+}
