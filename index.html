@@ -10,8 +10,21 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="animations/phone-hero.css" />
   <link rel="stylesheet" href="animations/report-analytics.css" />
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109873039', 'ym');
+
+      ym(109873039, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <!-- /Yandex.Metrika counter -->
 </head>
 <body>
+  <noscript><div><img src="https://mc.yandex.ru/watch/109873039" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
   <nav class="nav">
     <a href="index.html" class="nav__logo" aria-label="Artgents">
@@ -42,7 +55,7 @@
 
           <!-- Left: copy -->
           <div class="hero__left">
-            <div class="label">Подключение для клиник — 2025</div>
+            <div class="label">Подключение для клиник — 2026</div>
             <h1 class="hero__title">ИИ-консультант для сайта клиники, обученный на ваших данных</h1>
             <p class="hero__sub">Отвечает пациентам живым языком, работает по базе знаний клиники и помогает довести вопрос до обращения. Администратор получает не холодный контакт, а диалог с понятным контекстом.</p>
             <div class="hero__actions">
@@ -566,7 +579,8 @@
           </p>
         </div>
 
-        <form class="contact-popup__form" action="#" method="post">
+        <form class="contact-popup__form" action="send.php" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="contactPopup">
           <div class="contact-popup__grid">
             <label class="contact-popup__field">
               <span>Имя</span>
@@ -616,7 +630,7 @@
           </label>
 
           <label class="contact-popup__policy">
-            <input type="checkbox" name="policy" required>
+            <input type="checkbox" name="policy" required checked>
             <span>
               Я согласен(на) с
               <a href="https://artgents.ru/pricacy.pdf" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
@@ -652,7 +666,8 @@
           </p>
         </div>
 
-        <form class="contact-popup__form" action="#" method="post">
+        <form class="contact-popup__form" action="send.php" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="auditPopup">
           <div class="contact-popup__grid">
             <label class="contact-popup__field">
               <span>Имя</span>
@@ -697,7 +712,7 @@
           </label>
 
           <label class="contact-popup__policy">
-            <input type="checkbox" name="audit_policy" required>
+            <input type="checkbox" name="audit_policy" required checked>
             <span>
               Я согласен(на) с
               <a href="https://artgents.ru/pricacy.pdf" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
@@ -763,7 +778,7 @@
       <div class="footer__bottom">
         <p class="footer__legal">ИП Артюшенко Д.А. &nbsp;·&nbsp; ИНН 272391711846</p>
         <div class="footer__bottom-right">
-          <p class="footer__copy">© 2025 Artgents</p>
+          <p class="footer__copy">© 2026 Artgents</p>
           <a href="#" class="footer__link footer__link--small">Политика конфиденциальности</a>
           <a href="#" class="footer__link footer__link--small">Оферта</a>
         </div>
@@ -775,5 +790,6 @@
   <script src="script.js"></script>
   <script src="animations/phone-hero.js"></script>
   <script src="animations/report-analytics.js"></script>
+  <script src="https://demo.bot.artgents.ru/static/widget/embed.js" defer></script>
 </body>
 </html>

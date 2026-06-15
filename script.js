@@ -206,13 +206,43 @@ const initContactStylePopup = (popupId, openSelector) => {
   const closeButtons = popup.querySelectorAll('[data-close-contact-popup]');
   const popupForm = popup.querySelector('.contact-popup__form');
   const firstField = popup.querySelector('input, textarea, button');
+  const submitButton = popupForm?.querySelector('.contact-popup__submit');
+  const submitButtonText = submitButton?.querySelector('.btn__text');
+  const defaultSubmitLabel = submitButtonText?.textContent || 'Отправить';
+  const statusNode = popupForm ? document.createElement('p') : null;
   let lastTrigger = null;
+
+  if (statusNode && popupForm) {
+    statusNode.className = 'contact-popup__status';
+    statusNode.hidden = true;
+    statusNode.setAttribute('aria-live', 'polite');
+    popupForm.append(statusNode);
+  }
+
+  const setStatus = (message, type = 'info') => {
+    if (!statusNode) return;
+    statusNode.hidden = !message;
+    statusNode.textContent = message;
+    statusNode.dataset.state = type;
+  };
+
+  const setLoadingState = (isLoading) => {
+    if (submitButton) {
+      submitButton.disabled = isLoading;
+      submitButton.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+    }
+
+    if (submitButtonText) {
+      submitButtonText.textContent = isLoading ? 'Отправляем...' : defaultSubmitLabel;
+    }
+  };
 
   const openPopup = (event) => {
     lastTrigger = event?.currentTarget ?? null;
     popup.classList.add('is-open');
     popup.setAttribute('aria-hidden', 'false');
     document.body.classList.add('contact-popup-open');
+    setStatus('');
 
     requestAnimationFrame(() => {
       firstField?.focus();
@@ -236,8 +266,52 @@ const initContactStylePopup = (popupId, openSelector) => {
     button.addEventListener('click', closePopup);
   });
 
-  popupForm?.addEventListener('submit', (event) => {
+  popupForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
+
+    setStatus('');
+    setLoadingState(true);
+
+    try {
+      if (window.location.protocol === 'file:') {
+        throw new Error('На локальном файле отправка отключена. Проверьте форму на боевом хосте.');
+      }
+
+      const response = await fetch(popupForm.action || 'send.php', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: new FormData(popupForm),
+      });
+
+      let result = null;
+
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        result = null;
+      }
+
+      if (!response.ok || !result?.ok) {
+        throw new Error(result?.message || 'Не удалось отправить заявку.');
+      }
+
+      popupForm.reset();
+      setStatus(result.message || 'Заявка отправлена.', 'success');
+
+      window.setTimeout(() => {
+        const redirectUrl = popupId === 'auditPopup'
+          ? 'thank-you.html?source=audit'
+          : 'thank-you.html?source=contact';
+
+        window.location.href = redirectUrl;
+      }, 500);
+    } catch (error) {
+      setStatus(error.message || 'Не удалось отправить заявку. Попробуйте ещё раз.', 'error');
+    } finally {
+      setLoadingState(false);
+    }
   });
 
   document.addEventListener('keydown', (event) => {
