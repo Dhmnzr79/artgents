@@ -5,11 +5,19 @@ declare(strict_types=1);
 const TO_EMAIL = 'denis.today@yandex.ru';
 const FROM_EMAIL = 'bot@artgents.ru';
 const FROM_NAME = 'Artgents';
+const MIN_FORM_FILL_MS = 3000;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     send_json(405, [
         'ok' => false,
         'message' => 'Метод не поддерживается.',
+    ]);
+}
+
+if (is_spam_submission($_POST)) {
+    send_json(200, [
+        'ok' => true,
+        'message' => 'Заявка отправлена. Скоро свяжемся с вами.',
     ]);
 }
 
@@ -82,6 +90,22 @@ send_json(200, [
 function clean(string $value): string
 {
     return trim(preg_replace('/\s+/u', ' ', $value) ?? '');
+}
+
+function is_spam_submission(array $payload): bool
+{
+    $honeypot = trim((string) ($payload['company_website'] ?? ''));
+    if ($honeypot !== '') {
+        return true;
+    }
+
+    $startedAt = (int) ($payload['form_started_at'] ?? 0);
+    if ($startedAt <= 0) {
+        return true;
+    }
+
+    $elapsedMs = (int) round(microtime(true) * 1000) - $startedAt;
+    return $elapsedMs < MIN_FORM_FILL_MS;
 }
 
 function validate_lead(array $lead): string

@@ -208,6 +208,8 @@ const initContactStylePopup = (popupId, openSelector) => {
   const firstField = popup.querySelector('input, textarea, button');
   const submitButton = popupForm?.querySelector('.contact-popup__submit');
   const submitButtonText = submitButton?.querySelector('.btn__text');
+  const startedAtField = popupForm?.querySelector('input[name="form_started_at"]');
+  const siteFields = popupForm ? popupForm.querySelectorAll('input[name="site"], input[name="audit_site"]') : [];
   const defaultSubmitLabel = submitButtonText?.textContent || 'Отправить';
   const statusNode = popupForm ? document.createElement('p') : null;
   let lastTrigger = null;
@@ -237,12 +239,34 @@ const initContactStylePopup = (popupId, openSelector) => {
     }
   };
 
+  const refreshAntiSpamFields = () => {
+    if (startedAtField) {
+      startedAtField.value = String(Date.now());
+    }
+  };
+
+  const normalizeSiteValue = (value) => {
+    const trimmedValue = value.trim();
+    if (!trimmedValue) return '';
+    if (/^[a-z][a-z0-9+.-]*:\/\//i.test(trimmedValue)) {
+      return trimmedValue;
+    }
+    return `https://${trimmedValue}`;
+  };
+
+  const normalizeSiteFields = () => {
+    siteFields.forEach((field) => {
+      field.value = normalizeSiteValue(field.value);
+    });
+  };
+
   const openPopup = (event) => {
     lastTrigger = event?.currentTarget ?? null;
     popup.classList.add('is-open');
     popup.setAttribute('aria-hidden', 'false');
     document.body.classList.add('contact-popup-open');
     setStatus('');
+    refreshAntiSpamFields();
 
     requestAnimationFrame(() => {
       firstField?.focus();
@@ -271,6 +295,7 @@ const initContactStylePopup = (popupId, openSelector) => {
 
     setStatus('');
     setLoadingState(true);
+    normalizeSiteFields();
 
     try {
       if (window.location.protocol === 'file:') {
@@ -298,6 +323,7 @@ const initContactStylePopup = (popupId, openSelector) => {
       }
 
       popupForm.reset();
+      refreshAntiSpamFields();
       setStatus(result.message || 'Заявка отправлена.', 'success');
 
       window.setTimeout(() => {
@@ -319,8 +345,34 @@ const initContactStylePopup = (popupId, openSelector) => {
       closePopup();
     }
   });
+
+  siteFields.forEach((field) => {
+    field.addEventListener('blur', () => {
+      field.value = normalizeSiteValue(field.value);
+    });
+  });
+
+  refreshAntiSpamFields();
 };
 
 initContactStylePopup('contactPopup', '[data-open-contact-popup]');
 initContactStylePopup('auditPopup', '[data-open-audit-popup]');
 initContactStylePopup('detailPopup', '[data-open-detail-popup]');
+
+const openClinicDemo = () => {
+  const host = document.getElementById('clinic-widget-root');
+  const root = host?.shadowRoot;
+  const button =
+    root?.querySelector('[data-clinic-launcher-open]') ||
+    root?.querySelector('[data-clinic-launcher]');
+
+  if (button instanceof HTMLElement) {
+    button.click();
+  }
+};
+
+window.openClinicDemo = openClinicDemo;
+
+document.querySelectorAll('[data-open-clinic-demo]').forEach((button) => {
+  button.addEventListener('click', openClinicDemo);
+});

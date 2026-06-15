@@ -394,7 +394,7 @@ body.contact-popup-open {
 .contact-popup {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -932,6 +932,12 @@ body.contact-popup-open {
   height: 100%;
 }
 
+.nav__actions {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
 .nav__link {
   padding: 9px 16px;
   border-radius: 999px;
@@ -953,9 +959,6 @@ body.contact-popup-open {
   height: 100%;
   padding-left: clamp(20px, 2.5vw, 36px);
   background: transparent;
-  border: none;
-  cursor: pointer;
-  font: inherit;
   font-weight: 400;
   color: var(--text);
   font-size: 14px;
@@ -989,7 +992,22 @@ body.contact-popup-open {
   height: 19px;
 }
 
-.nav__cta:hover .nav__cta-telegram {
+.nav__cta-icon {
+  display: flex;
+  height: 100%;
+  text-decoration: none;
+}
+
+.nav__cta-square {
+  display: flex;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav__cta-icon:hover .nav__cta-telegram {
   color: #fff;
   background: #2aabee;
 }
@@ -1016,7 +1034,7 @@ body.contact-popup-open {
   background: linear-gradient(289deg, #db2777 30%, #963fb4 137%);
 }
 
-.nav__cta:hover .nav__cta-arrow svg {
+.nav__cta-square:hover .nav__cta-arrow svg {
   transform: translateX(3px);
 }
 
@@ -1681,6 +1699,10 @@ body.contact-popup-open {
   flex: 0 0 5px;
   background: rgba(142, 92, 243, 0.72);
   margin-top: 9px;
+}
+
+.price-card__accent {
+  color: #db2777;
 }
 
 .pricing-faq {
